@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="CadFerreteria/CadFerreteria.csproj" Id="6af31bdc-c9b8-4dc1-8487-71759acdffb5" />
+  <Project Path="ClnFerreteria/ClnFerreteria.csproj" Id="e35491c9-a004-4004-b368-898ab538cf1f" />
+  <Project Path="CpFerreteria/CpFerreteria.csproj" Id="e1930e40-0b4b-4428-8ba4-490df1cb9787" />
+</Solution>

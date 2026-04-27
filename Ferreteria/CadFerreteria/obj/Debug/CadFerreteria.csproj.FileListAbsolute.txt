@@ -1,0 +1,6 @@
+C:\Users\RL\OneDrive\Documents\SIS-457\sis457_Leon_Ferreteria\Ferreteria\CadFerreteria\bin\Debug\CadFerreteria.dll
+C:\Users\RL\OneDrive\Documents\SIS-457\sis457_Leon_Ferreteria\Ferreteria\CadFerreteria\bin\Debug\CadFerreteria.pdb
+C:\Users\RL\OneDrive\Documents\SIS-457\sis457_Leon_Ferreteria\Ferreteria\CadFerreteria\obj\Debug\CadFerreteria.csproj.AssemblyReference.cache
+C:\Users\RL\OneDrive\Documents\SIS-457\sis457_Leon_Ferreteria\Ferreteria\CadFerreteria\obj\Debug\CadFerreteria.csproj.CoreCompileInputs.cache
+C:\Users\RL\OneDrive\Documents\SIS-457\sis457_Leon_Ferreteria\Ferreteria\CadFerreteria\obj\Debug\CadFerreteria.dll
+C:\Users\RL\OneDrive\Documents\SIS-457\sis457_Leon_Ferreteria\Ferreteria\CadFerreteria\obj\Debug\CadFerreteria.pdb
