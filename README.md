@@ -10,8 +10,28 @@ Siguiendo las buenas prácticas de la materia, la solución se divide en:
 - CpFerreteria: Capa de Presentación (Windows Forms).
 
 # Entidades Principales
-- Producto: (id, codigo, descripcion, precio, stock, registroActivo)
-- Cliente: (id, nit, razonSocial, telefono, registroActivo)
-- Usuario: (id, usuario, clave, rol, registroActivo)
-- Venta: (id, fecha, idUsuario, idCliente, total, registroActivo)
-- VentaDetalle: (id, idVenta, idProducto, cantidad, precioUnitario)
+1. Entidades de Catálogo (Organización)
+Categoría: Clasificación macro (Pinturas, Herramientas).
+
+SubCategoría: Clasificación específica (Martillos, Cables).
+
+Marca: Fabricante del producto (Truper, Bosch).
+
+UnidadMedida: Cómo se despacha (Metros, Kilos, Piezas).
+
+2. Entidad Central (El Objeto)
+Producto: Une todas las anteriores. Contiene el código, la descripción técnica, el stock y el precio de venta.
+
+3. Entidades Operativas (Movimientos)
+Compra / CompraDetalle: Entrada de mercadería y relación con el Proveedor.
+
+Venta / VentaDetalle: Salida de mercadería, relación con el Cliente y el Usuario.
+
+4. Entidades de Personal (Seguridad)
+Empleado: Datos humanos del trabajador.
+
+Usuario: La cuenta con la que el empleado entra al sistema (Login, Clave, Rol).
+
+Proveedor: Datos de la empresa que nos surte.
+
+Cliente: Datos para la facturación.
