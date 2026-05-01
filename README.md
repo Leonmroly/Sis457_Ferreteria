@@ -10,28 +10,29 @@ Siguiendo las buenas prácticas de la materia, la solución se divide en:
 - CpFerreteria: Capa de Presentación (Windows Forms).
 
 # Entidades Principales
-1. Entidades de Catálogo (Organización)
-Categoría: Clasificación macro (Pinturas, Herramientas).
+(Tablas y Entidades)
+Categoria: (id, nombre, usuarioRegistro, fechaRegistro, estado)
 
-SubCategoría: Clasificación específica (Martillos, Cables).
+SubCategoria: (id, idCategoria, nombre, usuarioRegistro, fechaRegistro, estado)
 
-Marca: Fabricante del producto (Truper, Bosch).
+Marca: (id, nombre, usuarioRegistro, fechaRegistro, estado)
 
-UnidadMedida: Cómo se despacha (Metros, Kilos, Piezas).
+UnidadMedida: (id, nombre, usuarioRegistro, fechaRegistro, estado)
 
-2. Entidad Central (El Objeto)
-Producto: Une todas las anteriores. Contiene el código, la descripción técnica, el stock y el precio de venta.
+Producto: (id, idSubCategoria, idUnidadMedida, idMarca, codigo, descripcion, precioVenta, stock, usuarioRegistro, fechaRegistro, estado)
 
-3. Entidades Operativas (Movimientos)
-Compra / CompraDetalle: Entrada de mercadería y relación con el Proveedor.
+Proveedor: (id, nit, razonSocial, representante, celular, usuarioRegistro, fechaRegistro, estado)
 
-Venta / VentaDetalle: Salida de mercadería, relación con el Cliente y el Usuario.
+Cliente: (id, nit, razonSocial, telefono, usuarioRegistro, fechaRegistro, estado)
 
-4. Entidades de Personal (Seguridad)
-Empleado: Datos humanos del trabajador.
+Empleado: (id, cedulaIdentidad, nombres, primerApellido, segundoApellido, fechaNacimiento, direccion, celular, cargo, usuarioRegistro, fechaRegistro, estado)
 
-Usuario: La cuenta con la que el empleado entra al sistema (Login, Clave, Rol).
+Usuario: (id, idEmpleado, usuario, clave, rol, usuarioRegistro, fechaRegistro, estado)
 
-Proveedor: Datos de la empresa que nos surte.
+Compra: (id, idProveedor, fecha, total, usuarioRegistro, fechaRegistro, estado)
 
-Cliente: Datos para la facturación.
+CompraDetalle: (id, idCompra, idProducto, cantidad, precioCompra, usuarioRegistro, fechaRegistro, estado)
+
+Venta: (id, fecha, idUsuario, idCliente, total, usuarioRegistro, fechaRegistro, estado)
+
+VentaDetalle: (id, idVenta, idProducto, cantidad, precioUnitario, usuarioRegistro, fechaRegistro, estado)
