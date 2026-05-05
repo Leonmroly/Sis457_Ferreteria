@@ -4,13 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="488dffab2f3540c48bf72987ee97371a" Name="Diagram1" ZoomLevel="70">
+      <Diagram DiagramId="488dffab2f3540c48bf72987ee97371a" Name="Diagram1" ZoomLevel="79">
         <EntityTypeShape EntityType="LabFerreteriaModel.Categoria" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Cliente" Width="1.5" PointX="6" PointY="14.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Compra" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Empleado" Width="1.5" PointX="3.75" PointY="18.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Marca" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LabFerreteriaModel.Producto" Width="1.5" PointX="5.125" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Proveedor" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LabFerreteriaModel.SubCategoria" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="LabFerreteriaModel.UnidadMedida" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
@@ -21,15 +20,16 @@
         <AssociationConnector Association="LabFerreteriaModel.fk_Ven_Cli" ManuallyRouted="false" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Com_Prov" ManuallyRouted="false" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Usu_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="LabFerreteriaModel.fk_Prod_Marca" ManuallyRouted="false" />
-        <AssociationConnector Association="LabFerreteriaModel.fk_DetVen_Prod" ManuallyRouted="false" />
-        <AssociationConnector Association="LabFerreteriaModel.fk_Prod_Sub" ManuallyRouted="false" />
-        <AssociationConnector Association="LabFerreteriaModel.fk_Prod_UM" ManuallyRouted="false" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Ven_Usu" ManuallyRouted="false" />
         <AssociationConnector Association="LabFerreteriaModel.fk_DetVen_Ven" ManuallyRouted="false" />
         <EntityTypeShape EntityType="LabFerreteriaModel.CompraDetalle" Width="1.5" PointX="10.25" PointY="3.25" />
         <AssociationConnector Association="LabFerreteriaModel.fk_DetCom_Com" />
+        <EntityTypeShape EntityType="LabFerreteriaModel.Producto" Width="1.5" PointX="5.25" PointY="3.25" />
         <AssociationConnector Association="LabFerreteriaModel.fk_DetCom_Prod" />
+        <AssociationConnector Association="LabFerreteriaModel.fk_Prod_Marca" />
+        <AssociationConnector Association="LabFerreteriaModel.fk_DetVen_Prod" />
+        <AssociationConnector Association="LabFerreteriaModel.fk_Prod_Sub" />
+        <AssociationConnector Association="LabFerreteriaModel.fk_Prod_UM" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

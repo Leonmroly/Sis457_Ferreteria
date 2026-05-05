@@ -17,8 +17,8 @@ namespace CadFerreteria
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Producto()
         {
-            this.VentaDetalle = new HashSet<VentaDetalle>();
             this.CompraDetalle = new HashSet<CompraDetalle>();
+            this.VentaDetalle = new HashSet<VentaDetalle>();
         }
     
         public int id { get; set; }
@@ -27,18 +27,18 @@ namespace CadFerreteria
         public int idMarca { get; set; }
         public string codigo { get; set; }
         public string descripcion { get; set; }
+        public decimal saldo { get; set; }
         public decimal precioVenta { get; set; }
-        public decimal stock { get; set; }
         public string usuarioRegistro { get; set; }
         public System.DateTime fechaRegistro { get; set; }
         public int estado { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompraDetalle> CompraDetalle { get; set; }
         public virtual Marca Marca { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VentaDetalle> VentaDetalle { get; set; }
         public virtual SubCategoria SubCategoria { get; set; }
         public virtual UnidadMedida UnidadMedida { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CompraDetalle> CompraDetalle { get; set; }
     }
 }

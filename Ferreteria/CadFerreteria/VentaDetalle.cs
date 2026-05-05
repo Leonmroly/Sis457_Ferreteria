@@ -23,7 +23,7 @@ namespace CadFerreteria
         public System.DateTime fechaRegistro { get; set; }
         public int estado { get; set; }
     
-        public virtual Producto Producto { get; set; }
         public virtual Venta Venta { get; set; }
+        public virtual Producto Producto { get; set; }
     }
 }

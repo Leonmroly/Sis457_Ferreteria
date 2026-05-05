@@ -91,8 +91,8 @@ CREATE TABLE Producto ( -- TABLA 9
   idMarca INT NOT NULL,
   codigo VARCHAR(20) NOT NULL,
   descripcion VARCHAR(200) NOT NULL,
-  precioVenta DECIMAL(18,2) NOT NULL CHECK (precioVenta > 0), 
-  stock DECIMAL(18,2) NOT NULL DEFAULT 0,  
+  saldo DECIMAL(18,2) NOT NULL DEFAULT 0,  
+  precioVenta DECIMAL NOT NULL CHECK (precioVenta > 0), 
   CONSTRAINT fk_Prod_Sub FOREIGN KEY (idSubCategoria) REFERENCES SubCategoria(id),
   CONSTRAINT fk_Prod_UM FOREIGN KEY (idUnidadMedida) REFERENCES UnidadMedida(id),
   CONSTRAINT fk_Prod_Marca FOREIGN KEY (idMarca) REFERENCES Marca(id));
@@ -212,7 +212,7 @@ GO
 CREATE PROC paProductoListar @parametro VARCHAR(50)
 AS
   SELECT p.id, p.idSubCategoria, p.idUnidadMedida, p.idMarca, p.codigo, p.descripcion, 
-         um.nombre AS unidadMedida, m.nombre AS marca, p.stock, p.precioVenta, 
+         um.nombre AS unidadMedida, m.nombre AS marca, p.saldo, p.precioVenta, 
          p.usuarioRegistro, p.fechaRegistro, p.estado
   FROM Producto p
   INNER JOIN UnidadMedida um ON p.idUnidadMedida = um.id
@@ -252,15 +252,15 @@ INSERT INTO Cliente (nit, razonSocial, telefono) VALUES (0, 'Cliente General', 0
 
 -- Productos (Usando las IDs generadas arriba)
 -- Martillo (SubCat 1, UM 1, Marca 1)
-INSERT INTO Producto (idSubCategoria, idUnidadMedida, idMarca, codigo, descripcion, precioVenta, stock) 
+INSERT INTO Producto (idSubCategoria, idUnidadMedida, idMarca, codigo, descripcion, precioVenta, saldo) 
 VALUES (1, 1, 1, 'MART-01', 'Martillo de uña 16oz Pro', 45.00, 50);
 
 -- Cable (SubCat 3, UM 3, Marca 3)
-INSERT INTO Producto (idSubCategoria, idUnidadMedida, idMarca, codigo, descripcion, precioVenta, stock) 
+INSERT INTO Producto (idSubCategoria, idUnidadMedida, idMarca, codigo, descripcion, precioVenta, saldo) 
 VALUES (3, 3, 3, 'CAB-001', 'Cable Eléctrico Nro 14', 12.50, 100);
 
 -- Destornillador (SubCat 2, UM 1, Marca 2)
-INSERT INTO Producto (idSubCategoria, idUnidadMedida, idMarca, codigo, descripcion, precioVenta, stock) 
+INSERT INTO Producto (idSubCategoria, idUnidadMedida, idMarca, codigo, descripcion, precioVenta, saldo) 
 VALUES (2, 1, 2, 'DEST-02', 'Destornillador Phillips Stanley', 25.00, 30);
 GO
 
@@ -272,3 +272,32 @@ EXEC paProductoListar 'stanley';
 SELECT * FROM Producto;
 SELECT * FROM Usuario;
 SELECT * FROM Empleado;
+
+
+
+ALTER PROC paProductoListar @parametro VARCHAR(50)
+AS
+BEGIN
+  SELECT 
+    p.id, 
+    p.idSubCategoria,
+    p.idUnidadMedida, 
+    p.idMarca,        -- El ID que tienes en tu tabla Producto
+    p.codigo, 
+    p.descripcion, 
+    um.nombre AS unidadMedida, -- Para que no de error de Unidad
+    m.nombre AS marca,         -- ESTO ARREGLA EL ERROR DE MARCA (El nombre real)
+    p.saldo,                   
+    p.saldo AS stock,          -- Para que C# no llore
+    p.precioVenta, 
+    p.usuarioRegistro, 
+    p.fechaRegistro, 
+    p.estado
+  FROM Producto p
+  INNER JOIN UnidadMedida um ON um.id = p.idUnidadMedida
+  INNER JOIN Marca m ON m.id = p.idMarca -- UNIÓN CON MARCA
+  WHERE p.estado = 1 
+    AND (p.codigo + p.descripcion + um.nombre + m.nombre LIKE '%' + REPLACE(@parametro, ' ', '%') + '%')
+  ORDER BY p.descripcion;
+END
+GO

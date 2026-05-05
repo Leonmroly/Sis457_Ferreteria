@@ -32,7 +32,6 @@ namespace CadFerreteria
         public virtual DbSet<Compra> Compra { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<Marca> Marca { get; set; }
-        public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<Proveedor> Proveedor { get; set; }
         public virtual DbSet<SubCategoria> SubCategoria { get; set; }
         public virtual DbSet<UnidadMedida> UnidadMedida { get; set; }
@@ -40,6 +39,7 @@ namespace CadFerreteria
         public virtual DbSet<Venta> Venta { get; set; }
         public virtual DbSet<VentaDetalle> VentaDetalle { get; set; }
         public virtual DbSet<CompraDetalle> CompraDetalle { get; set; }
+        public virtual DbSet<Producto> Producto { get; set; }
     
         public virtual ObjectResult<paProductoListar_Result> paProductoListar(string parametro)
         {
