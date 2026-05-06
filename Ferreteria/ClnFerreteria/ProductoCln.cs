@@ -24,17 +24,17 @@ namespace ClnFerreteria
         {
             using (var context = new LabFerreteriaEntities())
             {
-                var existente = context.Producto.Find(producto.id);
+                 var existente = context.Producto.Find(producto.id);
+
                 if (existente != null)
                 {
-                    existente.idUnidadMedida = producto.idUnidadMedida;
                     existente.codigo = producto.codigo;
                     existente.descripcion = producto.descripcion;
-                    existente.precioVenta = producto.precioVenta;
+                    existente.idUnidadMedida = producto.idUnidadMedida;
                     existente.saldo = producto.saldo;
+                    existente.precioVenta = producto.precioVenta;
                     existente.usuarioRegistro = producto.usuarioRegistro;
-                    existente.fechaRegistro = producto.fechaRegistro;
-                    existente.estado = producto.estado;
+
                     return context.SaveChanges();
                 }
                 return 0;

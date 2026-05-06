@@ -231,7 +231,9 @@ GO
 -- DELETE FROM VentaDetalle; DELETE FROM Venta; DELETE FROM Producto; ...
 
 -- Unidades de Medida (Cuidado: en Minerva era 'descripcion', aquí es 'nombre')
-INSERT INTO UnidadMedida (nombre) VALUES ('Unidad'), ('Kilo'), ('Metro'), ('Caja'), ('Docena'), ('Paquete');
+INSERT INTO UnidadMedida (nombre) 
+VALUES ('Unidad'), ('Kilo'), ('Metro'), ('Caja'), ('Docena'), ('Paquete');
+
 
 -- Marcas
 INSERT INTO Marca (nombre) VALUES ('Truper'), ('Stanley'), ('Bosch'), ('Tramontina');
@@ -275,29 +277,3 @@ SELECT * FROM Empleado;
 
 
 
-ALTER PROC paProductoListar @parametro VARCHAR(50)
-AS
-BEGIN
-  SELECT 
-    p.id, 
-    p.idSubCategoria,
-    p.idUnidadMedida, 
-    p.idMarca,        -- El ID que tienes en tu tabla Producto
-    p.codigo, 
-    p.descripcion, 
-    um.nombre AS unidadMedida, -- Para que no de error de Unidad
-    m.nombre AS marca,         -- ESTO ARREGLA EL ERROR DE MARCA (El nombre real)
-    p.saldo,                   
-    p.saldo AS stock,          -- Para que C# no llore
-    p.precioVenta, 
-    p.usuarioRegistro, 
-    p.fechaRegistro, 
-    p.estado
-  FROM Producto p
-  INNER JOIN UnidadMedida um ON um.id = p.idUnidadMedida
-  INNER JOIN Marca m ON m.id = p.idMarca -- UNIÓN CON MARCA
-  WHERE p.estado = 1 
-    AND (p.codigo + p.descripcion + um.nombre + m.nombre LIKE '%' + REPLACE(@parametro, ' ', '%') + '%')
-  ORDER BY p.descripcion;
-END
-GO
