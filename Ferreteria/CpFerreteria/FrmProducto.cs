@@ -64,6 +64,11 @@ namespace CpFerreteria
             listar();
         }
 
+        private void txtParametro_TextChanged(object sender, EventArgs e)
+        {
+            listar();
+        }
+
         private void txtParametro_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter) listar();
@@ -223,5 +228,6 @@ namespace CpFerreteria
         {
             Close();
         }
+
     }
 }

@@ -36,13 +36,7 @@
             this.txtParametro = new System.Windows.Forms.TextBox();
             this.gbxLista = new System.Windows.Forms.GroupBox();
             this.pnlAcciones = new System.Windows.Forms.Panel();
-            this.btnCerrar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnNuevo = new System.Windows.Forms.Button();
             this.gbxDatos = new System.Windows.Forms.GroupBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.nudPrecioVenta = new System.Windows.Forms.NumericUpDown();
             this.nudSaldo = new System.Windows.Forms.NumericUpDown();
             this.lblPrecioVenta = new System.Windows.Forms.Label();
@@ -53,12 +47,18 @@
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lblCodigo = new System.Windows.Forms.Label();
             this.lblUnidadMedida = new System.Windows.Forms.Label();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.erpCodigo = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpUnidadMedida = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpDescripcion = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpSaldo = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpPrecioVenta = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.gbxLista.SuspendLayout();
             this.pnlAcciones.SuspendLayout();
@@ -88,6 +88,7 @@
             this.dgvLista.AllowUserToAddRows = false;
             this.dgvLista.AllowUserToDeleteRows = false;
             this.dgvLista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvLista.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLista.Location = new System.Drawing.Point(8, 27);
             this.dgvLista.Margin = new System.Windows.Forms.Padding(5);
@@ -115,6 +116,7 @@
             this.txtParametro.Name = "txtParametro";
             this.txtParametro.Size = new System.Drawing.Size(364, 26);
             this.txtParametro.TabIndex = 3;
+            this.txtParametro.TextChanged += new System.EventHandler(this.txtParametro_TextChanged);
             this.txtParametro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtParametro_KeyPress);
             // 
             // gbxLista
@@ -137,6 +139,164 @@
             this.pnlAcciones.Name = "pnlAcciones";
             this.pnlAcciones.Size = new System.Drawing.Size(717, 47);
             this.pnlAcciones.TabIndex = 6;
+            // 
+            // gbxDatos
+            // 
+            this.gbxDatos.Controls.Add(this.btnGuardar);
+            this.gbxDatos.Controls.Add(this.btnCancelar);
+            this.gbxDatos.Controls.Add(this.nudPrecioVenta);
+            this.gbxDatos.Controls.Add(this.nudSaldo);
+            this.gbxDatos.Controls.Add(this.lblPrecioVenta);
+            this.gbxDatos.Controls.Add(this.lblSaldo);
+            this.gbxDatos.Controls.Add(this.txtDescripcion);
+            this.gbxDatos.Controls.Add(this.cbxUnidadMedida);
+            this.gbxDatos.Controls.Add(this.txtCodigo);
+            this.gbxDatos.Controls.Add(this.lblDescripcion);
+            this.gbxDatos.Controls.Add(this.lblCodigo);
+            this.gbxDatos.Controls.Add(this.lblUnidadMedida);
+            this.gbxDatos.Location = new System.Drawing.Point(13, 306);
+            this.gbxDatos.Name = "gbxDatos";
+            this.gbxDatos.Size = new System.Drawing.Size(717, 148);
+            this.gbxDatos.TabIndex = 7;
+            this.gbxDatos.TabStop = false;
+            this.gbxDatos.Text = "Datos";
+            // 
+            // nudPrecioVenta
+            // 
+            this.nudPrecioVenta.Location = new System.Drawing.Point(522, 67);
+            this.nudPrecioVenta.Name = "nudPrecioVenta";
+            this.nudPrecioVenta.Size = new System.Drawing.Size(136, 26);
+            this.nudPrecioVenta.TabIndex = 17;
+            // 
+            // nudSaldo
+            // 
+            this.nudSaldo.Location = new System.Drawing.Point(522, 20);
+            this.nudSaldo.Name = "nudSaldo";
+            this.nudSaldo.Size = new System.Drawing.Size(136, 26);
+            this.nudSaldo.TabIndex = 16;
+            // 
+            // lblPrecioVenta
+            // 
+            this.lblPrecioVenta.AutoSize = true;
+            this.lblPrecioVenta.Location = new System.Drawing.Point(356, 69);
+            this.lblPrecioVenta.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblPrecioVenta.Name = "lblPrecioVenta";
+            this.lblPrecioVenta.Size = new System.Drawing.Size(126, 20);
+            this.lblPrecioVenta.TabIndex = 15;
+            this.lblPrecioVenta.Text = "Precio de Venta:";
+            // 
+            // lblSaldo
+            // 
+            this.lblSaldo.AutoSize = true;
+            this.lblSaldo.Location = new System.Drawing.Point(356, 25);
+            this.lblSaldo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblSaldo.Name = "lblSaldo";
+            this.lblSaldo.Size = new System.Drawing.Size(54, 20);
+            this.lblSaldo.TabIndex = 14;
+            this.lblSaldo.Text = "Saldo:";
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(137, 105);
+            this.txtDescripcion.MaxLength = 200;
+            this.txtDescripcion.Multiline = true;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(155, 37);
+            this.txtDescripcion.TabIndex = 13;
+            // 
+            // cbxUnidadMedida
+            // 
+            this.cbxUnidadMedida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxUnidadMedida.FormattingEnabled = true;
+            this.cbxUnidadMedida.Location = new System.Drawing.Point(137, 66);
+            this.cbxUnidadMedida.Name = "cbxUnidadMedida";
+            this.cbxUnidadMedida.Size = new System.Drawing.Size(155, 28);
+            this.cbxUnidadMedida.TabIndex = 12;
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCodigo.Location = new System.Drawing.Point(137, 19);
+            this.txtCodigo.MaxLength = 20;
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(155, 26);
+            this.txtCodigo.TabIndex = 11;
+            // 
+            // lblDescripcion
+            // 
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Location = new System.Drawing.Point(3, 108);
+            this.lblDescripcion.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(96, 20);
+            this.lblDescripcion.TabIndex = 10;
+            this.lblDescripcion.Text = "Descripcion:";
+            // 
+            // lblCodigo
+            // 
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Location = new System.Drawing.Point(3, 25);
+            this.lblCodigo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(63, 20);
+            this.lblCodigo.TabIndex = 9;
+            this.lblCodigo.Text = "Codigo:";
+            // 
+            // lblUnidadMedida
+            // 
+            this.lblUnidadMedida.AutoSize = true;
+            this.lblUnidadMedida.Location = new System.Drawing.Point(3, 69);
+            this.lblUnidadMedida.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblUnidadMedida.Name = "lblUnidadMedida";
+            this.lblUnidadMedida.Size = new System.Drawing.Size(120, 20);
+            this.lblUnidadMedida.TabIndex = 8;
+            this.lblUnidadMedida.Text = "Unidad Medida:";
+            // 
+            // erpCodigo
+            // 
+            this.erpCodigo.ContainerControl = this;
+            // 
+            // erpUnidadMedida
+            // 
+            this.erpUnidadMedida.ContainerControl = this;
+            // 
+            // erpDescripcion
+            // 
+            this.erpDescripcion.ContainerControl = this;
+            // 
+            // erpSaldo
+            // 
+            this.erpSaldo.ContainerControl = this;
+            // 
+            // erpPrecioVenta
+            // 
+            this.erpPrecioVenta.ContainerControl = this;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Image = global::CpFerreteria.Properties.Resources.save;
+            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGuardar.Location = new System.Drawing.Point(347, 105);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(108, 40);
+            this.btnGuardar.TabIndex = 18;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Image = global::CpFerreteria.Properties.Resources.cancel;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(550, 105);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(108, 40);
+            this.btnCancelar.TabIndex = 11;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnCerrar
             // 
@@ -190,144 +350,6 @@
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // gbxDatos
-            // 
-            this.gbxDatos.Controls.Add(this.btnGuardar);
-            this.gbxDatos.Controls.Add(this.btnCancelar);
-            this.gbxDatos.Controls.Add(this.nudPrecioVenta);
-            this.gbxDatos.Controls.Add(this.nudSaldo);
-            this.gbxDatos.Controls.Add(this.lblPrecioVenta);
-            this.gbxDatos.Controls.Add(this.lblSaldo);
-            this.gbxDatos.Controls.Add(this.txtDescripcion);
-            this.gbxDatos.Controls.Add(this.cbxUnidadMedida);
-            this.gbxDatos.Controls.Add(this.txtCodigo);
-            this.gbxDatos.Controls.Add(this.lblDescripcion);
-            this.gbxDatos.Controls.Add(this.lblCodigo);
-            this.gbxDatos.Controls.Add(this.lblUnidadMedida);
-            this.gbxDatos.Location = new System.Drawing.Point(13, 306);
-            this.gbxDatos.Name = "gbxDatos";
-            this.gbxDatos.Size = new System.Drawing.Size(717, 148);
-            this.gbxDatos.TabIndex = 7;
-            this.gbxDatos.TabStop = false;
-            this.gbxDatos.Text = "Datos";
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Image = global::CpFerreteria.Properties.Resources.save;
-            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(347, 105);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(108, 40);
-            this.btnGuardar.TabIndex = 18;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Image = global::CpFerreteria.Properties.Resources.cancel;
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(516, 105);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(108, 40);
-            this.btnCancelar.TabIndex = 11;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // nudPrecioVenta
-            // 
-            this.nudPrecioVenta.Location = new System.Drawing.Point(504, 63);
-            this.nudPrecioVenta.Name = "nudPrecioVenta";
-            this.nudPrecioVenta.Size = new System.Drawing.Size(120, 26);
-            this.nudPrecioVenta.TabIndex = 17;
-            // 
-            // nudSaldo
-            // 
-            this.nudSaldo.Location = new System.Drawing.Point(504, 23);
-            this.nudSaldo.Name = "nudSaldo";
-            this.nudSaldo.Size = new System.Drawing.Size(120, 26);
-            this.nudSaldo.TabIndex = 16;
-            // 
-            // lblPrecioVenta
-            // 
-            this.lblPrecioVenta.AutoSize = true;
-            this.lblPrecioVenta.Location = new System.Drawing.Point(343, 69);
-            this.lblPrecioVenta.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblPrecioVenta.Name = "lblPrecioVenta";
-            this.lblPrecioVenta.Size = new System.Drawing.Size(126, 20);
-            this.lblPrecioVenta.TabIndex = 15;
-            this.lblPrecioVenta.Text = "Precio de Venta:";
-            // 
-            // lblSaldo
-            // 
-            this.lblSaldo.AutoSize = true;
-            this.lblSaldo.Location = new System.Drawing.Point(343, 25);
-            this.lblSaldo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblSaldo.Name = "lblSaldo";
-            this.lblSaldo.Size = new System.Drawing.Size(54, 20);
-            this.lblSaldo.TabIndex = 14;
-            this.lblSaldo.Text = "Saldo:";
-            // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Location = new System.Drawing.Point(137, 105);
-            this.txtDescripcion.MaxLength = 200;
-            this.txtDescripcion.Multiline = true;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(155, 37);
-            this.txtDescripcion.TabIndex = 13;
-            // 
-            // cbxUnidadMedida
-            // 
-            this.cbxUnidadMedida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxUnidadMedida.FormattingEnabled = true;
-            this.cbxUnidadMedida.Location = new System.Drawing.Point(137, 66);
-            this.cbxUnidadMedida.Name = "cbxUnidadMedida";
-            this.cbxUnidadMedida.Size = new System.Drawing.Size(121, 28);
-            this.cbxUnidadMedida.TabIndex = 12;
-            // 
-            // txtCodigo
-            // 
-            this.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCodigo.Location = new System.Drawing.Point(137, 19);
-            this.txtCodigo.MaxLength = 20;
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(155, 26);
-            this.txtCodigo.TabIndex = 11;
-            // 
-            // lblDescripcion
-            // 
-            this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(3, 108);
-            this.lblDescripcion.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(96, 20);
-            this.lblDescripcion.TabIndex = 10;
-            this.lblDescripcion.Text = "Descripcion:";
-            // 
-            // lblCodigo
-            // 
-            this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(3, 25);
-            this.lblCodigo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(63, 20);
-            this.lblCodigo.TabIndex = 9;
-            this.lblCodigo.Text = "Codigo:";
-            // 
-            // lblUnidadMedida
-            // 
-            this.lblUnidadMedida.AutoSize = true;
-            this.lblUnidadMedida.Location = new System.Drawing.Point(3, 69);
-            this.lblUnidadMedida.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblUnidadMedida.Name = "lblUnidadMedida";
-            this.lblUnidadMedida.Size = new System.Drawing.Size(120, 20);
-            this.lblUnidadMedida.TabIndex = 8;
-            this.lblUnidadMedida.Text = "Unidad Medida:";
-            // 
             // btnBuscar
             // 
             this.btnBuscar.Image = global::CpFerreteria.Properties.Resources.search;
@@ -340,26 +362,6 @@
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // erpCodigo
-            // 
-            this.erpCodigo.ContainerControl = this;
-            // 
-            // erpUnidadMedida
-            // 
-            this.erpUnidadMedida.ContainerControl = this;
-            // 
-            // erpDescripcion
-            // 
-            this.erpDescripcion.ContainerControl = this;
-            // 
-            // erpSaldo
-            // 
-            this.erpSaldo.ContainerControl = this;
-            // 
-            // erpPrecioVenta
-            // 
-            this.erpPrecioVenta.ContainerControl = this;
             // 
             // FrmProducto
             // 
