@@ -266,6 +266,13 @@ INSERT INTO Producto (idSubCategoria, idUnidadMedida, idMarca, codigo, descripci
 VALUES (2, 1, 2, 'DEST-02', 'Destornillador Phillips Stanley', 25.00, 30);
 GO
 
+
+INSERT INTO Empleado (cedulaIdentidad, nombres, primerApellido, segundoApellido, fechaNacimiento, direccion, celular, cargo)
+VALUES ('654321', 'Roly', 'Leon', 'Mamani', '2005-05-15', 'Avenida Segungo Vascones', 72727272, 'Administrador');
+
+INSERT INTO Usuario (idEmpleado, usuario, clave, rol)
+VALUES (1, 'lroly', 'i0hcoO/nssY6WOs9pOp5Xw==', 'Administrador');
+
 -- 3. PRUEBA DEL PROCEDIMIENTO
 EXEC paProductoListar 'martillo';
 EXEC paProductoListar 'stanley';
@@ -274,6 +281,7 @@ EXEC paProductoListar 'stanley';
 SELECT * FROM Producto;
 SELECT * FROM Usuario;
 SELECT * FROM Empleado;
+SELECT * FROM Categoria;
 
 
 

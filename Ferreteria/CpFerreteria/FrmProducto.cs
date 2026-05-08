@@ -178,7 +178,7 @@ namespace CpFerreteria
                     idUnidadMedida = (int)cbxUnidadMedida.SelectedValue,
                     saldo = nudSaldo.Value,
                     precioVenta = nudPrecioVenta.Value,
-                    usuarioRegistro = "admin",
+                    usuarioRegistro = Util.usuario.usuario1,
 
                     idSubCategoria = 1,
                     idMarca = 1
@@ -217,7 +217,7 @@ namespace CpFerreteria
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialog == DialogResult.Yes)
             {
-                ProductoCln.eliminar(id, "admin");
+                ProductoCln.eliminar(id, Util.usuario.usuario1);
                 listar();
                 MessageBox.Show("Producto eliminado correctamente", "::: Mensaje - Ferreteria :::",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
