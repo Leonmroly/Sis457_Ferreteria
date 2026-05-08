@@ -312,6 +312,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="paMarcaListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="parametro" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="paProductoListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="parametro" Type="varchar" Mode="In" />
         </Function>
@@ -670,6 +673,9 @@
             <End Role="UnidadMedida" EntitySet="UnidadMedida" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
+          <FunctionImport Name="paMarcaListar" ReturnType="Collection(LabFerreteriaModel.paMarcaListar_Result)">
+            <Parameter Name="parametro" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="CompraDetalle">
           <Key>
@@ -794,6 +800,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="paMarcaListar_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="estado" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -995,6 +1006,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="paMarcaListar" FunctionName="LabFerreteriaModel.Store.paMarcaListar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LabFerreteriaModel.paMarcaListar_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

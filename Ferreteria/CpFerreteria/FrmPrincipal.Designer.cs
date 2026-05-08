@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.btnProductos = new System.Windows.Forms.Button();
+            this.btnMarca = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProductos
@@ -43,11 +44,23 @@
             this.btnProductos.UseVisualStyleBackColor = true;
             this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
             // 
+            // btnMarca
+            // 
+            this.btnMarca.Location = new System.Drawing.Point(76, 267);
+            this.btnMarca.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnMarca.Name = "btnMarca";
+            this.btnMarca.Size = new System.Drawing.Size(189, 65);
+            this.btnMarca.TabIndex = 1;
+            this.btnMarca.Text = "Marcas";
+            this.btnMarca.UseVisualStyleBackColor = true;
+            this.btnMarca.Click += new System.EventHandler(this.btnMarca_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 532);
+            this.Controls.Add(this.btnMarca);
             this.Controls.Add(this.btnProductos);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -64,5 +77,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnProductos;
+        private System.Windows.Forms.Button btnMarca;
     }
 }

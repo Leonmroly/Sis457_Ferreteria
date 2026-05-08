@@ -31,3 +31,5 @@ C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerre
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerret.A7FCED0A.Up2Date
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.exe
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.pdb
+C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmMarca.resources
+C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmMarcaEntry.resources

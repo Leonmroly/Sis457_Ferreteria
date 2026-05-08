@@ -288,6 +288,9 @@
       <End Role="UnidadMedida" EntitySet="UnidadMedida" />
       <End Role="Producto" EntitySet="Producto" />
     </AssociationSet>
+    <FunctionImport Name="paMarcaListar" ReturnType="Collection(LabFerreteriaModel.paMarcaListar_Result)">
+      <Parameter Name="parametro" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="CompraDetalle">
     <Key>
@@ -412,4 +415,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="paMarcaListar_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="estado" Nullable="false" />
+  </ComplexType>
 </Schema>

@@ -196,5 +196,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="paMarcaListar" FunctionName="LabFerreteriaModel.Store.paMarcaListar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LabFerreteriaModel.paMarcaListar_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

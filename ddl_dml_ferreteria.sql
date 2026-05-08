@@ -222,6 +222,13 @@ AS
   ORDER BY p.descripcion;
 GO
 
+
+CREATE PROC paMarcaListar @parametro VARCHAR(50)
+AS
+  SELECT id, nombre, estado
+  FROM Marca
+  WHERE estado <> -1 AND nombre LIKE '%' + REPLACE(@parametro, ' ', '%') + '%';
+
 -- 2. DML: DATOS DE PRUEBA (CORREGIDO Y AMPLIADO)
 GO
 USE LabFerreteria;
@@ -282,6 +289,7 @@ SELECT * FROM Producto;
 SELECT * FROM Usuario;
 SELECT * FROM Empleado;
 SELECT * FROM Categoria;
-
+SELECT * FROM Marca;
+SELECT * FROM UnidadMedida;
 
 
