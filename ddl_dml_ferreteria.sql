@@ -243,6 +243,24 @@ GO
 
 
 
+-- 1. Si existe algo con ese nombre, lo borramos para empezar de cero
+IF EXISTS (SELECT * FROM sys.objects WHERE name = 'paUnidadMedidaListar')
+    DROP PROC paUnidadMedidaListar;
+GO
+
+-- 2. Lo creamos limpio (SIN la columna símbolo)
+CREATE PROC paUnidadMedidaListar @parametro VARCHAR(50)
+AS
+BEGIN
+  SELECT id, nombre, usuarioRegistro, fechaRegistro, estado
+  FROM UnidadMedida
+  WHERE estado <> -1 
+    AND nombre LIKE '%' + REPLACE(@parametro, ' ', '%') + '%';
+END
+GO
+
+
+
 
 -- 2. DML: DATOS DE PRUEBA (CORREGIDO Y AMPLIADO)
 GO

@@ -67,5 +67,14 @@ namespace CadFerreteria
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paMarcaListar_Result>("paMarcaListar", parametroParameter);
         }
+    
+        public virtual ObjectResult<paUnidadMedidaListar_Result> paUnidadMedidaListar(string parametro)
+        {
+            var parametroParameter = parametro != null ?
+                new ObjectParameter("parametro", parametro) :
+                new ObjectParameter("parametro", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paUnidadMedidaListar_Result>("paUnidadMedidaListar", parametroParameter);
+        }
     }
 }

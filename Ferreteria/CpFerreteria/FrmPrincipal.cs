@@ -39,5 +39,10 @@ namespace CpFerreteria
         {
             new FrmCategoria().ShowDialog();
         }
+
+        private void btnUnidadMedida_Click(object sender, EventArgs e)
+        {
+            new FrmUnidadMedida().ShowDialog();
+        }
     }
 }

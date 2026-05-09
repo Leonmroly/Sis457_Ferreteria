@@ -32,6 +32,7 @@
             this.btnProductos = new System.Windows.Forms.Button();
             this.btnMarca = new System.Windows.Forms.Button();
             this.btnCategoria = new System.Windows.Forms.Button();
+            this.btnUnidadMedida = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProductos
@@ -67,11 +68,23 @@
             this.btnCategoria.UseVisualStyleBackColor = true;
             this.btnCategoria.Click += new System.EventHandler(this.btnCategoria_Click);
             // 
+            // btnUnidadMedida
+            // 
+            this.btnUnidadMedida.Location = new System.Drawing.Point(532, 277);
+            this.btnUnidadMedida.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUnidadMedida.Name = "btnUnidadMedida";
+            this.btnUnidadMedida.Size = new System.Drawing.Size(189, 65);
+            this.btnUnidadMedida.TabIndex = 3;
+            this.btnUnidadMedida.Text = "Unidades de Medida";
+            this.btnUnidadMedida.UseVisualStyleBackColor = true;
+            this.btnUnidadMedida.Click += new System.EventHandler(this.btnUnidadMedida_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 532);
+            this.Controls.Add(this.btnUnidadMedida);
             this.Controls.Add(this.btnCategoria);
             this.Controls.Add(this.btnMarca);
             this.Controls.Add(this.btnProductos);
@@ -92,5 +105,6 @@
         private System.Windows.Forms.Button btnProductos;
         private System.Windows.Forms.Button btnMarca;
         private System.Windows.Forms.Button btnCategoria;
+        private System.Windows.Forms.Button btnUnidadMedida;
     }
 }
