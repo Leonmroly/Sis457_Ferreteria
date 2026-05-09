@@ -223,11 +223,26 @@ AS
 GO
 
 
+
+
 CREATE PROC paMarcaListar @parametro VARCHAR(50)
 AS
-  SELECT id, nombre, estado
+  SELECT id, nombre, usuarioRegistro, fechaRegistro, estado
   FROM Marca
   WHERE estado <> -1 AND nombre LIKE '%' + REPLACE(@parametro, ' ', '%') + '%';
+GO
+
+
+
+CREATE PROC paCategoriaListar @parametro VARCHAR(50)
+AS
+  SELECT id, nombre, usuarioRegistro, fechaRegistro, estado
+  FROM Categoria
+  WHERE estado <> -1 AND nombre LIKE '%' + REPLACE(@parametro, ' ', '%') + '%';
+GO
+
+
+
 
 -- 2. DML: DATOS DE PRUEBA (CORREGIDO Y AMPLIADO)
 GO

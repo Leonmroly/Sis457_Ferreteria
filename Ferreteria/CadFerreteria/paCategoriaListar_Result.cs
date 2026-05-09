@@ -11,7 +11,7 @@ namespace CadFerreteria
 {
     using System;
     
-    public partial class paMarcaListar_Result
+    public partial class paCategoriaListar_Result
     {
         public int id { get; set; }
         public string nombre { get; set; }

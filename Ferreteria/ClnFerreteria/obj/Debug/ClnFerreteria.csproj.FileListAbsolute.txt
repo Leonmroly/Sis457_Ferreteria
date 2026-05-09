@@ -4,6 +4,8 @@ C:\Users\RL\OneDrive\Documents\SIS-457\sis457_Leon_Ferreteria\Ferreteria\ClnFerr
 C:\Users\RL\OneDrive\Documents\SIS-457\sis457_Leon_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.csproj.CoreCompileInputs.cache
 C:\Users\RL\OneDrive\Documents\SIS-457\sis457_Leon_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.dll
 C:\Users\RL\OneDrive\Documents\SIS-457\sis457_Leon_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.pdb
+C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.csproj.AssemblyReference.cache
+C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.csproj.CoreCompileInputs.cache
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\ClnFerreteria.dll.config
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\ClnFerreteria.dll
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\ClnFerreteria.pdb
@@ -14,8 +16,6 @@ C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\CadFer
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\CadFerreteria.dll.config
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\EntityFramework.xml
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\EntityFramework.SqlServer.xml
-C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.csproj.AssemblyReference.cache
-C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.csproj.CoreCompileInputs.cache
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerre.36DAAECF.Up2Date
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.dll
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.pdb

@@ -50,6 +50,15 @@ namespace CadFerreteria
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paProductoListar_Result>("paProductoListar", parametroParameter);
         }
     
+        public virtual ObjectResult<paCategoriaListar_Result> paCategoriaListar(string parametro)
+        {
+            var parametroParameter = parametro != null ?
+                new ObjectParameter("parametro", parametro) :
+                new ObjectParameter("parametro", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paCategoriaListar_Result>("paCategoriaListar", parametroParameter);
+        }
+    
         public virtual ObjectResult<paMarcaListar_Result> paMarcaListar(string parametro)
         {
             var parametroParameter = parametro != null ?

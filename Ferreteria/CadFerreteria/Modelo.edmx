@@ -312,6 +312,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="paCategoriaListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="parametro" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="paMarcaListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="parametro" Type="varchar" Mode="In" />
         </Function>
@@ -673,6 +676,9 @@
             <End Role="UnidadMedida" EntitySet="UnidadMedida" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
+          <FunctionImport Name="paCategoriaListar" ReturnType="Collection(LabFerreteriaModel.paCategoriaListar_Result)">
+            <Parameter Name="parametro" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="paMarcaListar" ReturnType="Collection(LabFerreteriaModel.paMarcaListar_Result)">
             <Parameter Name="parametro" Mode="In" Type="String" />
           </FunctionImport>
@@ -800,9 +806,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="paCategoriaListar_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="usuarioRegistro" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="estado" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="paMarcaListar_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="usuarioRegistro" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="estado" Nullable="false" />
         </ComplexType>
         </Schema>
@@ -1006,11 +1021,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="paCategoriaListar" FunctionName="LabFerreteriaModel.Store.paCategoriaListar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LabFerreteriaModel.paCategoriaListar_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paMarcaListar" FunctionName="LabFerreteriaModel.Store.paMarcaListar">
             <ResultMapping>
               <ComplexTypeMapping TypeName="LabFerreteriaModel.paMarcaListar_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
               </ComplexTypeMapping>
             </ResultMapping>

@@ -196,11 +196,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="paCategoriaListar" FunctionName="LabFerreteriaModel.Store.paCategoriaListar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LabFerreteriaModel.paCategoriaListar_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+          <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="paMarcaListar" FunctionName="LabFerreteriaModel.Store.paMarcaListar">
       <ResultMapping>
         <ComplexTypeMapping TypeName="LabFerreteriaModel.paMarcaListar_Result">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+          <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
           <ScalarProperty Name="estado" ColumnName="estado" />
         </ComplexTypeMapping>
       </ResultMapping>

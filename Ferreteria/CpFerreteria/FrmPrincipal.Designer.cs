@@ -31,11 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.btnProductos = new System.Windows.Forms.Button();
             this.btnMarca = new System.Windows.Forms.Button();
+            this.btnCategoria = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProductos
             // 
-            this.btnProductos.Location = new System.Drawing.Point(273, 315);
+            this.btnProductos.Location = new System.Drawing.Point(13, 159);
             this.btnProductos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Size = new System.Drawing.Size(189, 65);
@@ -46,7 +47,7 @@
             // 
             // btnMarca
             // 
-            this.btnMarca.Location = new System.Drawing.Point(76, 267);
+            this.btnMarca.Location = new System.Drawing.Point(219, 277);
             this.btnMarca.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMarca.Name = "btnMarca";
             this.btnMarca.Size = new System.Drawing.Size(189, 65);
@@ -55,11 +56,23 @@
             this.btnMarca.UseVisualStyleBackColor = true;
             this.btnMarca.Click += new System.EventHandler(this.btnMarca_Click);
             // 
+            // btnCategoria
+            // 
+            this.btnCategoria.Location = new System.Drawing.Point(455, 192);
+            this.btnCategoria.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCategoria.Name = "btnCategoria";
+            this.btnCategoria.Size = new System.Drawing.Size(189, 65);
+            this.btnCategoria.TabIndex = 2;
+            this.btnCategoria.Text = "Categorias";
+            this.btnCategoria.UseVisualStyleBackColor = true;
+            this.btnCategoria.Click += new System.EventHandler(this.btnCategoria_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 532);
+            this.Controls.Add(this.btnCategoria);
             this.Controls.Add(this.btnMarca);
             this.Controls.Add(this.btnProductos);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -78,5 +91,6 @@
 
         private System.Windows.Forms.Button btnProductos;
         private System.Windows.Forms.Button btnMarca;
+        private System.Windows.Forms.Button btnCategoria;
     }
 }

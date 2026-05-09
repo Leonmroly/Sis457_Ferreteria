@@ -86,6 +86,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Modelo.edmx</DependentUpon>
     </Compile>
+    <Compile Include="paCategoriaListar_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="paMarcaListar_Result.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>

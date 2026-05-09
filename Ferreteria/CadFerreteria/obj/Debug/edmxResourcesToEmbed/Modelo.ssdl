@@ -307,6 +307,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="paCategoriaListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="parametro" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="paMarcaListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="parametro" Type="varchar" Mode="In" />
   </Function>

@@ -34,5 +34,10 @@ namespace CpFerreteria
         {
             new FrmMarca().ShowDialog();
         }
+
+        private void btnCategoria_Click(object sender, EventArgs e)
+        {
+            new FrmCategoria().ShowDialog();
+        }
     }
 }

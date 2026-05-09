@@ -1,5 +1,4 @@
-﻿using CadFerreteria;
-using ClnFerreteria;
+﻿using ClnFerreteria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,21 +11,20 @@ using System.Windows.Forms;
 
 namespace CpFerreteria
 {
-    public partial class FrmMarca : Form
+    public partial class FrmCategoria : Form
     {
-        public FrmMarca()
+        public FrmCategoria()
         {
             InitializeComponent();
         }
-
-        private void FrmMarca_Load(object sender, EventArgs e)
+        private void FrmCategoria_Load(object sender, EventArgs e)
         {
             listar();
         }
 
         private void listar()
         {
-            var lista = MarcaCln.listarPa(txtParametro.Text);
+            var lista = CategoriaCln.listarPa(txtParametro.Text);
             dgvLista.DataSource = lista;
 
             // Ocultamos los campos técnicos
@@ -57,7 +55,7 @@ namespace CpFerreteria
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            FrmMarcaEntry frm = new FrmMarcaEntry(); // ID por defecto es 0
+            FrmCategoriaEntry frm = new FrmCategoriaEntry(); // ID por defecto es 0
             frm.ShowDialog();
             listar();
         }
@@ -65,7 +63,7 @@ namespace CpFerreteria
         private void btnEditar_Click(object sender, EventArgs e)
         {
             int id = (int)dgvLista.CurrentRow.Cells["id"].Value;
-            FrmMarcaEntry frm = new FrmMarcaEntry(id); // Le pasamos el ID para editar
+            FrmCategoriaEntry frm = new FrmCategoriaEntry(id); // Le pasamos el ID para editar
             frm.ShowDialog();
             listar();
         }
@@ -75,12 +73,12 @@ namespace CpFerreteria
             int id = (int)dgvLista.CurrentRow.Cells["id"].Value;
             string nombre = dgvLista.CurrentRow.Cells["nombre"].Value.ToString();
 
-            DialogResult result = MessageBox.Show($"¿Está seguro que desea eliminar la marca {nombre}?",
+            DialogResult result = MessageBox.Show($"¿Está seguro que desea eliminar la categoria {nombre}?",
                 "::: Ferreteria :::", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                MarcaCln.eliminar(id, "admin"); // Llamamos a la lógica, no a la DB directo
+                CategoriaCln.eliminar(id, "admin"); // Llamamos a la lógica, no a la DB directo
                 listar();
             }
         }
@@ -89,6 +87,5 @@ namespace CpFerreteria
         {
             Close();
         }
-
     }
 }

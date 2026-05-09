@@ -65,6 +65,18 @@
     <Compile Include="FrmAutenticacion.Designer.cs">
       <DependentUpon>FrmAutenticacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCategoria.Designer.cs">
+      <DependentUpon>FrmCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCategoriaEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCategoriaEntry.Designer.cs">
+      <DependentUpon>FrmCategoriaEntry.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMarca.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +106,12 @@
     <Compile Include="Util.cs" />
     <EmbeddedResource Include="FrmAutenticacion.resx">
       <DependentUpon>FrmAutenticacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCategoria.resx">
+      <DependentUpon>FrmCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCategoriaEntry.resx">
+      <DependentUpon>FrmCategoriaEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMarca.resx">
       <DependentUpon>FrmMarca.cs</DependentUpon>
