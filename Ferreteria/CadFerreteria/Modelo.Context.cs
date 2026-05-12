@@ -41,15 +41,6 @@ namespace CadFerreteria
         public virtual DbSet<CompraDetalle> CompraDetalle { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
     
-        public virtual ObjectResult<paProductoListar_Result> paProductoListar(string parametro)
-        {
-            var parametroParameter = parametro != null ?
-                new ObjectParameter("parametro", parametro) :
-                new ObjectParameter("parametro", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paProductoListar_Result>("paProductoListar", parametroParameter);
-        }
-    
         public virtual ObjectResult<paCategoriaListar_Result> paCategoriaListar(string parametro)
         {
             var parametroParameter = parametro != null ?
@@ -75,6 +66,15 @@ namespace CadFerreteria
                 new ObjectParameter("parametro", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paUnidadMedidaListar_Result>("paUnidadMedidaListar", parametroParameter);
+        }
+    
+        public virtual ObjectResult<paProductoListar_Result> paProductoListar(string parametro)
+        {
+            var parametroParameter = parametro != null ?
+                new ObjectParameter("parametro", parametro) :
+                new ObjectParameter("parametro", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paProductoListar_Result>("paProductoListar", parametroParameter);
         }
     }
 }

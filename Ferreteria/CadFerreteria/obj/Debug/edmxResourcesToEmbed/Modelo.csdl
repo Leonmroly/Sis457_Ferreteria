@@ -264,9 +264,6 @@
       <End Role="Compra" EntitySet="Compra" />
       <End Role="CompraDetalle" EntitySet="CompraDetalle" />
     </AssociationSet>
-    <FunctionImport Name="paProductoListar" ReturnType="Collection(LabFerreteriaModel.paProductoListar_Result)">
-      <Parameter Name="parametro" Mode="In" Type="String" />
-    </FunctionImport>
     <EntitySet Name="Producto" EntityType="LabFerreteriaModel.Producto" />
     <AssociationSet Name="fk_DetCom_Prod" Association="LabFerreteriaModel.fk_DetCom_Prod">
       <End Role="Producto" EntitySet="Producto" />
@@ -297,6 +294,9 @@
     <FunctionImport Name="paUnidadMedidaListar" ReturnType="Collection(LabFerreteriaModel.paUnidadMedidaListar_Result)">
       <Parameter Name="parametro" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="paProductoListar" ReturnType="Collection(LabFerreteriaModel.paProductoListar_Result)">
+      <Parameter Name="parametro" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="CompraDetalle">
     <Key>
@@ -325,21 +325,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="paProductoListar_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="Int32" Name="idSubCategoria" Nullable="false" />
-    <Property Type="Int32" Name="idUnidadMedida" Nullable="false" />
-    <Property Type="Int32" Name="idMarca" Nullable="false" />
-    <Property Type="String" Name="codigo" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="200" />
-    <Property Type="String" Name="unidadMedida" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="marca" Nullable="false" MaxLength="50" />
-    <Property Type="Decimal" Name="stock" Nullable="false" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="precioVenta" Nullable="false" Precision="18" Scale="2" />
-    <Property Type="String" Name="usuarioRegistro" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="estado" Nullable="false" />
-  </ComplexType>
   <EntityType Name="Producto">
     <Key>
       <PropertyRef Name="id" />
@@ -438,6 +423,22 @@
   <ComplexType Name="paUnidadMedidaListar_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="nombre" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="usuarioRegistro" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="paProductoListar_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="idSubCategoria" Nullable="false" />
+    <Property Type="Int32" Name="idUnidadMedida" Nullable="false" />
+    <Property Type="Int32" Name="idMarca" Nullable="false" />
+    <Property Type="String" Name="codigo" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="unidadMedida" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="marca" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="categoria" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="saldo" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="precioVenta" Nullable="false" Precision="18" Scale="0" />
     <Property Type="String" Name="usuarioRegistro" Nullable="false" MaxLength="50" />
     <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="23" />
     <Property Type="Int32" Name="estado" Nullable="false" />

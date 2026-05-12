@@ -205,23 +205,39 @@ GO
 
 
 
-
+drop proc if exists paProductoListar;
 -- 1. PROCEDIMIENTO ALMACENADO (ESTILO MINERVA ADAPTADO A FERRETERÍA)
-DROP PROC IF EXISTS paProductoListar;
+-- Si el procedimiento ya existe, lo borramos para crearlo limpio
+IF OBJECT_ID('paProductoListar', 'P') IS NOT NULL
+    DROP PROC paProductoListar;
 GO
+
 CREATE PROC paProductoListar @parametro VARCHAR(50)
 AS
-  SELECT p.id, p.idSubCategoria, p.idUnidadMedida, p.idMarca, p.codigo, p.descripcion, 
-         um.nombre AS unidadMedida, m.nombre AS marca, p.saldo, p.precioVenta, 
-         p.usuarioRegistro, p.fechaRegistro, p.estado
+BEGIN
+  SELECT p.id, 
+         p.idSubCategoria, -- Este es el nombre real en tu tabla
+         p.idUnidadMedida, 
+         p.idMarca, 
+         p.codigo, 
+         p.descripcion, 
+         um.nombre AS unidadMedida, 
+         m.nombre AS marca, 
+         c.nombre AS categoria, -- Aquí sacamos el nombre de la categoría
+         p.saldo,               -- Usamos solo saldo para que no salga doble
+         p.precioVenta, 
+         p.usuarioRegistro, 
+         p.fechaRegistro, 
+         p.estado
   FROM Producto p
   INNER JOIN UnidadMedida um ON p.idUnidadMedida = um.id
   INNER JOIN Marca m ON p.idMarca = m.id
+  INNER JOIN Categoria c ON p.idSubCategoria = c.id -- Unimos por el ID real
   WHERE p.estado = 1 
-    AND (p.codigo + p.descripcion + um.nombre + m.nombre) LIKE '%' + REPLACE(@parametro, ' ', '%') + '%'
+    AND (p.codigo + p.descripcion + um.nombre + m.nombre + c.nombre) LIKE '%' + REPLACE(@parametro, ' ', '%') + '%'
   ORDER BY p.descripcion;
+END
 GO
-
 
 
 
@@ -240,6 +256,30 @@ AS
   FROM Categoria
   WHERE estado <> -1 AND nombre LIKE '%' + REPLACE(@parametro, ' ', '%') + '%';
 GO
+
+
+
+ALTER TABLE dbo.Producto NOCHECK CONSTRAINT fk_Prod_Sub;
+
+-- 2. Limpiamos la tabla de SubCategorias por completo
+DELETE FROM dbo.SubCategoria;
+
+-- 3. Reiniciamos el contador de IDs a 0
+DBCC CHECKIDENT ('dbo.SubCategoria', RESEED, 0);
+
+-- 4. Insertamos las subcategorías espejo basadas en tus Categorías actuales
+-- Esto garantiza que los IDs coincidan 1 a 1
+INSERT INTO dbo.SubCategoria (idCategoria, nombre, usuarioRegistro, fechaRegistro, estado)
+SELECT id, nombre, 'SISTEMA', GETDATE(), 1 FROM dbo.Categoria;
+
+-- 5. REGLA DE ORO: Actualizamos los productos viejos para que apunten a los nuevos IDs
+-- Como ahora son espejos, el idSubCategoria debe ser igual al idCategoria que quisiste poner
+UPDATE dbo.Producto SET idSubCategoria = 1 WHERE idSubCategoria IS NULL OR idSubCategoria <= 0;
+
+-- 6. Reactivamos la restricción (si hay errores aquí, es porque hay productos con IDs que no existen)
+ALTER TABLE dbo.Producto WITH CHECK CHECK CONSTRAINT fk_Prod_Sub;
+GO
+
 
 
 
@@ -324,5 +364,58 @@ SELECT * FROM Empleado;
 SELECT * FROM Categoria;
 SELECT * FROM Marca;
 SELECT * FROM UnidadMedida;
+SELECT id, nombre FROM Categoria;
+-- Verifica si esta tabla tiene los mismos IDs que 'Categoria'
+SELECT * FROM SubCategoria;
 
 
+
+UPDATE SubCategoria 
+SET estado = -1 
+WHERE idCategoria NOT IN (SELECT id FROM Categoria WHERE estado = 1);
+
+
+
+
+
+UPDATE SubCategoria SET estado = -1;
+-- 2. Actualizamos o Insertamos las que SÍ están activas en Categoría
+-- Esto busca por nombre para no duplicar, y si existe le pone estado 1
+MERGE INTO SubCategoria AS Target
+USING (SELECT id, nombre FROM Categoria WHERE estado = 1) AS Source
+ON (Target.idCategoria = Source.id)
+WHEN MATCHED THEN
+    UPDATE SET Target.nombre = Source.nombre, Target.estado = 1
+WHEN NOT MATCHED THEN
+    INSERT (idCategoria, nombre, usuarioRegistro, fechaRegistro, estado)
+    VALUES (Source.id, Source.nombre, 'SISTEMA', GETDATE(), 1);
+-- 3. Limpieza de seguridad: cualquier cosa que no tenga un padre vivo, se va
+UPDATE SubCategoria SET estado = -1 
+WHERE idCategoria NOT IN (SELECT id FROM Categoria WHERE estado = 1);
+GO
+
+
+---------
+ALTER DATABASE LabFerreteria SET MULTI_USER WITH ROLLBACK IMMEDIATE;
+
+
+
+
+SELECT 
+    blocking_session_id AS SesionBloqueadora, 
+    session_id AS SesionBloqueada, 
+    wait_type, 
+    wait_time, 
+    last_wait_type, 
+    text AS QueryTexto
+FROM sys.dm_exec_requests
+CROSS APPLY sys.dm_exec_sql_text(sql_handle)
+WHERE blocking_session_id <> 0;
+
+
+EXEC sp_updatestats;
+GO
+-- Esto limpia la memoria caché del motor de SQL
+DBCC FREEPROCCACHE;
+DBCC DROPCLEANBUFFERS;
+GO

@@ -54,10 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GategoriaCln.cs" />
+    <Compile Include="CategoriaCln.cs" />
     <Compile Include="MarcaCln.cs" />
     <Compile Include="ProductoCln.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubCategoriaCln.cs" />
     <Compile Include="UnidadMedidaCln.cs" />
     <Compile Include="UsuarioCln.cs" />
   </ItemGroup>

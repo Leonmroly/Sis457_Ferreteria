@@ -24,22 +24,34 @@ namespace CpFerreteria
         private void listar()
         {
             var lista = ProductoCln.listarPa(txtParametro.Text);
+            dgvLista.DataSource = null;
             dgvLista.DataSource = lista;
+
+            // Ocultamos los IDs (Usando idSubCategoria que es el real)
             dgvLista.Columns["id"].Visible = false;
             dgvLista.Columns["idSubCategoria"].Visible = false;
             dgvLista.Columns["idUnidadMedida"].Visible = false;
             dgvLista.Columns["idMarca"].Visible = false;
             dgvLista.Columns["estado"].Visible = false;
-            dgvLista.Columns["stock"].Visible = false;
+
+            // Encabezados
             dgvLista.Columns["codigo"].HeaderText = "Código";
             dgvLista.Columns["descripcion"].HeaderText = "Descripción";
-            dgvLista.Columns["unidadMedida"].HeaderText = "Unidad de Medida";
-            dgvLista.Columns["stock"].HeaderText = "stock";
-            dgvLista.Columns["precioVenta"].HeaderText = "Precio de Venta";
-            dgvLista.Columns["usuarioRegistro"].HeaderText = "Usuario Registro";
-            dgvLista.Columns["fechaRegistro"].HeaderText = "Fecha Registro";
+            dgvLista.Columns["unidadMedida"].HeaderText = "U. Medida";
+            dgvLista.Columns["marca"].HeaderText = "Marca";
 
+            // Solo mostramos categoría si el EDMX ya se actualizó
+            if (dgvLista.Columns.Contains("categoria"))
+                dgvLista.Columns["categoria"].HeaderText = "Categoría";
+
+            dgvLista.Columns["saldo"].HeaderText = "Saldo"; // Solo uno
+            dgvLista.Columns["precioVenta"].HeaderText = "Precio";
+            dgvLista.Columns["usuarioRegistro"].HeaderText = "Usuario";
+            dgvLista.Columns["fechaRegistro"].HeaderText = "Fecha";
+
+            // Evitamos el error de la celda invisible (foco en código)
             if (lista.Count > 0) dgvLista.CurrentCell = dgvLista.Rows[0].Cells["codigo"];
+
             btnEditar.Enabled = lista.Count > 0;
             btnEliminar.Enabled = lista.Count > 0;
         }
@@ -52,11 +64,25 @@ namespace CpFerreteria
             cbxUnidadMedida.SelectedIndex = -1;
         }
 
+        private void cargarCombos()
+        {
+            cbxMarca.DataSource = MarcaCln.listar();
+            cbxMarca.DisplayMember = "nombre";
+            cbxMarca.ValueMember = "id";
+            cbxMarca.SelectedIndex = -1; // Esto lo deja vacío al inicio
+
+            cbxCategoria.DataSource = SubCategoriaCln.listar();
+            cbxCategoria.DisplayMember = "nombre"; // Mostrará "Martillos", "Cables", etc.
+            cbxCategoria.ValueMember = "id";       // Mandará los IDs 1, 2, 3 que SQL SÍ tiene
+            cbxCategoria.SelectedIndex = -1;
+        }
+
         private void FrmProducto_Load(object sender, EventArgs e)
         {
-            Size = new Size(758, 342);
+            Size = new Size(758, 345);
             listar();
             cargarUnidadMedida();
+            cargarCombos();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -79,6 +105,8 @@ namespace CpFerreteria
             txtCodigo.Clear();
             txtDescripcion.Clear();
             cbxUnidadMedida.SelectedIndex = -1;
+            cbxMarca.SelectedIndex = -1;
+            cbxCategoria.SelectedIndex = -1;
             nudSaldo.Value = 0;
             nudPrecioVenta.Value = 0;
             resetearErrores();
@@ -96,7 +124,7 @@ namespace CpFerreteria
         {
             esNuevo = true;
             pnlAcciones.Enabled = false;
-            Size = new Size(758, 505);
+            Size = new Size(758, 573);
             limpiar();
             txtCodigo.Focus();
         }
@@ -105,7 +133,7 @@ namespace CpFerreteria
         {
             esNuevo = false;
             pnlAcciones.Enabled = false;
-            Size = new Size(758, 505);
+            Size = new Size(758, 573);
             resetearErrores();
 
             int id = (int)dgvLista.CurrentRow.Cells["id"].Value;
@@ -113,6 +141,8 @@ namespace CpFerreteria
             txtCodigo.Text = producto.codigo;
             txtDescripcion.Text = producto.descripcion;
             cbxUnidadMedida.SelectedValue = producto.idUnidadMedida;
+            cbxMarca.SelectedValue = producto.idMarca;
+            cbxCategoria.SelectedValue = producto.idSubCategoria;
             nudSaldo.Value = producto.saldo;
             nudPrecioVenta.Value = producto.precioVenta;
 
@@ -171,41 +201,38 @@ namespace CpFerreteria
         {
             if (validar())
             {
+                // ESTA LÍNEA ES LA CLAVE:
+                // 'cbxCategoria' ahora tiene los IDs de la tabla SubCategoria
+                int idSubCat = Convert.ToInt32(cbxCategoria.SelectedValue);
+
                 var producto = new Producto()
                 {
                     codigo = txtCodigo.Text.Trim(),
                     descripcion = txtDescripcion.Text.Trim(),
-                    idUnidadMedida = (int)cbxUnidadMedida.SelectedValue,
+                    idUnidadMedida = Convert.ToInt32(cbxUnidadMedida.SelectedValue),
+                    idMarca = Convert.ToInt32(cbxMarca.SelectedValue),
+                    idSubCategoria = idSubCat, // AQUÍ pones el ID que sacaste del combo
                     saldo = nudSaldo.Value,
                     precioVenta = nudPrecioVenta.Value,
                     usuarioRegistro = Util.usuario.usuario1,
-
-                    idSubCategoria = 1,
-                    idMarca = 1
+                    estado = 1
                 };
 
                 if (esNuevo)
                 {
                     producto.fechaRegistro = DateTime.Now;
-                    producto.estado = 1;
                     ProductoCln.crear(producto);
                 }
                 else
                 {
+                    // Para el 'modificar', también necesitamos el ID real del registro
                     producto.id = (int)dgvLista.CurrentRow.Cells["id"].Value;
-
-                    producto.fechaRegistro = DateTime.Now;
-
-                    producto.idSubCategoria = 1;
-                    producto.idMarca = 1;
-                    producto.estado = 1;
-
                     ProductoCln.modificar(producto);
                 }
+
                 listar();
                 btnCancelar.PerformClick();
-                MessageBox.Show("Producto guardado correctamente", "::: Mensaje - Ferreteria :::",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("¡Guardado con éxito carajo!");
             }
         }
 

@@ -655,9 +655,6 @@
             <End Role="Compra" EntitySet="Compra" />
             <End Role="CompraDetalle" EntitySet="CompraDetalle" />
           </AssociationSet>
-          <FunctionImport Name="paProductoListar" ReturnType="Collection(LabFerreteriaModel.paProductoListar_Result)">
-          <Parameter Name="parametro" Mode="In" Type="String" />
-          </FunctionImport>
           <EntitySet Name="Producto" EntityType="LabFerreteriaModel.Producto" />
           <AssociationSet Name="fk_DetCom_Prod" Association="LabFerreteriaModel.fk_DetCom_Prod">
             <End Role="Producto" EntitySet="Producto" />
@@ -686,6 +683,9 @@
           <Parameter Name="parametro" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="paUnidadMedidaListar" ReturnType="Collection(LabFerreteriaModel.paUnidadMedidaListar_Result)">
+          <Parameter Name="parametro" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="paProductoListar" ReturnType="Collection(LabFerreteriaModel.paProductoListar_Result)">
             <Parameter Name="parametro" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
@@ -716,21 +716,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="paProductoListar_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="Int32" Name="idSubCategoria" Nullable="false" />
-          <Property Type="Int32" Name="idUnidadMedida" Nullable="false" />
-          <Property Type="Int32" Name="idMarca" Nullable="false" />
-          <Property Type="String" Name="codigo" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="unidadMedida" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="marca" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="stock" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="precioVenta" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="String" Name="usuarioRegistro" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="estado" Nullable="false" />
-        </ComplexType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="id" />
@@ -829,6 +814,22 @@
         <ComplexType Name="paUnidadMedidaListar_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="usuarioRegistro" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="paProductoListar_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="idSubCategoria" Nullable="false" />
+          <Property Type="Int32" Name="idUnidadMedida" Nullable="false" />
+          <Property Type="Int32" Name="idMarca" Nullable="false" />
+          <Property Type="String" Name="codigo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="unidadMedida" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="marca" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="categoria" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="saldo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="precioVenta" Nullable="false" Precision="18" Scale="0" />
           <Property Type="String" Name="usuarioRegistro" Nullable="false" MaxLength="50" />
           <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="estado" Nullable="false" />
@@ -998,25 +999,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="paProductoListar" FunctionName="LabFerreteriaModel.Store.paProductoListar">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="LabFerreteriaModel.paProductoListar_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idSubCategoria" ColumnName="idSubCategoria" />
-                <ScalarProperty Name="idUnidadMedida" ColumnName="idUnidadMedida" />
-                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="unidadMedida" ColumnName="unidadMedida" />
-                <ScalarProperty Name="marca" ColumnName="marca" />
-                <ScalarProperty Name="stock" ColumnName="stock" />
-                <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
-                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
-                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="Producto">
             <EntityTypeMapping TypeName="LabFerreteriaModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
@@ -1061,6 +1043,26 @@
               <ComplexTypeMapping TypeName="LabFerreteriaModel.paUnidadMedidaListar_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paProductoListar" FunctionName="LabFerreteriaModel.Store.paProductoListar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LabFerreteriaModel.paProductoListar_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idSubCategoria" ColumnName="idSubCategoria" />
+                <ScalarProperty Name="idUnidadMedida" ColumnName="idUnidadMedida" />
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="unidadMedida" ColumnName="unidadMedida" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+                <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
                 <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
                 <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
                 <ScalarProperty Name="estado" ColumnName="estado" />

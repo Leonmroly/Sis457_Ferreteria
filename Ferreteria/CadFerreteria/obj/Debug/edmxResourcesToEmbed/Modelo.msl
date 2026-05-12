@@ -160,25 +160,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="paProductoListar" FunctionName="LabFerreteriaModel.Store.paProductoListar">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="LabFerreteriaModel.paProductoListar_Result">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="idSubCategoria" ColumnName="idSubCategoria" />
-          <ScalarProperty Name="idUnidadMedida" ColumnName="idUnidadMedida" />
-          <ScalarProperty Name="idMarca" ColumnName="idMarca" />
-          <ScalarProperty Name="codigo" ColumnName="codigo" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="unidadMedida" ColumnName="unidadMedida" />
-          <ScalarProperty Name="marca" ColumnName="marca" />
-          <ScalarProperty Name="stock" ColumnName="stock" />
-          <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
-          <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
-          <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <EntitySetMapping Name="Producto">
       <EntityTypeMapping TypeName="LabFerreteriaModel.Producto">
         <MappingFragment StoreEntitySet="Producto">
@@ -223,6 +204,26 @@
         <ComplexTypeMapping TypeName="LabFerreteriaModel.paUnidadMedidaListar_Result">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+          <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="paProductoListar" FunctionName="LabFerreteriaModel.Store.paProductoListar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LabFerreteriaModel.paProductoListar_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idSubCategoria" ColumnName="idSubCategoria" />
+          <ScalarProperty Name="idUnidadMedida" ColumnName="idUnidadMedida" />
+          <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="unidadMedida" ColumnName="unidadMedida" />
+          <ScalarProperty Name="marca" ColumnName="marca" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+          <ScalarProperty Name="saldo" ColumnName="saldo" />
+          <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
           <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
           <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
           <ScalarProperty Name="estado" ColumnName="estado" />
