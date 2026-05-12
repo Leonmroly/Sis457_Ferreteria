@@ -29,8 +29,10 @@ namespace CpFerreteria
                 erpUsuario.SetError(txtUsuario, "Ingrese el usuario");
                 esValido = false;
             }
+
             if (string.IsNullOrEmpty(txtClave.Text))
             {
+
                 erpClave.SetError(txtClave, "Ingrese la clave");
                 esValido = false;
             }
@@ -44,7 +46,7 @@ namespace CpFerreteria
             {
                 /// se valida con el Util.Encrypt...
                 var usuario = UsuarioCln.validar(txtUsuario.Text, Util.Encrypt(txtClave.Text));
-                if (usuario != null) 
+                if (usuario != null)
                 {
                     Util.usuario = usuario;
                     txtClave.Clear();
@@ -54,9 +56,9 @@ namespace CpFerreteria
                     new FrmPrincipal(this).ShowDialog();
                 }
                 else
-                    {
-                        MessageBox.Show("Usuario y/o clave incorrectos", "::: Mensaje - Ferreteria :::",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                {
+                    MessageBox.Show("Usuario y/o clave incorrectos", "::: Mensaje - Ferreteria :::",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

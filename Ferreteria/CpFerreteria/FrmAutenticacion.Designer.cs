@@ -50,7 +50,7 @@
             this.lblTitulo.Location = new System.Drawing.Point(1, 9);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(384, 28);
+            this.lblTitulo.Size = new System.Drawing.Size(360, 28);
             this.lblTitulo.TabIndex = 1;
             this.lblTitulo.Text = "Iniciar Sesión";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -112,7 +112,7 @@
             // 
             this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalir.Location = new System.Drawing.Point(190, 169);
+            this.btnSalir.Location = new System.Drawing.Point(201, 169);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(83, 40);
             this.btnSalir.TabIndex = 12;

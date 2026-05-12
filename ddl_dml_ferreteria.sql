@@ -216,7 +216,7 @@ CREATE PROC paProductoListar @parametro VARCHAR(50)
 AS
 BEGIN
   SELECT p.id, 
-         p.idSubCategoria, -- Este es el nombre real en tu tabla
+         p.idSubCategoria, -- Este es el nombre real en la tabla
          p.idUnidadMedida, 
          p.idMarca, 
          p.codigo, 
@@ -307,8 +307,6 @@ GO
 USE LabFerreteria;
 GO
 
--- Limpiar tablas antes de insertar (opcional, por si acaso)
--- DELETE FROM VentaDetalle; DELETE FROM Venta; DELETE FROM Producto; ...
 
 -- Unidades de Medida (Cuidado: en Minerva era 'descripcion', aquí es 'nombre')
 INSERT INTO UnidadMedida (nombre) 
