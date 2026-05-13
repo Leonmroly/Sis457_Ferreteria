@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="LabFerreteriaModel.Compra" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Empleado" Width="1.5" PointX="3.75" PointY="18.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Marca" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LabFerreteriaModel.Proveedor" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LabFerreteriaModel.SubCategoria" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="LabFerreteriaModel.UnidadMedida" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Usuario" Width="1.5" PointX="6" PointY="18.5" IsExpanded="true" />
@@ -18,7 +17,6 @@
         <EntityTypeShape EntityType="LabFerreteriaModel.VentaDetalle" Width="1.5" PointX="7.75" PointY="3.5" IsExpanded="true" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Sub_Cat" ManuallyRouted="false" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Ven_Cli" ManuallyRouted="false" />
-        <AssociationConnector Association="LabFerreteriaModel.fk_Com_Prov" ManuallyRouted="false" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Usu_Emp" ManuallyRouted="false" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Ven_Usu" ManuallyRouted="false" />
         <AssociationConnector Association="LabFerreteriaModel.fk_DetVen_Ven" ManuallyRouted="false" />
@@ -30,6 +28,8 @@
         <AssociationConnector Association="LabFerreteriaModel.fk_DetVen_Prod" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Prod_Sub" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Prod_UM" />
+        <EntityTypeShape EntityType="LabFerreteriaModel.Proveedor" Width="1.5" PointX="2.75" PointY="10.75" />
+        <AssociationConnector Association="LabFerreteriaModel.FK_Compra_Proveedor" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

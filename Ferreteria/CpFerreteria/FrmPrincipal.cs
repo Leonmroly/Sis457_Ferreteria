@@ -44,5 +44,10 @@ namespace CpFerreteria
         {
             new FrmUnidadMedida().ShowDialog();
         }
+
+        private void btnProveedor_Click(object sender, EventArgs e)
+        {
+            new FrmProveedor().ShowDialog();
+        }
     }
 }

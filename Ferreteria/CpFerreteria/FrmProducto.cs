@@ -232,7 +232,7 @@ namespace CpFerreteria
 
                 listar();
                 btnCancelar.PerformClick();
-                MessageBox.Show("¡Guardado con éxito carajo!");
+                MessageBox.Show("¡Guardado con éxito!");
             }
         }
 

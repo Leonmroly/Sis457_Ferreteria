@@ -42,6 +42,7 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.gbxDatos = new System.Windows.Forms.GroupBox();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.lblMarca = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.nudPrecioVenta = new System.Windows.Forms.NumericUpDown();
             this.nudSaldo = new System.Windows.Forms.NumericUpDown();
@@ -61,7 +62,6 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.cbxMarca = new System.Windows.Forms.ComboBox();
             this.cbxCategoria = new System.Windows.Forms.ComboBox();
-            this.lblMarca = new System.Windows.Forms.Label();
             this.lblCategoria = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.gbxLista.SuspendLayout();
@@ -231,6 +231,16 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // lblMarca
+            // 
+            this.lblMarca.AutoSize = true;
+            this.lblMarca.Location = new System.Drawing.Point(3, 132);
+            this.lblMarca.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblMarca.Name = "lblMarca";
+            this.lblMarca.Size = new System.Drawing.Size(61, 20);
+            this.lblMarca.TabIndex = 19;
+            this.lblMarca.Text = "Marca :";
+            // 
             // btnCancelar
             // 
             this.btnCancelar.Image = global::CpFerreteria.Properties.Resources.cancel;
@@ -385,16 +395,6 @@
             this.cbxCategoria.Name = "cbxCategoria";
             this.cbxCategoria.Size = new System.Drawing.Size(155, 28);
             this.cbxCategoria.TabIndex = 20;
-            // 
-            // lblMarca
-            // 
-            this.lblMarca.AutoSize = true;
-            this.lblMarca.Location = new System.Drawing.Point(3, 132);
-            this.lblMarca.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblMarca.Name = "lblMarca";
-            this.lblMarca.Size = new System.Drawing.Size(61, 20);
-            this.lblMarca.TabIndex = 19;
-            this.lblMarca.Text = "Marca :";
             // 
             // lblCategoria
             // 

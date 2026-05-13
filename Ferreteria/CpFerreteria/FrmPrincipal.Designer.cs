@@ -33,6 +33,7 @@
             this.btnMarca = new System.Windows.Forms.Button();
             this.btnCategoria = new System.Windows.Forms.Button();
             this.btnUnidadMedida = new System.Windows.Forms.Button();
+            this.btnProveedor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProductos
@@ -79,11 +80,23 @@
             this.btnUnidadMedida.UseVisualStyleBackColor = true;
             this.btnUnidadMedida.Click += new System.EventHandler(this.btnUnidadMedida_Click);
             // 
+            // btnProveedor
+            // 
+            this.btnProveedor.Location = new System.Drawing.Point(572, 352);
+            this.btnProveedor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnProveedor.Name = "btnProveedor";
+            this.btnProveedor.Size = new System.Drawing.Size(189, 65);
+            this.btnProveedor.TabIndex = 4;
+            this.btnProveedor.Text = "Proveedor";
+            this.btnProveedor.UseVisualStyleBackColor = true;
+            this.btnProveedor.Click += new System.EventHandler(this.btnProveedor_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 532);
+            this.Controls.Add(this.btnProveedor);
             this.Controls.Add(this.btnUnidadMedida);
             this.Controls.Add(this.btnCategoria);
             this.Controls.Add(this.btnMarca);
@@ -106,5 +119,6 @@
         private System.Windows.Forms.Button btnMarca;
         private System.Windows.Forms.Button btnCategoria;
         private System.Windows.Forms.Button btnUnidadMedida;
+        private System.Windows.Forms.Button btnProveedor;
     }
 }

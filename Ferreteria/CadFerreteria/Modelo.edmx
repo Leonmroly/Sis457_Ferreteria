@@ -102,8 +102,9 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nit" Type="bigint" Nullable="false" />
           <Property Name="razonSocial" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="representante" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="celular" Type="bigint" />
+          <Property Name="direccion" Type="varchar" MaxLength="250" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
           <Property Name="usuarioRegistro" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
           <Property Name="estado" Type="int" Nullable="false" />
@@ -168,7 +169,7 @@
           <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
           <Property Name="estado" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="fk_Com_Prov">
+        <Association Name="FK_Compra_Proveedor">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
           <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -338,7 +339,7 @@
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VentaDetalle" EntityType="Self.VentaDetalle" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="fk_Com_Prov" Association="Self.fk_Com_Prov">
+          <AssociationSet Name="FK_Compra_Proveedor" Association="Self.FK_Compra_Proveedor">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
@@ -426,8 +427,8 @@
           <Property Name="usuarioRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Proveedor" Relationship="Self.fk_Com_Prov" FromRole="Compra" ToRole="Proveedor" />
           <NavigationProperty Name="CompraDetalle" Relationship="LabFerreteriaModel.fk_DetCom_Com" FromRole="Compra" ToRole="CompraDetalle" />
+          <NavigationProperty Name="Proveedor" Relationship="LabFerreteriaModel.FK_Compra_Proveedor" FromRole="Compra" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -457,20 +458,6 @@
           <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Producto" Relationship="LabFerreteriaModel.fk_Prod_Marca" FromRole="Marca" ToRole="Producto" />
-        </EntityType>
-        <EntityType Name="Proveedor">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nit" Type="Int64" Nullable="false" />
-          <Property Name="razonSocial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="representante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="celular" Type="Int64" />
-          <Property Name="usuarioRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Compra" Relationship="Self.fk_Com_Prov" FromRole="Proveedor" ToRole="Compra" />
         </EntityType>
         <EntityType Name="SubCategoria">
           <Key>
@@ -566,18 +553,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Com_Prov">
-          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
-          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proveedor">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Compra">
-              <PropertyRef Name="idProveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Usu_Emp">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -620,7 +595,6 @@
           <EntitySet Name="Compra" EntityType="Self.Compra" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" />
           <EntitySet Name="Marca" EntityType="Self.Marca" />
-          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
           <EntitySet Name="SubCategoria" EntityType="Self.SubCategoria" />
           <EntitySet Name="UnidadMedida" EntityType="Self.UnidadMedida" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
@@ -633,10 +607,6 @@
           <AssociationSet Name="fk_Ven_Cli" Association="Self.fk_Ven_Cli">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Venta" EntitySet="Venta" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Com_Prov" Association="Self.fk_Com_Prov">
-            <End Role="Proveedor" EntitySet="Proveedor" />
-            <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
           <AssociationSet Name="fk_Usu_Emp" Association="Self.fk_Usu_Emp">
             <End Role="Empleado" EntitySet="Empleado" />
@@ -686,8 +656,13 @@
           <Parameter Name="parametro" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="paProductoListar" ReturnType="Collection(LabFerreteriaModel.paProductoListar_Result)">
-            <Parameter Name="parametro" Mode="In" Type="String" />
+          <Parameter Name="parametro" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Proveedors" EntityType="LabFerreteriaModel.Proveedor" />
+          <AssociationSet Name="FK_Compra_Proveedor" Association="LabFerreteriaModel.FK_Compra_Proveedor">
+            <End Role="Proveedor" EntitySet="Proveedors" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="CompraDetalle">
           <Key>
@@ -834,6 +809,33 @@
           <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="estado" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nit" Type="Int64" Nullable="false" />
+          <Property Name="razonSocial" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Compras" Relationship="LabFerreteriaModel.FK_Compra_Proveedor" FromRole="Proveedor" ToRole="Compra" />
+        </EntityType>
+        <Association Name="FK_Compra_Proveedor">
+          <End Type="LabFerreteriaModel.Proveedor" Role="Proveedor" Multiplicity="1" />
+          <End Type="LabFerreteriaModel.Compra" Role="Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="idProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -900,20 +902,6 @@
               <MappingFragment StoreEntitySet="Marca">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
-                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Proveedor">
-            <EntityTypeMapping TypeName="LabFerreteriaModel.Proveedor">
-              <MappingFragment StoreEntitySet="Proveedor">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nit" ColumnName="nit" />
-                <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
-                <ScalarProperty Name="representante" ColumnName="representante" />
-                <ScalarProperty Name="celular" ColumnName="celular" />
                 <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
                 <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
@@ -1069,6 +1057,21 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Proveedors">
+            <EntityTypeMapping TypeName="LabFerreteriaModel.Proveedor">
+              <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
+                <ScalarProperty Name="nit" ColumnName="nit" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

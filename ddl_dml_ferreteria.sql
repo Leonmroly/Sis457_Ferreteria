@@ -57,12 +57,30 @@ CREATE TABLE Cliente ( -- TABLA 5
   razonSocial VARCHAR(100) NOT NULL,
   telefono BIGINT NULL);
 
-CREATE TABLE Proveedor ( -- TABLA 6
-  id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-  nit BIGINT NOT NULL,
-  razonSocial VARCHAR(100) NOT NULL UNIQUE,
-  representante VARCHAR(50) NOT NULL,
-  celular BIGINT NULL);
+-- 1. Si existe una relación que nos bloquea, la buscamos y la matamos
+DECLARE @sql NVARCHAR(MAX) = N'';
+SELECT @sql += 'ALTER TABLE ' + QUOTENAME(OBJECT_SCHEMA_NAME(parent_object_id))
+    + '.' + QUOTENAME(OBJECT_NAME(parent_object_id)) 
+    + ' DROP CONSTRAINT ' + QUOTENAME(name) + ';'
+FROM sys.foreign_keys
+WHERE referenced_object_id = OBJECT_ID('Proveedor');
+EXEC sp_executesql @sql;
+
+-- 2. Borramos la tabla vieja
+IF OBJECT_ID('Proveedor', 'U') IS NOT NULL DROP TABLE Proveedor;
+
+-- 3. Creamos la tabla definitiva
+CREATE TABLE Proveedor (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    nit BIGINT NOT NULL,
+    razonSocial VARCHAR(100) NOT NULL,
+    direccion VARCHAR(250) NULL,
+    telefono VARCHAR(20) NULL,
+    email VARCHAR(100) NULL,
+    usuarioRegistro VARCHAR(50) NOT NULL DEFAULT (suser_name()),
+    fechaRegistro DATETIME NOT NULL DEFAULT GETDATE(),
+    estado INT NOT NULL DEFAULT 1 -- 1: Activo, -1: Eliminado
+);
 
 CREATE TABLE Empleado ( -- TABLA 7
   id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -165,10 +183,20 @@ ALTER TABLE Cliente ADD usuarioRegistro VARCHAR(50) NOT NULL DEFAULT SUSER_NAME(
 ALTER TABLE Cliente ADD fechaRegistro DATETIME NOT NULL DEFAULT GETDATE();
 ALTER TABLE Cliente ADD estado INT NOT NULL DEFAULT 1;
 
+
 -- Proveedor
-ALTER TABLE Proveedor ADD usuarioRegistro VARCHAR(50) NOT NULL DEFAULT SUSER_NAME();
-ALTER TABLE Proveedor ADD fechaRegistro DATETIME NOT NULL DEFAULT GETDATE();
-ALTER TABLE Proveedor ADD estado INT NOT NULL DEFAULT 1;
+ALTER TABLE Proveedor ADD nit BIGINT NOT NULL DEFAULT 0;
+ALTER TABLE Proveedor ADD razonSocial VARCHAR(100) NOT NULL DEFAULT 'SIN NOMBRE';
+ALTER TABLE Proveedor ADD direccion VARCHAR(250) NULL;
+ALTER TABLE Proveedor ADD telefono VARCHAR(20) NULL;
+ALTER TABLE Proveedor ADD email VARCHAR(100) NULL;
+GO
+-- Y ahora la conexión mágica con Compras
+ALTER TABLE Compra
+ADD CONSTRAINT FK_Compra_Proveedor
+FOREIGN KEY (idProveedor) REFERENCES Proveedor(id);
+GO
+
 
 -- Empleado
 ALTER TABLE Empleado ADD usuarioRegistro VARCHAR(50) NOT NULL DEFAULT SUSER_NAME();
@@ -365,6 +393,9 @@ SELECT * FROM UnidadMedida;
 SELECT id, nombre FROM Categoria;
 -- Verifica si esta tabla tiene los mismos IDs que 'Categoria'
 SELECT * FROM SubCategoria;
+SELECT * FROM Proveedor;
+SELECT * FROM Cliente;
+
 
 
 
@@ -417,3 +448,26 @@ GO
 DBCC FREEPROCCACHE;
 DBCC DROPCLEANBUFFERS;
 GO
+
+
+
+
+-- Si no existe la Razón Social, la agregamos
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('Proveedor') AND name = 'razonSocial')
+    ALTER TABLE Proveedor ADD razonSocial VARCHAR(100) NOT NULL DEFAULT 'SIN NOMBRE';
+
+-- Si no existe la Dirección, la agregamos
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('Proveedor') AND name = 'direccion')
+    ALTER TABLE Proveedor ADD direccion VARCHAR(250) NULL;
+
+-- Si no existe el Teléfono, la agregamos
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('Proveedor') AND name = 'telefono')
+    ALTER TABLE Proveedor ADD telefono VARCHAR(20) NULL;
+
+-- Si no existe el Email, la agregamos
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('Proveedor') AND name = 'email')
+    ALTER TABLE Proveedor ADD email VARCHAR(100) NULL;
+
+GO
+-- Verificamos cómo quedó
+SELECT TOP 0 * FROM Proveedor;

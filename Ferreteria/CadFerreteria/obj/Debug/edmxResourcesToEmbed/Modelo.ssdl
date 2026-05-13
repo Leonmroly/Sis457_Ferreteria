@@ -97,8 +97,9 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nit" Type="bigint" Nullable="false" />
     <Property Name="razonSocial" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="representante" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="celular" Type="bigint" />
+    <Property Name="direccion" Type="varchar" MaxLength="250" />
+    <Property Name="telefono" Type="varchar" MaxLength="20" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
     <Property Name="usuarioRegistro" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
     <Property Name="estado" Type="int" Nullable="false" />
@@ -163,7 +164,7 @@
     <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
     <Property Name="estado" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="fk_Com_Prov">
+  <Association Name="FK_Compra_Proveedor">
     <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
     <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
     <ReferentialConstraint>
@@ -333,7 +334,7 @@
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VentaDetalle" EntityType="Self.VentaDetalle" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="fk_Com_Prov" Association="Self.fk_Com_Prov">
+    <AssociationSet Name="FK_Compra_Proveedor" Association="Self.FK_Compra_Proveedor">
       <End Role="Proveedor" EntitySet="Proveedor" />
       <End Role="Compra" EntitySet="Compra" />
     </AssociationSet>
