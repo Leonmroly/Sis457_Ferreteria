@@ -22,6 +22,14 @@ namespace ClnFerreteria
             }
         }
 
+        public static Cliente obtenerPa(int id)
+        {
+            using (var context = new LabFerreteriaEntities())
+            {
+                return context.Clientes.FirstOrDefault(x => x.id == id && x.estado == 1);
+            }
+        }
+
         public static int actualizar(Cliente cliente)
         {
             using (var context = new LabFerreteriaEntities())
