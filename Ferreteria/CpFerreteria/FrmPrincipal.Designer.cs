@@ -34,6 +34,7 @@
             this.btnCategoria = new System.Windows.Forms.Button();
             this.btnUnidadMedida = new System.Windows.Forms.Button();
             this.btnProveedor = new System.Windows.Forms.Button();
+            this.btnCliente = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProductos
@@ -91,11 +92,23 @@
             this.btnProveedor.UseVisualStyleBackColor = true;
             this.btnProveedor.Click += new System.EventHandler(this.btnProveedor_Click);
             // 
+            // btnCliente
+            // 
+            this.btnCliente.Location = new System.Drawing.Point(765, 192);
+            this.btnCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Size = new System.Drawing.Size(189, 65);
+            this.btnCliente.TabIndex = 5;
+            this.btnCliente.Text = "Cliente";
+            this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(816, 532);
+            this.ClientSize = new System.Drawing.Size(992, 532);
+            this.Controls.Add(this.btnCliente);
             this.Controls.Add(this.btnProveedor);
             this.Controls.Add(this.btnUnidadMedida);
             this.Controls.Add(this.btnCategoria);
@@ -120,5 +133,6 @@
         private System.Windows.Forms.Button btnCategoria;
         private System.Windows.Forms.Button btnUnidadMedida;
         private System.Windows.Forms.Button btnProveedor;
+        private System.Windows.Forms.Button btnCliente;
     }
 }

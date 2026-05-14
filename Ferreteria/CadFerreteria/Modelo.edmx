@@ -20,9 +20,11 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nit" Type="bigint" Nullable="false" />
-          <Property Name="razonSocial" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="telefono" Type="bigint" />
+          <Property Name="cedulaIdentidad" Type="bigint" Nullable="false" />
+          <Property Name="nombreCompleto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="250" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
           <Property Name="usuarioRegistro" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
           <Property Name="estado" Type="int" Nullable="false" />
@@ -289,18 +291,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Ven_Cli">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Venta">
-              <PropertyRef Name="idCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Ven_Usu">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
@@ -379,10 +369,6 @@
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <AssociationSet Name="fk_Ven_Cli" Association="Self.fk_Ven_Cli">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Venta" EntitySet="Venta" />
-          </AssociationSet>
           <AssociationSet Name="fk_Ven_Usu" Association="Self.fk_Ven_Usu">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Venta" EntitySet="Venta" />
@@ -402,19 +388,6 @@
           <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SubCategoria" Relationship="Self.fk_Sub_Cat" FromRole="Categoria" ToRole="SubCategoria" />
-        </EntityType>
-        <EntityType Name="Cliente">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nit" Type="Int64" Nullable="false" />
-          <Property Name="razonSocial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="telefono" Type="Int64" />
-          <Property Name="usuarioRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Venta" Relationship="Self.fk_Ven_Cli" FromRole="Cliente" ToRole="Venta" />
         </EntityType>
         <EntityType Name="Compra">
           <Key>
@@ -510,7 +483,6 @@
           <Property Name="usuarioRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.fk_Ven_Cli" FromRole="Venta" ToRole="Cliente" />
           <NavigationProperty Name="Usuario" Relationship="Self.fk_Ven_Usu" FromRole="Venta" ToRole="Usuario" />
           <NavigationProperty Name="VentaDetalle" Relationship="Self.fk_DetVen_Ven" FromRole="Venta" ToRole="VentaDetalle" />
         </EntityType>
@@ -538,18 +510,6 @@
             </Principal>
             <Dependent Role="SubCategoria">
               <PropertyRef Name="idCategoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Ven_Cli">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Venta">
-              <PropertyRef Name="idCliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -591,7 +551,6 @@
         </Association>
         <EntityContainer Name="LabFerreteriaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
-          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="Compra" EntityType="Self.Compra" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" />
           <EntitySet Name="Marca" EntityType="Self.Marca" />
@@ -603,10 +562,6 @@
           <AssociationSet Name="fk_Sub_Cat" Association="Self.fk_Sub_Cat">
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="SubCategoria" EntitySet="SubCategoria" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Ven_Cli" Association="Self.fk_Ven_Cli">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Venta" EntitySet="Venta" />
           </AssociationSet>
           <AssociationSet Name="fk_Usu_Emp" Association="Self.fk_Usu_Emp">
             <End Role="Empleado" EntitySet="Empleado" />
@@ -663,6 +618,7 @@
             <End Role="Proveedor" EntitySet="Proveedors" />
             <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
+          <EntitySet Name="Clientes" EntityType="LabFerreteriaModel.Cliente" />
           </EntityContainer>
         <EntityType Name="CompraDetalle">
           <Key>
@@ -836,6 +792,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cedulaIdentidad" Type="Int64" Nullable="false" />
+          <Property Name="nombreCompleto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -847,19 +817,6 @@
               <MappingFragment StoreEntitySet="Categoria">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
-                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="LabFerreteriaModel.Cliente">
-              <MappingFragment StoreEntitySet="Cliente">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nit" ColumnName="nit" />
-                <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
                 <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
@@ -1068,6 +1025,21 @@
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
                 <ScalarProperty Name="nit" ColumnName="nit" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="LabFerreteriaModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+                <ScalarProperty Name="cedulaIdentidad" ColumnName="cedulaIdentidad" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

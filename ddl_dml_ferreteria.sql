@@ -51,11 +51,49 @@ CREATE TABLE SubCategoria ( -- TABLA 4
   nombre VARCHAR(50) NOT NULL,
   CONSTRAINT fk_Sub_Cat FOREIGN KEY (idCategoria) REFERENCES Categoria(id));
 
-CREATE TABLE Cliente ( -- TABLA 5
-  id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-  nit BIGINT NOT NULL,
-  razonSocial VARCHAR(100) NOT NULL,
-  telefono BIGINT NULL);
+  
+
+
+
+
+-- Limpieza de relaciones previas
+DECLARE @sql NVARCHAR(MAX) = N'';
+SELECT @sql += 'ALTER TABLE ' + QUOTENAME(OBJECT_SCHEMA_NAME(parent_object_id))
+    + '.' + QUOTENAME(OBJECT_NAME(parent_object_id)) 
+    + ' DROP CONSTRAINT ' + QUOTENAME(name) + ';'
+FROM sys.foreign_keys WHERE referenced_object_id = OBJECT_ID('Cliente');
+EXEC sp_executesql @sql;
+GO
+
+IF OBJECT_ID('Cliente', 'U') IS NOT NULL DROP TABLE Cliente;
+GO
+
+CREATE TABLE Cliente (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    cedulaIdentidad BIGINT NOT NULL DEFAULT 0,  -- Solo C.I.
+    nombreCompleto VARCHAR(100) NOT NULL,       -- Nombre completo
+    direccion VARCHAR(250) NULL,
+    telefono VARCHAR(20) NULL,
+    email VARCHAR(100) NULL,
+    usuarioRegistro VARCHAR(50) NOT NULL DEFAULT (suser_name()),
+    fechaRegistro DATETIME NOT NULL DEFAULT GETDATE(),
+    estado INT NOT NULL DEFAULT 1 
+);
+GO
+
+SELECT 'Tabla Cliente con C.I. creada con éxito' AS Resultado;
+
+
+SELECT 'Tabla Cliente creada con éxito' AS Resultado;
+
+
+
+-- Creamos la relación con la tabla Venta (si ya tienes la tabla Venta creada)
+ALTER TABLE Venta
+ADD CONSTRAINT FK_Venta_Cliente
+FOREIGN KEY (idCliente) REFERENCES Cliente(id);
+GO
+
 
 -- 1. Si existe una relación que nos bloquea, la buscamos y la matamos
 DECLARE @sql NVARCHAR(MAX) = N'';

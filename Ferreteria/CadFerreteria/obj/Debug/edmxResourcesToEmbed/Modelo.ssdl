@@ -15,9 +15,11 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nit" Type="bigint" Nullable="false" />
-    <Property Name="razonSocial" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="telefono" Type="bigint" />
+    <Property Name="cedulaIdentidad" Type="bigint" Nullable="false" />
+    <Property Name="nombreCompleto" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="direccion" Type="varchar" MaxLength="250" />
+    <Property Name="telefono" Type="varchar" MaxLength="20" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
     <Property Name="usuarioRegistro" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
     <Property Name="estado" Type="int" Nullable="false" />
@@ -284,18 +286,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_Ven_Cli">
-    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cliente">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Venta">
-        <PropertyRef Name="idCliente" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="fk_Ven_Usu">
     <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
     <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
@@ -373,10 +363,6 @@
     <AssociationSet Name="fk_Usu_Emp" Association="Self.fk_Usu_Emp">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Usuario" EntitySet="Usuario" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Ven_Cli" Association="Self.fk_Ven_Cli">
-      <End Role="Cliente" EntitySet="Cliente" />
-      <End Role="Venta" EntitySet="Venta" />
     </AssociationSet>
     <AssociationSet Name="fk_Ven_Usu" Association="Self.fk_Ven_Usu">
       <End Role="Usuario" EntitySet="Usuario" />

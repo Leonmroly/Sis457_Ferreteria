@@ -49,5 +49,10 @@ namespace CpFerreteria
         {
             new FrmProveedor().ShowDialog();
         }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            new FrmCliente().ShowDialog();
+        }
     }
 }
