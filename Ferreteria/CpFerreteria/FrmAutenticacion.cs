@@ -1,4 +1,5 @@
-﻿using ClnFerreteria;
+﻿using CadFerreteria;
+using ClnFerreteria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,16 +45,36 @@ namespace CpFerreteria
         {
             if (validar())
             {
-                /// se valida con el Util.Encrypt...
-                var usuario = UsuarioCln.validar(txtUsuario.Text, Util.Encrypt(txtClave.Text));
-                if (usuario != null)
+                // Llamamos al método que devuelve 'object'
+                var resultado = UsuarioCln.validar(txtUsuario.Text, Util.Encrypt(txtClave.Text));
+
+                if (resultado != null)
                 {
-                    Util.usuario = usuario;
-                    txtClave.Clear();
-                    txtUsuario.Focus();
-                    txtUsuario.SelectAll();
-                    Hide();
-                    new FrmPrincipal(this).ShowDialog();
+                    // Verificamos si lo que devolvió es un Empleado (Usuario)
+                    if (resultado is Usuario)
+                    {
+                        Util.usuario = (Usuario)resultado; // Aquí hacemos la conversión explícita
+                        txtClave.Clear();
+                        txtUsuario.Focus();
+                        Hide();
+                        new FrmPrincipal(this).ShowDialog();
+                    }
+                    // Verificamos si lo que devolvió es un Cliente
+                    else if (resultado is Cliente)
+                    {
+                        Cliente clienteLogueado = (Cliente)resultado;
+
+                        MessageBox.Show("Bienvenido Cliente: " + clienteLogueado.nombreCompleto);
+
+                        txtClave.Clear();
+                        //txtUsuario.Clear();
+
+                        this.Hide();
+
+                        FrmPrincipalCliente frmPrincipalCliente = new FrmPrincipalCliente(this);
+                        frmPrincipalCliente.ShowDialog();
+
+                    }
                 }
                 else
                 {

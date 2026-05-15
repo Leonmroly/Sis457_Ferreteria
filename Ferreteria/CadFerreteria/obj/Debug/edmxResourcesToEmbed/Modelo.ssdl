@@ -20,6 +20,8 @@
     <Property Name="direccion" Type="varchar" MaxLength="250" />
     <Property Name="telefono" Type="varchar" MaxLength="20" />
     <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="password" Type="varchar" MaxLength="250" />
+    <Property Name="tipo" Type="int" Nullable="false" />
     <Property Name="usuarioRegistro" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
     <Property Name="estado" Type="int" Nullable="false" />

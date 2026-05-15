@@ -55,26 +55,21 @@ CREATE TABLE SubCategoria ( -- TABLA 4
 
 
 
-
--- Limpieza de relaciones previas
-DECLARE @sql NVARCHAR(MAX) = N'';
-SELECT @sql += 'ALTER TABLE ' + QUOTENAME(OBJECT_SCHEMA_NAME(parent_object_id))
-    + '.' + QUOTENAME(OBJECT_NAME(parent_object_id)) 
-    + ' DROP CONSTRAINT ' + QUOTENAME(name) + ';'
-FROM sys.foreign_keys WHERE referenced_object_id = OBJECT_ID('Cliente');
-EXEC sp_executesql @sql;
-GO
-
+-- Borramos la anterior para que no haya choques
 IF OBJECT_ID('Cliente', 'U') IS NOT NULL DROP TABLE Cliente;
 GO
 
 CREATE TABLE Cliente (
     id INT PRIMARY KEY IDENTITY(1,1),
-    cedulaIdentidad BIGINT NOT NULL DEFAULT 0,  -- Solo C.I.
-    nombreCompleto VARCHAR(100) NOT NULL,       -- Nombre completo
+    cedulaIdentidad BIGINT NOT NULL DEFAULT 0,
+    nombreCompleto VARCHAR(100) NOT NULL,
     direccion VARCHAR(250) NULL,
     telefono VARCHAR(20) NULL,
     email VARCHAR(100) NULL,
+    password VARCHAR(250) NULL,
+
+    tipo INT NOT NULL DEFAULT 1, 
+    
     usuarioRegistro VARCHAR(50) NOT NULL DEFAULT (suser_name()),
     fechaRegistro DATETIME NOT NULL DEFAULT GETDATE(),
     estado INT NOT NULL DEFAULT 1 
@@ -220,6 +215,11 @@ ALTER TABLE Producto ADD estado INT NOT NULL DEFAULT 1;
 ALTER TABLE Cliente ADD usuarioRegistro VARCHAR(50) NOT NULL DEFAULT SUSER_NAME();
 ALTER TABLE Cliente ADD fechaRegistro DATETIME NOT NULL DEFAULT GETDATE();
 ALTER TABLE Cliente ADD estado INT NOT NULL DEFAULT 1;
+
+ALTER TABLE Cliente ADD password VARCHAR(250) NULL;
+ALTER TABLE Cliente ADD tipo INT NOT NULL DEFAULT 1; -- 1: Caja, 2: Cuenta Propia
+
+
 
 
 -- Proveedor
@@ -416,6 +416,11 @@ VALUES ('654321', 'Roly', 'Leon', 'Mamani', '2005-05-15', 'Avenida Segungo Vasco
 
 INSERT INTO Usuario (idEmpleado, usuario, clave, rol)
 VALUES (1, 'lroly', 'i0hcoO/nssY6WOs9pOp5Xw==', 'Administrador');
+
+SELECT * FROM Cliente 
+WHERE email = @usuario AND password = @password AND tipo = 2;
+
+SELECT usuario, clave, estado FROM Usuario;
 
 -- 3. PRUEBA DEL PROCEDIMIENTO
 EXEC paProductoListar 'martillo';

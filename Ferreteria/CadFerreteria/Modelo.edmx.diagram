@@ -28,7 +28,7 @@
         <AssociationConnector Association="LabFerreteriaModel.fk_Prod_UM" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Proveedor" Width="1.5" PointX="2.75" PointY="10.75" />
         <AssociationConnector Association="LabFerreteriaModel.FK_Compra_Proveedor" />
-        <EntityTypeShape EntityType="LabFerreteriaModel.Cliente" Width="1.5" PointX="5.75" PointY="15" />
+        <EntityTypeShape EntityType="LabFerreteriaModel.Cliente" Width="1.5" PointX="5.25" PointY="14.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

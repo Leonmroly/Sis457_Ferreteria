@@ -9,13 +9,31 @@ namespace ClnFerreteria
 {
     public class ClienteCln
     {
-        public static int crear(Cliente cliente)
+
+        public static class Util
+        {
+            public static Usuario usuario; // Aquí se guarda el usuario que hizo Login
+        }
+
+        public static int crear(Cliente cliente, string usuarioFormulario, bool esCuentaNueva)
         {
             using (var context = new LabFerreteriaEntities())
             {
-                cliente.usuarioRegistro = "SISTEMA";
+                cliente.usuarioRegistro = usuarioFormulario;
                 cliente.fechaRegistro = DateTime.Now;
                 cliente.estado = 1;
+
+                // Si desde el Form ya viene con tipo 2, lo respetamos
+                if (esCuentaNueva)
+                {
+                    cliente.tipo = 2;
+                }
+                else
+                {
+                    cliente.tipo = 1;
+                    cliente.password = null;
+                }
+
                 context.Clientes.Add(cliente);
                 context.SaveChanges();
                 return cliente.id;
@@ -30,28 +48,52 @@ namespace ClnFerreteria
             }
         }
 
-        public static int actualizar(Cliente cliente)
+        public static int actualizar(Cliente cliente, string usuarioFormulario)
         {
             using (var context = new LabFerreteriaEntities())
             {
                 var existente = context.Clientes.Find(cliente.id);
-                existente.cedulaIdentidad = cliente.cedulaIdentidad;
-                existente.nombreCompleto = cliente.nombreCompleto;
-                existente.direccion = cliente.direccion;
-                existente.telefono = cliente.telefono;
-                existente.email = cliente.email;
-                existente.usuarioRegistro = "SISTEMA";
-                return context.SaveChanges();
+                if (existente != null)
+                {
+                    existente.cedulaIdentidad = cliente.cedulaIdentidad;
+                    existente.nombreCompleto = cliente.nombreCompleto;
+                    existente.direccion = cliente.direccion;
+                    existente.telefono = cliente.telefono;
+                    existente.email = cliente.email;
+
+                    // LÓGICA DE CUENTA REFORZADA
+                    // Si el password que viene no es nulo, actualizamos y aseguramos tipo 2
+                    if (!string.IsNullOrWhiteSpace(cliente.password))
+                    {
+                        existente.password = cliente.password;
+                        existente.tipo = 2;
+                    }
+                    else
+                    {
+                        // Si borraron la clave en el form, vuelve a ser cliente normal
+                        existente.tipo = 1;
+                        existente.password = null;
+                    }
+
+                    existente.usuarioRegistro = usuarioFormulario;
+                    return context.SaveChanges();
+                }
+                return 0;
             }
         }
 
-        public static int eliminar(int id)
+        public static int eliminar(int id, string usuarioFormulario)
         {
             using (var context = new LabFerreteriaEntities())
             {
                 var cliente = context.Clientes.Find(id);
-                cliente.estado = -1;
-                return context.SaveChanges();
+                if (cliente != null)
+                {
+                    cliente.estado = -1;
+                    cliente.usuarioRegistro = usuarioFormulario;
+                    return context.SaveChanges();
+                }
+                return 0;
             }
         }
 
@@ -64,5 +106,6 @@ namespace ClnFerreteria
                     .ToList();
             }
         }
+
     }
 }

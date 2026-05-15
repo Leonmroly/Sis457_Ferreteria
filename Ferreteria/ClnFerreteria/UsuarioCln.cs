@@ -9,13 +9,21 @@ namespace ClnFerreteria
 {
     public class UsuarioCln
     {
-        public static Usuario validar(string usuario, string clave)
+        public static object validar(string login, string clave)
         {
             using (var context = new LabFerreteriaEntities())
             {
-                return context.Usuario
-                    .Where(x => x.usuario1 == usuario && x.clave == clave)
-                    .FirstOrDefault();
+                // Busca empleado (clave ya viene encriptada desde el form)
+                var empleado = context.Usuario
+                    .FirstOrDefault(x => x.usuario1 == login && x.clave == clave && x.estado == 1);
+                if (empleado != null) return empleado;
+
+                // Busca cliente (clave ya viene encriptada desde el form)
+                var cliente = context.Clientes
+                    .FirstOrDefault(x => x.email == login && x.password == clave && x.tipo == 2 && x.estado == 1);
+                if (cliente != null) return cliente;
+
+                return null;
             }
         }
     }

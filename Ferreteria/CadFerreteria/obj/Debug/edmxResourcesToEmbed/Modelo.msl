@@ -224,6 +224,8 @@
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
           <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="telefono" ColumnName="telefono" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />

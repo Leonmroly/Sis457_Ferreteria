@@ -20,6 +20,8 @@ namespace CadFerreteria
         public string direccion { get; set; }
         public string telefono { get; set; }
         public string email { get; set; }
+        public string password { get; set; }
+        public int tipo { get; set; }
         public string usuarioRegistro { get; set; }
         public System.DateTime fechaRegistro { get; set; }
         public int estado { get; set; }

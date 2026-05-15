@@ -24,23 +24,25 @@ namespace CpFerreteria
         private void listar()
         {
             var lista = ClienteCln.listar()
-                .Where(x => x.nombreCompleto
-                .ToLower().Contains(txtParametro.Text
-                .ToLower()))
-                .ToList(); // Aquí puedes usar ToList directamente sin el Select New si quieres
+                .Where(x => x.nombreCompleto.ToLower().Contains(txtParametro.Text.ToLower()))
+                .ToList();
 
             dgvLista.DataSource = null;
             dgvLista.DataSource = lista;
 
-            // Solo ocultamos lo que el usuario no ve
+            // Ocultar basura técnica y sensible
             if (dgvLista.Columns.Contains("id")) dgvLista.Columns["id"].Visible = false;
             if (dgvLista.Columns.Contains("estado")) dgvLista.Columns["estado"].Visible = false;
-            if (dgvLista.Columns.Contains("usuarioRegistro")) dgvLista.Columns["usuarioRegistro"].Visible = false;
-            if (dgvLista.Columns.Contains("fechaRegistro")) dgvLista.Columns["fechaRegistro"].Visible = false;
+            if (dgvLista.Columns.Contains("password")) dgvLista.Columns["password"].Visible = false; // ¡Seguridad!
+            if (dgvLista.Columns.Contains("tipo")) dgvLista.Columns["tipo"].Visible = false;
 
-            // Nombres bonitos
-            dgvLista.Columns["cedulaIdentidad"].HeaderText = "NIT/CI";
-            dgvLista.Columns["nombreCompleto"].HeaderText = "Nombre / Dirección";
+            // Nombres para humanos
+            dgvLista.Columns["cedulaIdentidad"].HeaderText = "C.I.";
+            dgvLista.Columns["nombreCompleto"].HeaderText = "Cliente / Razón Social";
+            dgvLista.Columns["telefono"].HeaderText = "Celular/Tel.";
+            dgvLista.Columns["direccion"].HeaderText = "Dirección de Envío";
+            dgvLista.Columns["email"].HeaderText = "Correo / Usuario"; // El email sirve de Login
+            dgvLista.Columns["usuarioRegistro"].HeaderText = "Atendido por";
         }
 
         private void FrmCliente_Load(object sender, EventArgs e)
@@ -62,14 +64,30 @@ namespace CpFerreteria
 
             if (string.IsNullOrWhiteSpace(txtCi.Text))
             {
-                erpCi.SetError(txtCi, "Ingrese la cédula de identidad");
+                erpCi.SetError(txtCi, "C.I. requerido");
+                esValido = false;
+            }
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                erpNombre.SetError(txtNombre, "Nombre requerido");
                 esValido = false;
             }
 
-            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            // SI QUIERE CREAR CUENTA, VALIDAMOS EMAIL Y CLAVE
+            if (cbCrearCuenta.Checked)
             {
-                erpNombre.SetError(txtNombre, "Ingrese su nombre completo");
-                esValido = false;
+                // Para tener cuenta, el Email es obligatorio porque será su usuario
+                if (string.IsNullOrWhiteSpace(txtEmail.Text))
+                {
+                    erpEmail.SetError(txtEmail, "El email es obligatorio para el acceso");
+                    esValido = false;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtClave.Text))
+                {
+                    erpClave.SetError(txtClave, "Debes asignar una contraseña");
+                    esValido = false;
+                }
             }
 
             return esValido;
@@ -88,9 +106,32 @@ namespace CpFerreteria
             if (dgvLista.CurrentRow != null)
             {
                 esNuevo = false;
+                // Obtenemos el ID de la celda, esto es lo único que necesitamos del Grid
                 idSeleccionado = (int)dgvLista.CurrentRow.Cells["id"].Value;
-                txtCi.Text = dgvLista.CurrentRow.Cells["cedulaIdentidad"].Value.ToString();
-                txtNombre.Text = dgvLista.CurrentRow.Cells["nombreCompleto"].Value.ToString();
+
+                // ¡ESTO ES LO QUE VA A SOLUCIONAR TU VIDA! Traemos el dato fresco del SQL
+                var clienteDB = ClienteCln.obtenerPa(idSeleccionado);
+
+                if (clienteDB != null)
+                {
+                    txtCi.Text = clienteDB.cedulaIdentidad.ToString();
+                    txtNombre.Text = clienteDB.nombreCompleto;
+                    txtDireccion.Text = clienteDB.direccion;
+                    txtTelefono.Text = clienteDB.telefono;
+                    txtEmail.Text = clienteDB.email;
+
+                    // REVISIÓN REAL: Si el tipo es 2, el checkbox se marca porque se lo ordena el SQL
+                    if (clienteDB.tipo == 2)
+                    {
+                        cbCrearCuenta.Checked = true;
+                        txtClave.Text = "********"; // Marcador para saber que hay clave
+                    }
+                    else
+                    {
+                        cbCrearCuenta.Checked = false;
+                        txtClave.Clear();
+                    }
+                }
 
                 Size = new Size(762, 508);
                 txtCi.Focus();
@@ -99,16 +140,21 @@ namespace CpFerreteria
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            int id = (int)dgvLista.CurrentRow.Cells["id"].Value;
-            string codigo = dgvLista.CurrentRow.Cells["codigo"].Value.ToString();
-            DialogResult dialog = MessageBox.Show($"¿Está seguro de eliminar el producto con código '{codigo}'?", "::: Mensaje - Ferreteria :::",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialog == DialogResult.Yes)
+            if (dgvLista.CurrentRow != null)
             {
-                ProductoCln.eliminar(id, Util.usuario.usuario1);
-                listar();
-                MessageBox.Show("Producto eliminado correctamente", "::: Mensaje - Ferreteria :::",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                int id = (int)dgvLista.CurrentRow.Cells["id"].Value;
+                string nombre = dgvLista.CurrentRow.Cells["nombreCompleto"].Value.ToString();
+
+                DialogResult dialog = MessageBox.Show($"¿Está seguro de eliminar al cliente '{nombre}'?", "::: Mensaje :::",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialog == DialogResult.Yes)
+                {
+                    // Usamos el usuario del Login y la clase de Clientes
+                    ClienteCln.eliminar(id, Util.usuario.usuario1);
+                    listar();
+                    MessageBox.Show("Cliente eliminado correctamente");
+                }
             }
         }
 
@@ -117,26 +163,57 @@ namespace CpFerreteria
             if (validar())
             {
                 Cliente c = new Cliente();
-                // Ahora usamos los nombres exactos de la nueva tabla
                 c.cedulaIdentidad = long.Parse(txtCi.Text);
                 c.nombreCompleto = txtNombre.Text.Trim();
                 c.direccion = txtDireccion.Text.Trim();
                 c.telefono = txtTelefono.Text.Trim();
                 c.email = txtEmail.Text.Trim();
+                string usuarioActual = Util.usuario.usuario1;
 
                 if (esNuevo)
                 {
-                    ClienteCln.crear(c);
-                    MessageBox.Show("Cliente registrado");
+                    if (cbCrearCuenta.Checked)
+                    {
+                        c.tipo = 2; // CLIENTE CON CUENTA
+                        c.password = Util.Encrypt(txtClave.Text.Trim());
+                    }
+                    else
+                    {
+                        c.tipo = 1; // CLIENTE SIN CUENTA
+                        c.password = null;
+                    }
+                    ClienteCln.crear(c, usuarioActual, cbCrearCuenta.Checked);
                 }
                 else
                 {
                     c.id = idSeleccionado;
-                    ClienteCln.actualizar(c);
-                    MessageBox.Show("Cliente actualizado");
+                    var clienteDB = ClienteCln.obtenerPa(idSeleccionado);
+
+                    if (cbCrearCuenta.Checked)
+                    {
+                        c.tipo = 2; // FORZAMOS QUE SEA TIPO 2
+                                    // Solo encriptamos si el usuario escribió una clave REAL (no los asteriscos)
+                        if (!string.IsNullOrWhiteSpace(txtClave.Text) && txtClave.Text != "********")
+                        {
+                            c.password = Util.Encrypt(txtClave.Text.Trim());
+                        }
+                        else
+                        {
+                            c.password = clienteDB.password; // Mantenemos la que ya estaba en SQL
+                        }
+                    }
+                    else
+                    {
+                        c.tipo = 1;
+                        c.password = null;
+                    }
+                    ClienteCln.actualizar(c, usuarioActual);
                 }
+
                 listar();
                 limpiar();
+                Size = new Size(762, 337);
+                MessageBox.Show("¡Guardado correctamente!");
             }
         }
 
@@ -154,6 +231,8 @@ namespace CpFerreteria
             txtDireccion.Clear();
             txtTelefono.Clear();
             txtEmail.Clear();
+            txtClave.Clear();
+            cbCrearCuenta.Checked = false;
 
             resetearErrores();
         }
@@ -163,6 +242,8 @@ namespace CpFerreteria
             erpCi.Clear();
             erpNombre.Clear();
             erpNombre.Clear();
+            erpEmail.Clear();
+            erpClave.Clear();
         }
 
 

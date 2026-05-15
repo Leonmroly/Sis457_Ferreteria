@@ -41,27 +41,33 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.gbxDatos = new System.Windows.Forms.GroupBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblTelefono = new System.Windows.Forms.Label();
+            this.lblDireccion = new System.Windows.Forms.Label();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtCi = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lblCi = new System.Windows.Forms.Label();
             this.lblNombreCompleto = new System.Windows.Forms.Label();
             this.erpCi = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtCi = new System.Windows.Forms.TextBox();
-            this.txtNombre = new System.Windows.Forms.TextBox();
             this.erpNombre = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblDireccion = new System.Windows.Forms.Label();
-            this.lblTelefono = new System.Windows.Forms.Label();
-            this.lblEmail = new System.Windows.Forms.Label();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.cbCrearCuenta = new System.Windows.Forms.CheckBox();
+            this.txtClave = new System.Windows.Forms.TextBox();
+            this.erpClave = new System.Windows.Forms.ErrorProvider(this.components);
+            this.erpEmail = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbxLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.pnlAcciones.SuspendLayout();
             this.gbxDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.erpCi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.erpNombre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.erpClave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.erpEmail)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -197,6 +203,8 @@
             // 
             // gbxDatos
             // 
+            this.gbxDatos.Controls.Add(this.txtClave);
+            this.gbxDatos.Controls.Add(this.cbCrearCuenta);
             this.gbxDatos.Controls.Add(this.txtEmail);
             this.gbxDatos.Controls.Add(this.txtTelefono);
             this.gbxDatos.Controls.Add(this.txtDireccion);
@@ -216,6 +224,76 @@
             this.gbxDatos.TabIndex = 8;
             this.gbxDatos.TabStop = false;
             this.gbxDatos.Text = "Datos";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(465, 54);
+            this.txtEmail.MaxLength = 50;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(155, 26);
+            this.txtEmail.TabIndex = 26;
+            // 
+            // txtTelefono
+            // 
+            this.txtTelefono.Location = new System.Drawing.Point(465, 22);
+            this.txtTelefono.MaxLength = 50;
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(155, 26);
+            this.txtTelefono.TabIndex = 25;
+            // 
+            // txtDireccion
+            // 
+            this.txtDireccion.Location = new System.Drawing.Point(137, 86);
+            this.txtDireccion.MaxLength = 50;
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(155, 26);
+            this.txtDireccion.TabIndex = 24;
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Location = new System.Drawing.Point(369, 57);
+            this.lblEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(56, 20);
+            this.lblEmail.TabIndex = 23;
+            this.lblEmail.Text = "Email :";
+            // 
+            // lblTelefono
+            // 
+            this.lblTelefono.AutoSize = true;
+            this.lblTelefono.Location = new System.Drawing.Point(369, 25);
+            this.lblTelefono.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblTelefono.Name = "lblTelefono";
+            this.lblTelefono.Size = new System.Drawing.Size(75, 20);
+            this.lblTelefono.TabIndex = 22;
+            this.lblTelefono.Text = "Telefono:";
+            // 
+            // lblDireccion
+            // 
+            this.lblDireccion.AutoSize = true;
+            this.lblDireccion.Location = new System.Drawing.Point(8, 89);
+            this.lblDireccion.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDireccion.Name = "lblDireccion";
+            this.lblDireccion.Size = new System.Drawing.Size(79, 20);
+            this.lblDireccion.TabIndex = 21;
+            this.lblDireccion.Text = "Direccion:";
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(137, 54);
+            this.txtNombre.MaxLength = 50;
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(155, 26);
+            this.txtNombre.TabIndex = 20;
+            // 
+            // txtCi
+            // 
+            this.txtCi.Location = new System.Drawing.Point(137, 22);
+            this.txtCi.MaxLength = 50;
+            this.txtCi.Name = "txtCi";
+            this.txtCi.Size = new System.Drawing.Size(155, 26);
+            this.txtCi.TabIndex = 9;
             // 
             // btnGuardar
             // 
@@ -276,85 +354,40 @@
             // 
             this.erpCi.ContainerControl = this;
             // 
-            // txtCi
-            // 
-            this.txtCi.Location = new System.Drawing.Point(137, 22);
-            this.txtCi.MaxLength = 50;
-            this.txtCi.Name = "txtCi";
-            this.txtCi.Size = new System.Drawing.Size(155, 26);
-            this.txtCi.TabIndex = 9;
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Location = new System.Drawing.Point(137, 54);
-            this.txtNombre.MaxLength = 50;
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(155, 26);
-            this.txtNombre.TabIndex = 20;
-            // 
             // erpNombre
             // 
             this.erpNombre.ContainerControl = this;
             // 
-            // lblDireccion
+            // cbCrearCuenta
             // 
-            this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Location = new System.Drawing.Point(8, 89);
-            this.lblDireccion.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblDireccion.Name = "lblDireccion";
-            this.lblDireccion.Size = new System.Drawing.Size(79, 20);
-            this.lblDireccion.TabIndex = 21;
-            this.lblDireccion.Text = "Direccion:";
+            this.cbCrearCuenta.AutoSize = true;
+            this.cbCrearCuenta.Location = new System.Drawing.Point(10, 121);
+            this.cbCrearCuenta.Name = "cbCrearCuenta";
+            this.cbCrearCuenta.Size = new System.Drawing.Size(132, 24);
+            this.cbCrearCuenta.TabIndex = 27;
+            this.cbCrearCuenta.Text = "Crear Cuenta?";
+            this.cbCrearCuenta.UseVisualStyleBackColor = true;
             // 
-            // lblTelefono
+            // txtClave
             // 
-            this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(369, 25);
-            this.lblTelefono.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(75, 20);
-            this.lblTelefono.TabIndex = 22;
-            this.lblTelefono.Text = "Telefono:";
+            this.txtClave.Location = new System.Drawing.Point(148, 119);
+            this.txtClave.Name = "txtClave";
+            this.txtClave.Size = new System.Drawing.Size(144, 26);
+            this.txtClave.TabIndex = 28;
             // 
-            // lblEmail
+            // erpClave
             // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(369, 57);
-            this.lblEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(56, 20);
-            this.lblEmail.TabIndex = 23;
-            this.lblEmail.Text = "Email :";
+            this.erpClave.ContainerControl = this;
             // 
-            // txtDireccion
+            // erpEmail
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(137, 86);
-            this.txtDireccion.MaxLength = 50;
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(155, 26);
-            this.txtDireccion.TabIndex = 24;
-            // 
-            // txtTelefono
-            // 
-            this.txtTelefono.Location = new System.Drawing.Point(465, 22);
-            this.txtTelefono.MaxLength = 50;
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(155, 26);
-            this.txtTelefono.TabIndex = 25;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(465, 54);
-            this.txtEmail.MaxLength = 50;
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(155, 26);
-            this.txtEmail.TabIndex = 26;
+            this.erpEmail.ContainerControl = this;
             // 
             // FrmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(746, 298);
+            this.ClientSize = new System.Drawing.Size(746, 470);
             this.Controls.Add(this.gbxDatos);
             this.Controls.Add(this.pnlAcciones);
             this.Controls.Add(this.gbxLista);
@@ -374,6 +407,8 @@
             this.gbxDatos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.erpCi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.erpNombre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.erpClave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.erpEmail)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -408,5 +443,9 @@
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.Label lblDireccion;
+        private System.Windows.Forms.TextBox txtClave;
+        private System.Windows.Forms.CheckBox cbCrearCuenta;
+        private System.Windows.Forms.ErrorProvider erpClave;
+        private System.Windows.Forms.ErrorProvider erpEmail;
     }
 }
