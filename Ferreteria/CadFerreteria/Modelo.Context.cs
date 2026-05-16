@@ -29,17 +29,17 @@ namespace CadFerreteria
     
         public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Compra> Compra { get; set; }
-        public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<Marca> Marca { get; set; }
         public virtual DbSet<SubCategoria> SubCategoria { get; set; }
         public virtual DbSet<UnidadMedida> UnidadMedida { get; set; }
-        public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Venta> Venta { get; set; }
         public virtual DbSet<VentaDetalle> VentaDetalle { get; set; }
         public virtual DbSet<CompraDetalle> CompraDetalle { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<Proveedor> Proveedors { get; set; }
         public virtual DbSet<Cliente> Clientes { get; set; }
+        public virtual DbSet<Empleado> Empleadoes { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
     
         public virtual ObjectResult<paCategoriaListar_Result> paCategoriaListar(string parametro)
         {

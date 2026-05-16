@@ -17,7 +17,7 @@ namespace CadFerreteria
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            this.Venta = new HashSet<Venta>();
+            this.Ventas = new HashSet<Venta>();
         }
     
         public int id { get; set; }
@@ -31,6 +31,6 @@ namespace CadFerreteria
     
         public virtual Empleado Empleado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venta> Venta { get; set; }
+        public virtual ICollection<Venta> Ventas { get; set; }
     }
 }

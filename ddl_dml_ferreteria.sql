@@ -115,6 +115,9 @@ CREATE TABLE Proveedor (
     estado INT NOT NULL DEFAULT 1 -- 1: Activo, -1: Eliminado
 );
 
+
+
+
 CREATE TABLE Empleado ( -- TABLA 7
   id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
   cedulaIdentidad VARCHAR(12) NOT NULL UNIQUE,
@@ -124,7 +127,10 @@ CREATE TABLE Empleado ( -- TABLA 7
   fechaNacimiento DATE NOT NULL,
   direccion VARCHAR(250) NOT NULL,
   celular BIGINT NOT NULL,
-  cargo VARCHAR(50) NOT NULL);
+  cargo VARCHAR(50) NOT NULL,
+  usuarioRegistro VARCHAR(50) NOT NULL DEFAULT (suser_name()),
+  fechaRegistro DATETIME NOT NULL DEFAULT GETDATE(),
+  estado INT NOT NULL DEFAULT 1);
 
 CREATE TABLE Usuario ( -- TABLA 8
   id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -132,6 +138,9 @@ CREATE TABLE Usuario ( -- TABLA 8
   usuario VARCHAR(15) NOT NULL UNIQUE,
   clave VARCHAR(250) NOT NULL,
   rol VARCHAR(20) NOT NULL,
+  usuarioRegistro VARCHAR(50) NOT NULL DEFAULT (suser_name()),
+  fechaRegistro DATETIME NOT NULL DEFAULT GETDATE(),
+  estado INT NOT NULL DEFAULT 1,
   CONSTRAINT fk_Usu_Emp FOREIGN KEY (idEmpleado) REFERENCES Empleado(id));
 
 -- 3. PRODUCTOS Y MOVIMIENTOS

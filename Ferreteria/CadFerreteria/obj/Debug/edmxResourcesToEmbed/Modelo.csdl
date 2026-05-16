@@ -25,24 +25,6 @@
     <NavigationProperty Name="CompraDetalle" Relationship="LabFerreteriaModel.fk_DetCom_Com" FromRole="Compra" ToRole="CompraDetalle" />
     <NavigationProperty Name="Proveedor" Relationship="LabFerreteriaModel.FK_Compra_Proveedor" FromRole="Compra" ToRole="Proveedor" />
   </EntityType>
-  <EntityType Name="Empleado">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cedulaIdentidad" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="primerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="segundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="celular" Type="Int64" Nullable="false" />
-    <Property Name="cargo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="usuarioRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="estado" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Usuario" Relationship="Self.fk_Usu_Emp" FromRole="Empleado" ToRole="Usuario" />
-  </EntityType>
   <EntityType Name="Marca">
     <Key>
       <PropertyRef Name="id" />
@@ -78,21 +60,6 @@
     <Property Name="estado" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Producto" Relationship="LabFerreteriaModel.fk_Prod_UM" FromRole="UnidadMedida" ToRole="Producto" />
   </EntityType>
-  <EntityType Name="Usuario">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idEmpleado" Type="Int32" Nullable="false" />
-    <Property Name="usuario1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="clave" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="rol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="usuarioRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="estado" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Empleado" Relationship="Self.fk_Usu_Emp" FromRole="Usuario" ToRole="Empleado" />
-    <NavigationProperty Name="Venta" Relationship="Self.fk_Ven_Usu" FromRole="Usuario" ToRole="Venta" />
-  </EntityType>
   <EntityType Name="Venta">
     <Key>
       <PropertyRef Name="id" />
@@ -105,8 +72,8 @@
     <Property Name="usuarioRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="estado" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Usuario" Relationship="Self.fk_Ven_Usu" FromRole="Venta" ToRole="Usuario" />
     <NavigationProperty Name="VentaDetalle" Relationship="Self.fk_DetVen_Ven" FromRole="Venta" ToRole="VentaDetalle" />
+    <NavigationProperty Name="Usuario" Relationship="LabFerreteriaModel.fk_Ven_Usu" FromRole="Venta" ToRole="Usuario" />
   </EntityType>
   <EntityType Name="VentaDetalle">
     <Key>
@@ -135,30 +102,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_Usu_Emp">
-    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Empleado">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Usuario">
-        <PropertyRef Name="idEmpleado" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_Ven_Usu">
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Venta">
-        <PropertyRef Name="idUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="fk_DetVen_Ven">
     <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
     <End Role="VentaDetalle" Type="Self.VentaDetalle" Multiplicity="*" />
@@ -174,24 +117,14 @@
   <EntityContainer Name="LabFerreteriaEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Categoria" EntityType="Self.Categoria" />
     <EntitySet Name="Compra" EntityType="Self.Compra" />
-    <EntitySet Name="Empleado" EntityType="Self.Empleado" />
     <EntitySet Name="Marca" EntityType="Self.Marca" />
     <EntitySet Name="SubCategoria" EntityType="Self.SubCategoria" />
     <EntitySet Name="UnidadMedida" EntityType="Self.UnidadMedida" />
-    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
     <EntitySet Name="Venta" EntityType="Self.Venta" />
     <EntitySet Name="VentaDetalle" EntityType="Self.VentaDetalle" />
     <AssociationSet Name="fk_Sub_Cat" Association="Self.fk_Sub_Cat">
       <End Role="Categoria" EntitySet="Categoria" />
       <End Role="SubCategoria" EntitySet="SubCategoria" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Usu_Emp" Association="Self.fk_Usu_Emp">
-      <End Role="Empleado" EntitySet="Empleado" />
-      <End Role="Usuario" EntitySet="Usuario" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Ven_Usu" Association="Self.fk_Ven_Usu">
-      <End Role="Usuario" EntitySet="Usuario" />
-      <End Role="Venta" EntitySet="Venta" />
     </AssociationSet>
     <AssociationSet Name="fk_DetVen_Ven" Association="Self.fk_DetVen_Ven">
       <End Role="Venta" EntitySet="Venta" />
@@ -241,6 +174,16 @@
       <End Role="Compra" EntitySet="Compra" />
     </AssociationSet>
     <EntitySet Name="Clientes" EntityType="LabFerreteriaModel.Cliente" />
+    <EntitySet Name="Empleadoes" EntityType="LabFerreteriaModel.Empleado" />
+    <EntitySet Name="Usuarios" EntityType="LabFerreteriaModel.Usuario" />
+    <AssociationSet Name="fk_Usu_Emp" Association="LabFerreteriaModel.fk_Usu_Emp">
+      <End Role="Empleado" EntitySet="Empleadoes" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Ven_Usu" Association="LabFerreteriaModel.fk_Ven_Usu">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="CompraDetalle">
     <Key>
@@ -430,4 +373,61 @@
     <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="estado" Type="Int32" Nullable="false" />
   </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cedulaIdentidad" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="primerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="segundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="celular" Type="Int64" Nullable="false" />
+    <Property Name="cargo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="LabFerreteriaModel.fk_Usu_Emp" FromRole="Empleado" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idEmpleado" Type="Int32" Nullable="false" />
+    <Property Name="usuario1" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="clave" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="rol" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Empleado" Relationship="LabFerreteriaModel.fk_Usu_Emp" FromRole="Usuario" ToRole="Empleado" />
+    <NavigationProperty Name="Ventas" Relationship="LabFerreteriaModel.fk_Ven_Usu" FromRole="Usuario" ToRole="Venta" />
+  </EntityType>
+  <Association Name="fk_Usu_Emp">
+    <End Type="LabFerreteriaModel.Empleado" Role="Empleado" Multiplicity="1" />
+    <End Type="LabFerreteriaModel.Usuario" Role="Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Ven_Usu">
+    <End Type="LabFerreteriaModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="LabFerreteriaModel.Venta" Role="Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
