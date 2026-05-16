@@ -27,6 +27,14 @@ namespace CpFerreteria
             listar();
             cargarEmpleados();
             gbxDatos.Enabled = false;
+
+            cbxRol.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            // Cargar los roles fijos que tu sistema va a reconocer
+            cbxRol.Items.Clear();
+            cbxRol.Items.Add("Administrador");
+            cbxRol.Items.Add("Empleado");
+            cbxRol.SelectedIndex = -1;
         }
 
         private void listar()

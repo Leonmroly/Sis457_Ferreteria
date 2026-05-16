@@ -41,6 +41,7 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.gbxDatos = new System.Windows.Forms.GroupBox();
+            this.cbxRol = new System.Windows.Forms.ComboBox();
             this.cbxEmpleado = new System.Windows.Forms.ComboBox();
             this.txtClave = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
@@ -50,7 +51,6 @@
             this.lblClave = new System.Windows.Forms.Label();
             this.lblEmpleado = new System.Windows.Forms.Label();
             this.lblNombreUsuario = new System.Windows.Forms.Label();
-            this.cbxRol = new System.Windows.Forms.ComboBox();
             this.erpEmpleado = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpUsuario = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpClave = new System.Windows.Forms.ErrorProvider(this.components);
@@ -73,7 +73,7 @@
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(734, 32);
             this.lblTitulo.TabIndex = 2;
-            this.lblTitulo.Text = "Empleado";
+            this.lblTitulo.Text = "Usuario";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
@@ -216,8 +216,18 @@
             this.gbxDatos.TabStop = false;
             this.gbxDatos.Text = "Datos";
             // 
+            // cbxRol
+            // 
+            this.cbxRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxRol.FormattingEnabled = true;
+            this.cbxRol.Location = new System.Drawing.Point(167, 117);
+            this.cbxRol.Name = "cbxRol";
+            this.cbxRol.Size = new System.Drawing.Size(155, 28);
+            this.cbxRol.TabIndex = 32;
+            // 
             // cbxEmpleado
             // 
+            this.cbxEmpleado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxEmpleado.FormattingEnabled = true;
             this.cbxEmpleado.Location = new System.Drawing.Point(167, 22);
             this.cbxEmpleado.Name = "cbxEmpleado";
@@ -305,14 +315,6 @@
             this.lblNombreUsuario.Size = new System.Drawing.Size(158, 20);
             this.lblNombreUsuario.TabIndex = 8;
             this.lblNombreUsuario.Text = "Nombres de Usuario:";
-            // 
-            // cbxRol
-            // 
-            this.cbxRol.FormattingEnabled = true;
-            this.cbxRol.Location = new System.Drawing.Point(167, 117);
-            this.cbxRol.Name = "cbxRol";
-            this.cbxRol.Size = new System.Drawing.Size(155, 28);
-            this.cbxRol.TabIndex = 32;
             // 
             // erpEmpleado
             // 

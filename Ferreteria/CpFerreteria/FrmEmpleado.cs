@@ -26,6 +26,19 @@ namespace CpFerreteria
             Size = new Size(759, 352);
             listar();
             gbxDatos.Enabled = false;
+
+
+            // 1. BLOQUEAR ESCRITURA: El usuario solo puede elegir de la lista
+            cbxCargo.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            // 2. CARGAR LOS CARGOS DIRECTAMENTE
+            cbxCargo.Items.Clear();
+            cbxCargo.Items.Add("Administrador");
+            cbxCargo.Items.Add("Vendedor");
+            cbxCargo.Items.Add("Almacenero");
+            cbxCargo.Items.Add("Cajero");
+
+            cbxCargo.SelectedIndex = -1;
         }
 
         private void listar()

@@ -234,6 +234,7 @@
             // 
             // cbxCargo
             // 
+            this.cbxCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCargo.FormattingEnabled = true;
             this.cbxCargo.Location = new System.Drawing.Point(516, 85);
             this.cbxCargo.Name = "cbxCargo";
