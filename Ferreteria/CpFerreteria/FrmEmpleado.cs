@@ -16,16 +16,22 @@ namespace CpFerreteria
     {
         private bool esNuevo = false;
         private int idSeleccionado = 0;
+
         public FrmEmpleado()
         {
             InitializeComponent();
+        }
+        private void FrmEmpleado_Load(object sender, EventArgs e)
+        {
+            Size = new Size(759, 352);
+            listar();
+            gbxDatos.Enabled = false;
         }
 
         private void listar()
         {
             var lista = EmpleadoCln.listar();
 
-            // Filtrar si hay algo en el buscador
             if (!string.IsNullOrWhiteSpace(txtParametro.Text))
             {
                 lista = lista.Where(x => x.nombres.ToLower().Contains(txtParametro.Text.ToLower()) ||
@@ -34,16 +40,22 @@ namespace CpFerreteria
             }
 
             dgvLista.DataSource = null;
-            dgvLista.DataSource = lista;
 
-            // Ocultamos columnas internas de auditoría y relaciones
-            if (dgvLista.Columns["id"] != null) dgvLista.Columns["id"].Visible = false;
-            if (dgvLista.Columns["usuarioRegistro"] != null) dgvLista.Columns["usuarioRegistro"].Visible = false;
-            if (dgvLista.Columns["fechaRegistro"] != null) dgvLista.Columns["fechaRegistro"].Visible = false;
-            if (dgvLista.Columns["estado"] != null) dgvLista.Columns["estado"].Visible = false;
-            if (dgvLista.Columns["Usuarios"] != null) dgvLista.Columns["Usuarios"].Visible = false;
+            // IGUAL QUE EN PRODUCTO: Pasamos un objeto plano anónimo para que no de error
+            dgvLista.DataSource = lista.Select(x => new
+            {
+                x.id,
+                x.cedulaIdentidad,
+                x.nombres,
+                x.primerApellido,
+                x.segundoApellido,
+                x.fechaNacimiento,
+                x.direccion,
+                x.celular,
+                x.cargo
+            }).ToList();
 
-            // Encabezados bonitos en la grilla
+            // Encabezados limpios
             dgvLista.Columns["cedulaIdentidad"].HeaderText = "Cédula Identidad";
             dgvLista.Columns["nombres"].HeaderText = "Nombres";
             dgvLista.Columns["primerApellido"].HeaderText = "Primer Apellido";
@@ -53,38 +65,13 @@ namespace CpFerreteria
             dgvLista.Columns["celular"].HeaderText = "Celular";
             dgvLista.Columns["cargo"].HeaderText = "Cargo";
 
-            // Foco inicial seguro
+            // Ocultamos el ID de forma segura
+            if (dgvLista.Columns["id"] != null) dgvLista.Columns["id"].Visible = false;
+
             if (lista.Count > 0) dgvLista.CurrentCell = dgvLista.Rows[0].Cells["cedulaIdentidad"];
 
             btnEditar.Enabled = lista.Count > 0;
             btnEliminar.Enabled = lista.Count > 0;
-        }
-
-        private void FrmEmpleado_Load(object sender, EventArgs e)
-        {
-            Size = new Size(759, 352);
-            listar();
-            gbxDatos.Enabled = false;
-        }
-        private void CargarLista(string buscar = "")
-        {
-            List<Empleado> lista = EmpleadoCln.listar();
-
-            // Si el usuario escribió algo en el cuadro de búsqueda superior
-            if (!string.IsNullOrWhiteSpace(buscar))
-            {
-                lista = lista.Where(x => x.nombres.ToLower().Contains(buscar.ToLower()) ||
-                                         x.primerApellido.ToLower().Contains(buscar.ToLower()) ||
-                                         x.cedulaIdentidad.Contains(buscar)).ToList();
-            }
-
-            dgvLista.DataSource = lista;
-
-            // Ocultamos lo innecesario para el usuario final
-            if (dgvLista.Columns["usuarioRegistro"] != null) dgvLista.Columns["usuarioRegistro"].Visible = false;
-            if (dgvLista.Columns["fechaRegistro"] != null) dgvLista.Columns["fechaRegistro"].Visible = false;
-            if (dgvLista.Columns["estado"] != null) dgvLista.Columns["estado"].Visible = false;
-            if (dgvLista.Columns["Usuarios"] != null) dgvLista.Columns["Usuarios"].Visible = false;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -102,7 +89,7 @@ namespace CpFerreteria
             txtNombres.Clear();
             txtPrimerApellido.Clear();
             txtSegundoApellido.Clear();
-            dtpFechaNacimiento.Value = DateTime.Now.AddYears(-18); // Mayor de edad por defecto
+            dtpFechaNacimiento.Value = DateTime.Now.AddYears(-18);
             txtDireccion.Clear();
             txtCelular.Clear();
             cbxCargo.SelectedIndex = -1;
@@ -121,9 +108,9 @@ namespace CpFerreteria
         {
             esNuevo = true;
             idSeleccionado = 0;
-            if (pnlAcciones != null) pnlAcciones.Enabled = false; // Desactiva barra de botones principal
+            if (pnlAcciones != null) pnlAcciones.Enabled = false;
 
-            Size = new Size(759, 568); // Despliega el panel de abajo
+            Size = new Size(759, 568);
             limpiar();
             gbxDatos.Enabled = true;
             txtCedulaIdentidad.Focus();
@@ -144,13 +131,14 @@ namespace CpFerreteria
             resetearErrores();
             gbxDatos.Enabled = true;
 
-            // Mapeo directo de la grilla a los campos
+            // Mapeo directo desde las celdas de la grilla plana
             DataGridViewRow fila = dgvLista.CurrentRow;
             idSeleccionado = Convert.ToInt32(fila.Cells["id"].Value);
+
             txtCedulaIdentidad.Text = fila.Cells["cedulaIdentidad"].Value.ToString();
             txtNombres.Text = fila.Cells["nombres"].Value.ToString();
-            txtPrimerApellido.Text = fila.Cells["primerApellido"].Value?.ToString();
-            txtSegundoApellido.Text = fila.Cells["segundoApellido"].Value?.ToString();
+            txtPrimerApellido.Text = fila.Cells["primerApellido"].Value?.ToString() ?? "";
+            txtSegundoApellido.Text = fila.Cells["segundoApellido"].Value?.ToString() ?? "";
             dtpFechaNacimiento.Value = Convert.ToDateTime(fila.Cells["fechaNacimiento"].Value);
             txtDireccion.Text = fila.Cells["direccion"].Value.ToString();
             txtCelular.Text = fila.Cells["celular"].Value.ToString();
@@ -171,7 +159,6 @@ namespace CpFerreteria
 
             if (dialog == DialogResult.Yes)
             {
-                // Usando la auditoría global real de tu Login
                 EmpleadoCln.eliminar(id, Util.usuario.usuario1);
                 listar();
                 MessageBox.Show("Empleado eliminado correctamente", "::: Mensaje - Ferreteria :::",
@@ -196,7 +183,6 @@ namespace CpFerreteria
                 };
 
                 int resultado = 0;
-                // ¡AQUÍ ESTÁ LA MAGIA!: Usamos Util.usuario.usuario1 idéntico a Producto
                 string usuarioActual = Util.usuario.usuario1;
 
                 if (esNuevo)
@@ -212,7 +198,7 @@ namespace CpFerreteria
                 if (resultado > 0)
                 {
                     listar();
-                    btnCancelar.PerformClick(); // Hace el efecto de cerrar el panel solo
+                    btnCancelar.PerformClick();
                     MessageBox.Show("¡Empleado guardado con éxito!", "::: Mensaje - Ferreteria :::", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -220,8 +206,8 @@ namespace CpFerreteria
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            if (pnlAcciones != null) pnlAcciones.Enabled = true; // Libera los botones de arriba
-            Size = new Size(759, 352); // Contrae el formulario de nuevo
+            if (pnlAcciones != null) pnlAcciones.Enabled = true;
+            Size = new Size(759, 352);
             limpiar();
             gbxDatos.Enabled = false;
         }
