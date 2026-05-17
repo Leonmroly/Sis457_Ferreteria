@@ -64,5 +64,10 @@ namespace CpFerreteria
         {
             new FrmUsuario().ShowDialog();
         }
+
+        private void btnCompra_Click(object sender, EventArgs e)
+        {
+            new FrmCompra().ShowDialog();
+        }
     }
 }

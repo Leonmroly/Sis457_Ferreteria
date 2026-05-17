@@ -37,6 +37,7 @@
             this.btnCliente = new System.Windows.Forms.Button();
             this.btnEmpleado = new System.Windows.Forms.Button();
             this.btnUsuario = new System.Windows.Forms.Button();
+            this.btnCompra = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProductos
@@ -63,7 +64,7 @@
             // 
             // btnCategoria
             // 
-            this.btnCategoria.Location = new System.Drawing.Point(455, 192);
+            this.btnCategoria.Location = new System.Drawing.Point(415, 66);
             this.btnCategoria.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCategoria.Name = "btnCategoria";
             this.btnCategoria.Size = new System.Drawing.Size(189, 65);
@@ -74,7 +75,7 @@
             // 
             // btnUnidadMedida
             // 
-            this.btnUnidadMedida.Location = new System.Drawing.Point(532, 277);
+            this.btnUnidadMedida.Location = new System.Drawing.Point(490, 173);
             this.btnUnidadMedida.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUnidadMedida.Name = "btnUnidadMedida";
             this.btnUnidadMedida.Size = new System.Drawing.Size(189, 65);
@@ -85,7 +86,7 @@
             // 
             // btnProveedor
             // 
-            this.btnProveedor.Location = new System.Drawing.Point(572, 352);
+            this.btnProveedor.Location = new System.Drawing.Point(514, 277);
             this.btnProveedor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnProveedor.Name = "btnProveedor";
             this.btnProveedor.Size = new System.Drawing.Size(189, 65);
@@ -96,7 +97,7 @@
             // 
             // btnCliente
             // 
-            this.btnCliente.Location = new System.Drawing.Point(765, 192);
+            this.btnCliente.Location = new System.Drawing.Point(687, 79);
             this.btnCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCliente.Name = "btnCliente";
             this.btnCliente.Size = new System.Drawing.Size(189, 65);
@@ -107,7 +108,7 @@
             // 
             // btnEmpleado
             // 
-            this.btnEmpleado.Location = new System.Drawing.Point(790, 291);
+            this.btnEmpleado.Location = new System.Drawing.Point(780, 154);
             this.btnEmpleado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEmpleado.Name = "btnEmpleado";
             this.btnEmpleado.Size = new System.Drawing.Size(189, 65);
@@ -118,7 +119,7 @@
             // 
             // btnUsuario
             // 
-            this.btnUsuario.Location = new System.Drawing.Point(865, 366);
+            this.btnUsuario.Location = new System.Drawing.Point(819, 246);
             this.btnUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUsuario.Name = "btnUsuario";
             this.btnUsuario.Size = new System.Drawing.Size(189, 65);
@@ -127,11 +128,23 @@
             this.btnUsuario.UseVisualStyleBackColor = true;
             this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
             // 
+            // btnCompra
+            // 
+            this.btnCompra.Location = new System.Drawing.Point(923, 321);
+            this.btnCompra.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCompra.Name = "btnCompra";
+            this.btnCompra.Size = new System.Drawing.Size(189, 65);
+            this.btnCompra.TabIndex = 8;
+            this.btnCompra.Text = "Compras";
+            this.btnCompra.UseVisualStyleBackColor = true;
+            this.btnCompra.Click += new System.EventHandler(this.btnCompra_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 532);
+            this.ClientSize = new System.Drawing.Size(1125, 532);
+            this.Controls.Add(this.btnCompra);
             this.Controls.Add(this.btnUsuario);
             this.Controls.Add(this.btnEmpleado);
             this.Controls.Add(this.btnCliente);
@@ -162,5 +175,6 @@
         private System.Windows.Forms.Button btnCliente;
         private System.Windows.Forms.Button btnEmpleado;
         private System.Windows.Forms.Button btnUsuario;
+        private System.Windows.Forms.Button btnCompra;
     }
 }

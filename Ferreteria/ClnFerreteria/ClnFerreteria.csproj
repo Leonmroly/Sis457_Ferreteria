@@ -56,6 +56,8 @@
   <ItemGroup>
     <Compile Include="CategoriaCln.cs" />
     <Compile Include="ClienteCln.cs" />
+    <Compile Include="CompraCln.cs" />
+    <Compile Include="CompraDto.cs" />
     <Compile Include="EmpleadoCln.cs" />
     <Compile Include="MarcaCln.cs" />
     <Compile Include="ProductoCln.cs" />

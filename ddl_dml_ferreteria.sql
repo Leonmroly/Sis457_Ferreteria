@@ -152,7 +152,7 @@ CREATE TABLE Producto ( -- TABLA 9
   codigo VARCHAR(20) NOT NULL,
   descripcion VARCHAR(200) NOT NULL,
   saldo DECIMAL(18,2) NOT NULL DEFAULT 0,  
-  precioVenta DECIMAL NOT NULL CHECK (precioVenta > 0), 
+  precioVenta DECIMAL(18,2) NOT NULL CHECK (precioVenta > 0), 
   CONSTRAINT fk_Prod_Sub FOREIGN KEY (idSubCategoria) REFERENCES SubCategoria(id),
   CONSTRAINT fk_Prod_UM FOREIGN KEY (idUnidadMedida) REFERENCES UnidadMedida(id),
   CONSTRAINT fk_Prod_Marca FOREIGN KEY (idMarca) REFERENCES Marca(id));
@@ -163,13 +163,15 @@ CREATE TABLE Compra ( -- TABLA 10
   idProveedor INT NOT NULL,
   fecha DATETIME NOT NULL DEFAULT GETDATE(),
   total DECIMAL(18,2) NOT NULL,
+  usuarioRegistro VARCHAR(20) NOT NULL, -- Para saber qué cajero/administrador hizo la compra
+  estado SMALLINT NOT NULL DEFAULT 1,     -- 1 = Activo, 0 = Anulado (Por si se equivocan al cargarla)
   CONSTRAINT fk_Com_Prov FOREIGN KEY (idProveedor) REFERENCES Proveedor(id));
 
 CREATE TABLE CompraDetalle ( -- TABLA 11
   id BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
   idCompra BIGINT NOT NULL,
   idProducto INT NOT NULL,
-  cantidad DECIMAL(18,2) NOT NULL,
+  cantidad INT NOT NULL, -- Cambiado a INT si solo manejas unidades enteras (Martillos, Palas)
   precioCompra DECIMAL(18,2) NOT NULL,
   CONSTRAINT fk_DetCom_Com FOREIGN KEY (idCompra) REFERENCES Compra(id),
   CONSTRAINT fk_DetCom_Prod FOREIGN KEY (idProducto) REFERENCES Producto(id));

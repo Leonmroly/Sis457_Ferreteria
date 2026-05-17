@@ -17,7 +17,7 @@ namespace CadFerreteria
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Compra()
         {
-            this.CompraDetalle = new HashSet<CompraDetalle>();
+            this.CompraDetalles = new HashSet<CompraDetalle>();
         }
     
         public long id { get; set; }
@@ -25,11 +25,10 @@ namespace CadFerreteria
         public System.DateTime fecha { get; set; }
         public decimal total { get; set; }
         public string usuarioRegistro { get; set; }
-        public System.DateTime fechaRegistro { get; set; }
-        public int estado { get; set; }
+        public short estado { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CompraDetalle> CompraDetalle { get; set; }
         public virtual Proveedor Proveedor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompraDetalle> CompraDetalles { get; set; }
     }
 }

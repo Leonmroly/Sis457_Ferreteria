@@ -42,3 +42,5 @@ C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerre
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmPrincipalCliente.resources
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmEmpleado.resources
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmUsuario.resources
+C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmCompra.resources
+C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmCompraNuevo.resources

@@ -17,11 +17,8 @@ namespace CadFerreteria
         public long id { get; set; }
         public long idCompra { get; set; }
         public int idProducto { get; set; }
-        public decimal cantidad { get; set; }
+        public int cantidad { get; set; }
         public decimal precioCompra { get; set; }
-        public string usuarioRegistro { get; set; }
-        public System.DateTime fechaRegistro { get; set; }
-        public int estado { get; set; }
     
         public virtual Compra Compra { get; set; }
         public virtual Producto Producto { get; set; }

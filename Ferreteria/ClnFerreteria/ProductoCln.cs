@@ -13,7 +13,7 @@ namespace ClnFerreteria
         {
             using (var context = new LabFerreteriaEntities())
             {
-                context.Producto.Add(producto);
+                context.Productoes.Add(producto);
                 context.SaveChanges();
                 return producto.id;
             }
@@ -24,7 +24,7 @@ namespace ClnFerreteria
         {
             using (var context = new LabFerreteriaEntities())
             {
-                var existente = context.Producto.Find(producto.id);
+                var existente = context.Productoes.Find(producto.id);
 
                 if (existente != null)
                 {
@@ -49,7 +49,7 @@ namespace ClnFerreteria
         {
             using (var context = new LabFerreteriaEntities())
             {
-                var existente = context.Producto.Find(id);
+                var existente = context.Productoes.Find(id);
                 if (existente != null)
                 {
                     existente.estado = -1;
@@ -64,7 +64,7 @@ namespace ClnFerreteria
         {
             using (var context = new LabFerreteriaEntities())
             {
-                return context.Producto.Find(id);
+                return context.Productoes.Find(id);
                 
             }
         }
@@ -73,7 +73,7 @@ namespace ClnFerreteria
         {
             using (var context = new LabFerreteriaEntities())
             {
-                return context.Producto
+                return context.Productoes
                     .Where(x => x.estado == 1)
                     .OrderBy(x => x.descripcion)
                     .ToList();

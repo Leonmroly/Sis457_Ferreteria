@@ -34,9 +34,8 @@
     <Property Name="idProveedor" Type="int" Nullable="false" />
     <Property Name="fecha" Type="datetime" Nullable="false" />
     <Property Name="total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="usuarioRegistro" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
-    <Property Name="estado" Type="int" Nullable="false" />
+    <Property Name="usuarioRegistro" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="estado" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="CompraDetalle">
     <Key>
@@ -45,11 +44,8 @@
     <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idCompra" Type="bigint" Nullable="false" />
     <Property Name="idProducto" Type="int" Nullable="false" />
-    <Property Name="cantidad" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
     <Property Name="precioCompra" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="usuarioRegistro" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
-    <Property Name="estado" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Empleado">
     <Key>
@@ -168,7 +164,7 @@
     <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
     <Property Name="estado" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK_Compra_Proveedor">
+  <Association Name="fk_Com_Prov">
     <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
     <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
     <ReferentialConstraint>
@@ -326,7 +322,7 @@
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VentaDetalle" EntityType="Self.VentaDetalle" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Compra_Proveedor" Association="Self.FK_Compra_Proveedor">
+    <AssociationSet Name="fk_Com_Prov" Association="Self.fk_Com_Prov">
       <End Role="Proveedor" EntitySet="Proveedor" />
       <End Role="Compra" EntitySet="Compra" />
     </AssociationSet>

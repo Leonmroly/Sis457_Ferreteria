@@ -11,20 +11,6 @@
     <Property Name="estado" Type="Int32" Nullable="false" />
     <NavigationProperty Name="SubCategoria" Relationship="Self.fk_Sub_Cat" FromRole="Categoria" ToRole="SubCategoria" />
   </EntityType>
-  <EntityType Name="Compra">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idProveedor" Type="Int32" Nullable="false" />
-    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="usuarioRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="estado" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="CompraDetalle" Relationship="LabFerreteriaModel.fk_DetCom_Com" FromRole="Compra" ToRole="CompraDetalle" />
-    <NavigationProperty Name="Proveedor" Relationship="LabFerreteriaModel.FK_Compra_Proveedor" FromRole="Compra" ToRole="Proveedor" />
-  </EntityType>
   <EntityType Name="Marca">
     <Key>
       <PropertyRef Name="id" />
@@ -34,7 +20,7 @@
     <Property Name="usuarioRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="estado" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Producto" Relationship="LabFerreteriaModel.fk_Prod_Marca" FromRole="Marca" ToRole="Producto" />
+    <NavigationProperty Name="Productoes" Relationship="LabFerreteriaModel.fk_Prod_Marca" FromRole="Marca" ToRole="Producto" />
   </EntityType>
   <EntityType Name="SubCategoria">
     <Key>
@@ -47,7 +33,7 @@
     <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="estado" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Categoria" Relationship="Self.fk_Sub_Cat" FromRole="SubCategoria" ToRole="Categoria" />
-    <NavigationProperty Name="Producto" Relationship="LabFerreteriaModel.fk_Prod_Sub" FromRole="SubCategoria" ToRole="Producto" />
+    <NavigationProperty Name="Productoes" Relationship="LabFerreteriaModel.fk_Prod_Sub" FromRole="SubCategoria" ToRole="Producto" />
   </EntityType>
   <EntityType Name="UnidadMedida">
     <Key>
@@ -58,7 +44,7 @@
     <Property Name="usuarioRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="estado" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Producto" Relationship="LabFerreteriaModel.fk_Prod_UM" FromRole="UnidadMedida" ToRole="Producto" />
+    <NavigationProperty Name="Productoes" Relationship="LabFerreteriaModel.fk_Prod_UM" FromRole="UnidadMedida" ToRole="Producto" />
   </EntityType>
   <EntityType Name="Venta">
     <Key>
@@ -116,7 +102,6 @@
   </Association>
   <EntityContainer Name="LabFerreteriaEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Categoria" EntityType="Self.Categoria" />
-    <EntitySet Name="Compra" EntityType="Self.Compra" />
     <EntitySet Name="Marca" EntityType="Self.Marca" />
     <EntitySet Name="SubCategoria" EntityType="Self.SubCategoria" />
     <EntitySet Name="UnidadMedida" EntityType="Self.UnidadMedida" />
@@ -129,32 +114,6 @@
     <AssociationSet Name="fk_DetVen_Ven" Association="Self.fk_DetVen_Ven">
       <End Role="Venta" EntitySet="Venta" />
       <End Role="VentaDetalle" EntitySet="VentaDetalle" />
-    </AssociationSet>
-    <EntitySet Name="CompraDetalle" EntityType="LabFerreteriaModel.CompraDetalle" />
-    <AssociationSet Name="fk_DetCom_Com" Association="LabFerreteriaModel.fk_DetCom_Com">
-      <End Role="Compra" EntitySet="Compra" />
-      <End Role="CompraDetalle" EntitySet="CompraDetalle" />
-    </AssociationSet>
-    <EntitySet Name="Producto" EntityType="LabFerreteriaModel.Producto" />
-    <AssociationSet Name="fk_DetCom_Prod" Association="LabFerreteriaModel.fk_DetCom_Prod">
-      <End Role="Producto" EntitySet="Producto" />
-      <End Role="CompraDetalle" EntitySet="CompraDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Prod_Marca" Association="LabFerreteriaModel.fk_Prod_Marca">
-      <End Role="Marca" EntitySet="Marca" />
-      <End Role="Producto" EntitySet="Producto" />
-    </AssociationSet>
-    <AssociationSet Name="fk_DetVen_Prod" Association="LabFerreteriaModel.fk_DetVen_Prod">
-      <End Role="Producto" EntitySet="Producto" />
-      <End Role="VentaDetalle" EntitySet="VentaDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Prod_Sub" Association="LabFerreteriaModel.fk_Prod_Sub">
-      <End Role="SubCategoria" EntitySet="SubCategoria" />
-      <End Role="Producto" EntitySet="Producto" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Prod_UM" Association="LabFerreteriaModel.fk_Prod_UM">
-      <End Role="UnidadMedida" EntitySet="UnidadMedida" />
-      <End Role="Producto" EntitySet="Producto" />
     </AssociationSet>
     <FunctionImport Name="paCategoriaListar" ReturnType="Collection(LabFerreteriaModel.paCategoriaListar_Result)">
       <Parameter Name="parametro" Mode="In" Type="String" />
@@ -169,10 +128,6 @@
       <Parameter Name="parametro" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="Proveedors" EntityType="LabFerreteriaModel.Proveedor" />
-    <AssociationSet Name="FK_Compra_Proveedor" Association="LabFerreteriaModel.FK_Compra_Proveedor">
-      <End Role="Proveedor" EntitySet="Proveedors" />
-      <End Role="Compra" EntitySet="Compra" />
-    </AssociationSet>
     <EntitySet Name="Clientes" EntityType="LabFerreteriaModel.Cliente" />
     <EntitySet Name="Empleadoes" EntityType="LabFerreteriaModel.Empleado" />
     <EntitySet Name="Usuarios" EntityType="LabFerreteriaModel.Usuario" />
@@ -184,115 +139,38 @@
       <End Role="Usuario" EntitySet="Usuarios" />
       <End Role="Venta" EntitySet="Venta" />
     </AssociationSet>
+    <EntitySet Name="Compras" EntityType="LabFerreteriaModel.Compra" />
+    <AssociationSet Name="fk_Com_Prov" Association="LabFerreteriaModel.fk_Com_Prov">
+      <End Role="Proveedor" EntitySet="Proveedors" />
+      <End Role="Compra" EntitySet="Compras" />
+    </AssociationSet>
+    <EntitySet Name="CompraDetalles" EntityType="LabFerreteriaModel.CompraDetalle" />
+    <AssociationSet Name="fk_DetCom_Com" Association="LabFerreteriaModel.fk_DetCom_Com">
+      <End Role="Compra" EntitySet="Compras" />
+      <End Role="CompraDetalle" EntitySet="CompraDetalles" />
+    </AssociationSet>
+    <EntitySet Name="Productoes" EntityType="LabFerreteriaModel.Producto" />
+    <AssociationSet Name="fk_DetCom_Prod" Association="LabFerreteriaModel.fk_DetCom_Prod">
+      <End Role="Producto" EntitySet="Productoes" />
+      <End Role="CompraDetalle" EntitySet="CompraDetalles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Prod_Marca" Association="LabFerreteriaModel.fk_Prod_Marca">
+      <End Role="Marca" EntitySet="Marca" />
+      <End Role="Producto" EntitySet="Productoes" />
+    </AssociationSet>
+    <AssociationSet Name="fk_DetVen_Prod" Association="LabFerreteriaModel.fk_DetVen_Prod">
+      <End Role="Producto" EntitySet="Productoes" />
+      <End Role="VentaDetalle" EntitySet="VentaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Prod_Sub" Association="LabFerreteriaModel.fk_Prod_Sub">
+      <End Role="SubCategoria" EntitySet="SubCategoria" />
+      <End Role="Producto" EntitySet="Productoes" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Prod_UM" Association="LabFerreteriaModel.fk_Prod_UM">
+      <End Role="UnidadMedida" EntitySet="UnidadMedida" />
+      <End Role="Producto" EntitySet="Productoes" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="CompraDetalle">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idCompra" Type="Int64" Nullable="false" />
-    <Property Name="idProducto" Type="Int32" Nullable="false" />
-    <Property Name="cantidad" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-    <Property Name="precioCompra" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-    <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="estado" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Compra" Relationship="LabFerreteriaModel.fk_DetCom_Com" FromRole="CompraDetalle" ToRole="Compra" />
-    <NavigationProperty Name="Producto" Relationship="LabFerreteriaModel.fk_DetCom_Prod" FromRole="CompraDetalle" ToRole="Producto" />
-  </EntityType>
-  <Association Name="fk_DetCom_Com">
-    <End Type="LabFerreteriaModel.Compra" Role="Compra" Multiplicity="1" />
-    <End Type="LabFerreteriaModel.CompraDetalle" Role="CompraDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Compra">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="CompraDetalle">
-        <PropertyRef Name="idCompra" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="Producto">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idSubCategoria" Type="Int32" Nullable="false" />
-    <Property Name="idUnidadMedida" Type="Int32" Nullable="false" />
-    <Property Name="idMarca" Type="Int32" Nullable="false" />
-    <Property Name="codigo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="saldo" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-    <Property Name="precioVenta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-    <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="estado" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="CompraDetalle" Relationship="LabFerreteriaModel.fk_DetCom_Prod" FromRole="Producto" ToRole="CompraDetalle" />
-    <NavigationProperty Name="Marca" Relationship="LabFerreteriaModel.fk_Prod_Marca" FromRole="Producto" ToRole="Marca" />
-    <NavigationProperty Name="VentaDetalle" Relationship="LabFerreteriaModel.fk_DetVen_Prod" FromRole="Producto" ToRole="VentaDetalle" />
-    <NavigationProperty Name="SubCategoria" Relationship="LabFerreteriaModel.fk_Prod_Sub" FromRole="Producto" ToRole="SubCategoria" />
-    <NavigationProperty Name="UnidadMedida" Relationship="LabFerreteriaModel.fk_Prod_UM" FromRole="Producto" ToRole="UnidadMedida" />
-  </EntityType>
-  <Association Name="fk_DetCom_Prod">
-    <End Type="LabFerreteriaModel.Producto" Role="Producto" Multiplicity="1" />
-    <End Type="LabFerreteriaModel.CompraDetalle" Role="CompraDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Producto">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="CompraDetalle">
-        <PropertyRef Name="idProducto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_Prod_Marca">
-    <End Type="LabFerreteriaModel.Marca" Role="Marca" Multiplicity="1" />
-    <End Type="LabFerreteriaModel.Producto" Role="Producto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Marca">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Producto">
-        <PropertyRef Name="idMarca" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_DetVen_Prod">
-    <End Type="LabFerreteriaModel.Producto" Role="Producto" Multiplicity="1" />
-    <End Type="LabFerreteriaModel.VentaDetalle" Role="VentaDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Producto">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="VentaDetalle">
-        <PropertyRef Name="idProducto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_Prod_Sub">
-    <End Type="LabFerreteriaModel.SubCategoria" Role="SubCategoria" Multiplicity="1" />
-    <End Type="LabFerreteriaModel.Producto" Role="Producto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SubCategoria">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Producto">
-        <PropertyRef Name="idSubCategoria" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_Prod_UM">
-    <End Type="LabFerreteriaModel.UnidadMedida" Role="UnidadMedida" Multiplicity="1" />
-    <End Type="LabFerreteriaModel.Producto" Role="Producto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="UnidadMedida">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Producto">
-        <PropertyRef Name="idUnidadMedida" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <ComplexType Name="paCategoriaListar_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
@@ -343,20 +221,8 @@
     <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="estado" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Compras" Relationship="LabFerreteriaModel.FK_Compra_Proveedor" FromRole="Proveedor" ToRole="Compra" />
+    <NavigationProperty Name="Compras" Relationship="LabFerreteriaModel.fk_Com_Prov" FromRole="Proveedor" ToRole="Compra" />
   </EntityType>
-  <Association Name="FK_Compra_Proveedor">
-    <End Type="LabFerreteriaModel.Proveedor" Role="Proveedor" Multiplicity="1" />
-    <End Type="LabFerreteriaModel.Compra" Role="Compra" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Proveedor">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Compra">
-        <PropertyRef Name="idProveedor" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Cliente">
     <Key>
       <PropertyRef Name="id" />
@@ -427,6 +293,136 @@
       </Principal>
       <Dependent Role="Venta">
         <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Compra">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idProveedor" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="Proveedor" Relationship="LabFerreteriaModel.fk_Com_Prov" FromRole="Compra" ToRole="Proveedor" />
+    <NavigationProperty Name="CompraDetalles" Relationship="LabFerreteriaModel.fk_DetCom_Com" FromRole="Compra" ToRole="CompraDetalle" />
+  </EntityType>
+  <Association Name="fk_Com_Prov">
+    <End Type="LabFerreteriaModel.Proveedor" Role="Proveedor" Multiplicity="1" />
+    <End Type="LabFerreteriaModel.Compra" Role="Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Compra">
+        <PropertyRef Name="idProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CompraDetalle">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCompra" Type="Int64" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="precioCompra" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="Compra" Relationship="LabFerreteriaModel.fk_DetCom_Com" FromRole="CompraDetalle" ToRole="Compra" />
+    <NavigationProperty Name="Producto" Relationship="LabFerreteriaModel.fk_DetCom_Prod" FromRole="CompraDetalle" ToRole="Producto" />
+  </EntityType>
+  <Association Name="fk_DetCom_Com">
+    <End Type="LabFerreteriaModel.Compra" Role="Compra" Multiplicity="1" />
+    <End Type="LabFerreteriaModel.CompraDetalle" Role="CompraDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Compra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CompraDetalle">
+        <PropertyRef Name="idCompra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idSubCategoria" Type="Int32" Nullable="false" />
+    <Property Name="idUnidadMedida" Type="Int32" Nullable="false" />
+    <Property Name="idMarca" Type="Int32" Nullable="false" />
+    <Property Name="codigo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="saldo" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="precioVenta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CompraDetalles" Relationship="LabFerreteriaModel.fk_DetCom_Prod" FromRole="Producto" ToRole="CompraDetalle" />
+    <NavigationProperty Name="Marca" Relationship="LabFerreteriaModel.fk_Prod_Marca" FromRole="Producto" ToRole="Marca" />
+    <NavigationProperty Name="VentaDetalles" Relationship="LabFerreteriaModel.fk_DetVen_Prod" FromRole="Producto" ToRole="VentaDetalle" />
+    <NavigationProperty Name="SubCategoria" Relationship="LabFerreteriaModel.fk_Prod_Sub" FromRole="Producto" ToRole="SubCategoria" />
+    <NavigationProperty Name="UnidadMedida" Relationship="LabFerreteriaModel.fk_Prod_UM" FromRole="Producto" ToRole="UnidadMedida" />
+  </EntityType>
+  <Association Name="fk_DetCom_Prod">
+    <End Type="LabFerreteriaModel.Producto" Role="Producto" Multiplicity="1" />
+    <End Type="LabFerreteriaModel.CompraDetalle" Role="CompraDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CompraDetalle">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Prod_Marca">
+    <End Type="LabFerreteriaModel.Marca" Role="Marca" Multiplicity="1" />
+    <End Type="LabFerreteriaModel.Producto" Role="Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marca">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idMarca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_DetVen_Prod">
+    <End Type="LabFerreteriaModel.Producto" Role="Producto" Multiplicity="1" />
+    <End Type="LabFerreteriaModel.VentaDetalle" Role="VentaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VentaDetalle">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Prod_Sub">
+    <End Type="LabFerreteriaModel.SubCategoria" Role="SubCategoria" Multiplicity="1" />
+    <End Type="LabFerreteriaModel.Producto" Role="Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategoria">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idSubCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Prod_UM">
+    <End Type="LabFerreteriaModel.UnidadMedida" Role="UnidadMedida" Multiplicity="1" />
+    <End Type="LabFerreteriaModel.Producto" Role="Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnidadMedida">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idUnidadMedida" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

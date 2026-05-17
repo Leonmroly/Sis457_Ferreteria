@@ -17,7 +17,7 @@ namespace CadFerreteria
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UnidadMedida()
         {
-            this.Producto = new HashSet<Producto>();
+            this.Productoes = new HashSet<Producto>();
         }
     
         public int id { get; set; }
@@ -27,6 +27,6 @@ namespace CadFerreteria
         public int estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Producto> Producto { get; set; }
+        public virtual ICollection<Producto> Productoes { get; set; }
     }
 }
