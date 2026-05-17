@@ -92,5 +92,21 @@ namespace CpFerreteria
         {
             Close();
         }
+
+        private void dgvLista_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgvLista.CurrentRow != null)
+            {
+                // 1. Extraemos el ID de la fila seleccionada
+                int idCompra = Convert.ToInt32(dgvLista.CurrentRow.Cells["id"].Value);
+
+                // 2. Extraemos el Total acumulado de la columna "total" de esa misma fila
+                decimal total = Convert.ToDecimal(dgvLista.CurrentRow.Cells["total"].Value);
+
+                // 3. Abrimos la ventana de detalles pasándole AMBOS valores de forma higiénica
+                FrmCompraDetalle detalleForm = new FrmCompraDetalle(idCompra, total);
+                detalleForm.ShowDialog();
+            }
+        }
     }
 }

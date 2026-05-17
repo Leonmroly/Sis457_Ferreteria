@@ -75,6 +75,25 @@ namespace ClnFerreteria
             }
         }
 
+        public static List<object> obtenerDetalle(int idCompra)
+        {
+            using (var context = new LabFerreteriaEntities())
+            {
+                return context.CompraDetalles
+                    .Where(x => x.idCompra == idCompra)
+                    .ToList() // Descargamos primero a memoria para evitar conflictos de contexto
+                    .Select(x => new
+                    {
+                        Producto = context.Productoes.FirstOrDefault(p => p.id == x.idProducto)?.descripcion ?? "Desconocido",
+                        Cantidad = x.cantidad,
+                        // CAMBIAMOS AQUÍ: x.precioCompra en lugar de x.precioUnitario
+                        PrecioUnitario = x.precioCompra,
+                        Subtotal = x.cantidad * x.precioCompra
+                    })
+                    .ToList<object>();
+            }
+        }
+
 
     }
 }
