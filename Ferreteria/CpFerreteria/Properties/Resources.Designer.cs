@@ -143,6 +143,16 @@ namespace CpFerreteria.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FerrCC3 {
+            get {
+                object obj = ResourceManager.GetObject("FerrCC3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ferrr {
             get {
                 object obj = ResourceManager.GetObject("Ferrr", resourceCulture);
