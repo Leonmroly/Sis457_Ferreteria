@@ -53,12 +53,6 @@ CREATE TABLE SubCategoria ( -- TABLA 4
 
   
 
-
-
--- Borramos la anterior para que no haya choques
-IF OBJECT_ID('Cliente', 'U') IS NOT NULL DROP TABLE Cliente;
-GO
-
 CREATE TABLE Cliente (
     id INT PRIMARY KEY IDENTITY(1,1),
     cedulaIdentidad BIGINT NOT NULL DEFAULT 0,
@@ -74,59 +68,6 @@ CREATE TABLE Cliente (
     fechaRegistro DATETIME NOT NULL DEFAULT GETDATE(),
     estado INT NOT NULL DEFAULT 1 
 );
-GO
-
-
-
-
--- Si ya existía un intento previo con errores, lo borramos para crearlo limpio
-IF OBJECT_ID('dbo.paVentaGuardar', 'P') IS NOT NULL
-    DROP PROCEDURE dbo.paVentaGuardar;
-GO
-
-CREATE PROCEDURE paVentaGuardar
-    @idCliente INT,
-    @usuarioRegistro VARCHAR(50),
-    @total DECIMAL(18,2),
-    @idVenta BIGINT OUTPUT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    
-    -- 1. Buscamos un ID de usuario válido usando la columna estándar 'usuario'
-    DECLARE @idUsuario INT;
-    SELECT TOP 1 @idUsuario = id FROM Usuario WHERE usuario = @usuarioRegistro;
-    
-    -- Si no se encuentra ninguna coincidencia por texto, tomamos el primer registro de respaldo
-    IF @idUsuario IS NULL
-    BEGIN
-        SELECT TOP 1 @idUsuario = id FROM Usuario;
-    END
-
-    -- 2. Insertamos la cabecera de la venta usando GETDATE() nativo del motor
-    INSERT INTO Venta (idCliente, idUsuario, fecha, total, usuarioRegistro, estado)
-    VALUES (@idCliente, @idUsuario, GETDATE(), @total, @usuarioRegistro, 1);
-    
-    -- 3. Retornamos el identificador numérico autogenerado
-    SET @idVenta = SCOPE_IDENTITY();
-END;
-GO
-
-
-
-
-
--- 1. Si existe una relación que nos bloquea, la buscamos y la matamos
-DECLARE @sql NVARCHAR(MAX) = N'';
-SELECT @sql += 'ALTER TABLE ' + QUOTENAME(OBJECT_SCHEMA_NAME(parent_object_id))
-    + '.' + QUOTENAME(OBJECT_NAME(parent_object_id)) 
-    + ' DROP CONSTRAINT ' + QUOTENAME(name) + ';'
-FROM sys.foreign_keys
-WHERE referenced_object_id = OBJECT_ID('Proveedor');
-EXEC sp_executesql @sql;
-
--- 2. Borramos la tabla vieja
-IF OBJECT_ID('Proveedor', 'U') IS NOT NULL DROP TABLE Proveedor;
 
 -- 3. Creamos la tabla definitiva
 CREATE TABLE Proveedor (
@@ -140,8 +81,6 @@ CREATE TABLE Proveedor (
     fechaRegistro DATETIME NOT NULL DEFAULT GETDATE(),
     estado INT NOT NULL DEFAULT 1 -- 1: Activo, -1: Eliminado
 );
-
-
 
 
 CREATE TABLE Empleado ( -- TABLA 7
@@ -189,15 +128,15 @@ CREATE TABLE Compra ( -- TABLA 10
   idProveedor INT NOT NULL,
   fecha DATETIME NOT NULL DEFAULT GETDATE(),
   total DECIMAL(18,2) NOT NULL,
-  usuarioRegistro VARCHAR(20) NOT NULL, -- Para saber qué cajero/administrador hizo la compra
-  estado SMALLINT NOT NULL DEFAULT 1,     -- 1 = Activo, 0 = Anulado (Por si se equivocan al cargarla)
+  usuarioRegistro VARCHAR(20) NOT NULL,
+  estado SMALLINT NOT NULL DEFAULT 1,
   CONSTRAINT fk_Com_Prov FOREIGN KEY (idProveedor) REFERENCES Proveedor(id));
 
 CREATE TABLE CompraDetalle ( -- TABLA 11
   id BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
   idCompra BIGINT NOT NULL,
   idProducto INT NOT NULL,
-  cantidad INT NOT NULL, -- Cambiado a INT si solo manejas unidades enteras (Martillos, Palas)
+  cantidad INT NOT NULL,
   precioCompra DECIMAL(18,2) NOT NULL,
   CONSTRAINT fk_DetCom_Com FOREIGN KEY (idCompra) REFERENCES Compra(id),
   CONSTRAINT fk_DetCom_Prod FOREIGN KEY (idProducto) REFERENCES Producto(id));
@@ -309,8 +248,6 @@ GO
 
 
 drop proc if exists paProductoListar;
--- 1. PROCEDIMIENTO ALMACENADO (ESTILO MINERVA ADAPTADO A FERRETERÍA)
--- Si el procedimiento ya existe, lo borramos para crearlo limpio
 IF OBJECT_ID('paProductoListar', 'P') IS NOT NULL
     DROP PROC paProductoListar;
 GO
@@ -326,8 +263,8 @@ BEGIN
          p.descripcion, 
          um.nombre AS unidadMedida, 
          m.nombre AS marca, 
-         c.nombre AS categoria, -- Aquí sacamos el nombre de la categoría
-         p.saldo,               -- Usamos solo saldo para que no salga doble
+         c.nombre AS categoria,
+         p.saldo,
          p.precioVenta, 
          p.usuarioRegistro, 
          p.fechaRegistro, 
@@ -335,7 +272,7 @@ BEGIN
   FROM Producto p
   INNER JOIN UnidadMedida um ON p.idUnidadMedida = um.id
   INNER JOIN Marca m ON p.idMarca = m.id
-  INNER JOIN Categoria c ON p.idSubCategoria = c.id -- Unimos por el ID real
+  INNER JOIN Categoria c ON p.idSubCategoria = c.id
   WHERE p.estado = 1 
     AND (p.codigo + p.descripcion + um.nombre + m.nombre + c.nombre) LIKE '%' + REPLACE(@parametro, ' ', '%') + '%'
   ORDER BY p.descripcion;
@@ -364,34 +301,25 @@ GO
 
 ALTER TABLE dbo.Producto NOCHECK CONSTRAINT fk_Prod_Sub;
 
--- 2. Limpiamos la tabla de SubCategorias por completo
 DELETE FROM dbo.SubCategoria;
 
--- 3. Reiniciamos el contador de IDs a 0
 DBCC CHECKIDENT ('dbo.SubCategoria', RESEED, 0);
 
--- 4. Insertamos las subcategorías espejo basadas en tus Categorías actuales
--- Esto garantiza que los IDs coincidan 1 a 1
 INSERT INTO dbo.SubCategoria (idCategoria, nombre, usuarioRegistro, fechaRegistro, estado)
 SELECT id, nombre, 'SISTEMA', GETDATE(), 1 FROM dbo.Categoria;
 
--- 5. REGLA DE ORO: Actualizamos los productos viejos para que apunten a los nuevos IDs
--- Como ahora son espejos, el idSubCategoria debe ser igual al idCategoria que quisiste poner
 UPDATE dbo.Producto SET idSubCategoria = 1 WHERE idSubCategoria IS NULL OR idSubCategoria <= 0;
 
--- 6. Reactivamos la restricción (si hay errores aquí, es porque hay productos con IDs que no existen)
 ALTER TABLE dbo.Producto WITH CHECK CHECK CONSTRAINT fk_Prod_Sub;
 GO
 
 
 
 
--- 1. Si existe algo con ese nombre, lo borramos para empezar de cero
 IF EXISTS (SELECT * FROM sys.objects WHERE name = 'paUnidadMedidaListar')
     DROP PROC paUnidadMedidaListar;
 GO
 
--- 2. Lo creamos limpio (SIN la columna símbolo)
 CREATE PROC paUnidadMedidaListar @parametro VARCHAR(50)
 AS
 BEGIN
@@ -463,18 +391,6 @@ SELECT usuario, clave, estado FROM Usuario;
 EXEC paProductoListar 'martillo';
 EXEC paProductoListar 'stanley';
 
--- CONSULTAS FINALES
-SELECT * FROM Producto;
-SELECT * FROM Usuario;
-SELECT * FROM Empleado;
-SELECT * FROM Categoria;
-SELECT * FROM Marca;
-SELECT * FROM UnidadMedida;
-SELECT id, nombre FROM Categoria;
--- Verifica si esta tabla tiene los mismos IDs que 'Categoria'
-SELECT * FROM SubCategoria;
-SELECT * FROM Proveedor;
-SELECT * FROM Cliente;
 
 
 
@@ -485,11 +401,7 @@ WHERE idCategoria NOT IN (SELECT id FROM Categoria WHERE estado = 1);
 
 
 
-
-
 UPDATE SubCategoria SET estado = -1;
--- 2. Actualizamos o Insertamos las que SÍ están activas en Categoría
--- Esto busca por nombre para no duplicar, y si existe le pone estado 1
 MERGE INTO SubCategoria AS Target
 USING (SELECT id, nombre FROM Categoria WHERE estado = 1) AS Source
 ON (Target.idCategoria = Source.id)
@@ -498,37 +410,9 @@ WHEN MATCHED THEN
 WHEN NOT MATCHED THEN
     INSERT (idCategoria, nombre, usuarioRegistro, fechaRegistro, estado)
     VALUES (Source.id, Source.nombre, 'SISTEMA', GETDATE(), 1);
--- 3. Limpieza de seguridad: cualquier cosa que no tenga un padre vivo, se va
 UPDATE SubCategoria SET estado = -1 
 WHERE idCategoria NOT IN (SELECT id FROM Categoria WHERE estado = 1);
 GO
-
-
----------
-ALTER DATABASE LabFerreteria SET MULTI_USER WITH ROLLBACK IMMEDIATE;
-
-
-
-
-SELECT 
-    blocking_session_id AS SesionBloqueadora, 
-    session_id AS SesionBloqueada, 
-    wait_type, 
-    wait_time, 
-    last_wait_type, 
-    text AS QueryTexto
-FROM sys.dm_exec_requests
-CROSS APPLY sys.dm_exec_sql_text(sql_handle)
-WHERE blocking_session_id <> 0;
-
-
-EXEC sp_updatestats;
-GO
--- Esto limpia la memoria caché del motor de SQL
-DBCC FREEPROCCACHE;
-DBCC DROPCLEANBUFFERS;
-GO
-
 
 
 
@@ -551,3 +435,16 @@ IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('Proveedor'
 GO
 -- Verificamos cómo quedó
 SELECT TOP 0 * FROM Proveedor;
+
+
+-- CONSULTAS FINALES
+SELECT * FROM Producto;
+SELECT * FROM Usuario;
+SELECT * FROM Empleado;
+SELECT * FROM Categoria;
+SELECT * FROM Marca;
+SELECT * FROM UnidadMedida;
+SELECT id, nombre FROM Categoria;
+SELECT * FROM SubCategoria;
+SELECT * FROM Proveedor;
+SELECT * FROM Cliente;
