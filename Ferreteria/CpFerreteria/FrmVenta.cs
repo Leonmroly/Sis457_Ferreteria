@@ -1,5 +1,4 @@
-﻿using CadFerreteria;
-using ClnFerreteria;
+﻿using ClnFerreteria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,9 +11,9 @@ using System.Windows.Forms;
 
 namespace CpFerreteria
 {
-    public partial class FrmCompra : Form
+    public partial class FrmVenta : Form
     {
-        public FrmCompra()
+        public FrmVenta()
         {
             InitializeComponent();
         }
@@ -23,13 +22,13 @@ namespace CpFerreteria
         {
             try
             {
-                var lista = CompraCln.listar();
+                var lista = VentaCln.listar();
 
                 string parametro = txtParametro.Text.Trim().ToLower();
                 if (!string.IsNullOrEmpty(parametro))
                 {
                     lista = lista.Where(x =>
-                        x.proveedor.ToLower().Contains(parametro) ||
+                        x.cliente.ToLower().Contains(parametro) ||
                         x.usuarioRegistro.ToLower().Contains(parametro)
                     ).ToList();
                 }
@@ -41,8 +40,8 @@ namespace CpFerreteria
 
                 if (dgvLista.Columns.Contains("id")) dgvLista.Columns["id"].Visible = false;
 
-                if (dgvLista.Columns.Contains("fecha")) dgvLista.Columns["fecha"].HeaderText = "Fecha Compra";
-                if (dgvLista.Columns.Contains("proveedor")) dgvLista.Columns["proveedor"].HeaderText = "Proveedor";
+                if (dgvLista.Columns.Contains("fecha")) dgvLista.Columns["fecha"].HeaderText = "Fecha Venta";
+                if (dgvLista.Columns.Contains("cliente")) dgvLista.Columns["cliente"].HeaderText = "Cliente";
                 if (dgvLista.Columns.Contains("total")) dgvLista.Columns["total"].HeaderText = "Total ($)";
                 if (dgvLista.Columns.Contains("usuarioRegistro")) dgvLista.Columns["usuarioRegistro"].HeaderText = "Usuario";
 
@@ -58,20 +57,20 @@ namespace CpFerreteria
             }
         }
 
-        private void FrmCompra_Load(object sender, EventArgs e)
+        private void FrmVenta_Load(object sender, EventArgs e)
         {
-            this.Size = new Size(758, 363);
             listar();
 
             btnEditar.Enabled = false;
             btnEliminar.Enabled = false;
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void txtParametro_TextChanged(object sender, EventArgs e)
         {
             listar();
         }
-        private void txtParametro_TextChanged(object sender, EventArgs e)
+
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
             listar();
         }
@@ -83,11 +82,11 @@ namespace CpFerreteria
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            FrmCompraNuevo nuevoForm = new FrmCompraNuevo();
+            FrmVentaNuevo nuevoForm = new FrmVentaNuevo();
             nuevoForm.ShowDialog();
             listar();
         }
-        
+
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
@@ -98,29 +97,13 @@ namespace CpFerreteria
             if (e.RowIndex >= 0 && dgvLista.CurrentRow != null)
             {
                 // 1. Extraemos el ID de la fila seleccionada
-                int idCompra = Convert.ToInt32(dgvLista.CurrentRow.Cells["id"].Value);
+                int idVenta = Convert.ToInt32(dgvLista.CurrentRow.Cells["id"].Value);
 
                 // 2. Extraemos el Total acumulado de la columna "total" de esa misma fila
                 decimal total = Convert.ToDecimal(dgvLista.CurrentRow.Cells["total"].Value);
 
                 // 3. Abrimos la ventana de detalles pasándole AMBOS valores de forma higiénica
-                FrmCompraDetalle detalleForm = new FrmCompraDetalle(idCompra, total);
-                detalleForm.ShowDialog();
-            }
-        }
-
-        private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && dgvLista.CurrentRow != null)
-            {
-                // 1. Extraemos el ID de la fila seleccionada
-                int idCompra = Convert.ToInt32(dgvLista.CurrentRow.Cells["id"].Value);
-
-                // 2. Extraemos el Total acumulado de la columna "total" de esa misma fila
-                decimal total = Convert.ToDecimal(dgvLista.CurrentRow.Cells["total"].Value);
-
-                // 3. Abrimos la ventana de detalles pasándole AMBOS valores de forma higiénica
-                FrmCompraDetalle detalleForm = new FrmCompraDetalle(idCompra, total);
+                FrmVentaDetalle detalleForm = new FrmVentaDetalle(idVenta, total);
                 detalleForm.ShowDialog();
             }
         }

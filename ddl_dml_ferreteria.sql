@@ -76,18 +76,44 @@ CREATE TABLE Cliente (
 );
 GO
 
-SELECT 'Tabla Cliente con C.I. creada con éxito' AS Resultado;
-
-
-SELECT 'Tabla Cliente creada con éxito' AS Resultado;
 
 
 
--- Creamos la relación con la tabla Venta (si ya tienes la tabla Venta creada)
-ALTER TABLE Venta
-ADD CONSTRAINT FK_Venta_Cliente
-FOREIGN KEY (idCliente) REFERENCES Cliente(id);
+-- Si ya existía un intento previo con errores, lo borramos para crearlo limpio
+IF OBJECT_ID('dbo.paVentaGuardar', 'P') IS NOT NULL
+    DROP PROCEDURE dbo.paVentaGuardar;
 GO
+
+CREATE PROCEDURE paVentaGuardar
+    @idCliente INT,
+    @usuarioRegistro VARCHAR(50),
+    @total DECIMAL(18,2),
+    @idVenta BIGINT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    -- 1. Buscamos un ID de usuario válido usando la columna estándar 'usuario'
+    DECLARE @idUsuario INT;
+    SELECT TOP 1 @idUsuario = id FROM Usuario WHERE usuario = @usuarioRegistro;
+    
+    -- Si no se encuentra ninguna coincidencia por texto, tomamos el primer registro de respaldo
+    IF @idUsuario IS NULL
+    BEGIN
+        SELECT TOP 1 @idUsuario = id FROM Usuario;
+    END
+
+    -- 2. Insertamos la cabecera de la venta usando GETDATE() nativo del motor
+    INSERT INTO Venta (idCliente, idUsuario, fecha, total, usuarioRegistro, estado)
+    VALUES (@idCliente, @idUsuario, GETDATE(), @total, @usuarioRegistro, 1);
+    
+    -- 3. Retornamos el identificador numérico autogenerado
+    SET @idVenta = SCOPE_IDENTITY();
+END;
+GO
+
+
+
 
 
 -- 1. Si existe una relación que nos bloquea, la buscamos y la matamos

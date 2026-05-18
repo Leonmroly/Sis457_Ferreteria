@@ -60,6 +60,7 @@
     <Property Name="estado" Type="Int32" Nullable="false" />
     <NavigationProperty Name="VentaDetalle" Relationship="Self.fk_DetVen_Ven" FromRole="Venta" ToRole="VentaDetalle" />
     <NavigationProperty Name="Usuario" Relationship="LabFerreteriaModel.fk_Ven_Usu" FromRole="Venta" ToRole="Usuario" />
+    <NavigationProperty Name="Cliente" Relationship="LabFerreteriaModel.FK_Venta_Cliente" FromRole="Venta" ToRole="Cliente" />
   </EntityType>
   <EntityType Name="VentaDetalle">
     <Key>
@@ -128,7 +129,6 @@
       <Parameter Name="parametro" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="Proveedors" EntityType="LabFerreteriaModel.Proveedor" />
-    <EntitySet Name="Clientes" EntityType="LabFerreteriaModel.Cliente" />
     <EntitySet Name="Empleadoes" EntityType="LabFerreteriaModel.Empleado" />
     <EntitySet Name="Usuarios" EntityType="LabFerreteriaModel.Usuario" />
     <AssociationSet Name="fk_Usu_Emp" Association="LabFerreteriaModel.fk_Usu_Emp">
@@ -170,6 +170,17 @@
       <End Role="UnidadMedida" EntitySet="UnidadMedida" />
       <End Role="Producto" EntitySet="Productoes" />
     </AssociationSet>
+    <EntitySet Name="Clientes" EntityType="LabFerreteriaModel.Cliente" />
+    <AssociationSet Name="FK_Venta_Cliente" Association="LabFerreteriaModel.FK_Venta_Cliente">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <FunctionImport Name="paVentaGuardar">
+      <Parameter Name="idCliente" Mode="In" Type="Int32" />
+      <Parameter Name="usuarioRegistro" Mode="In" Type="String" />
+      <Parameter Name="total" Mode="In" Type="Decimal" />
+      <Parameter Name="idVenta" Mode="InOut" Type="Int64" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="paCategoriaListar_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -222,22 +233,6 @@
     <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="estado" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Compras" Relationship="LabFerreteriaModel.fk_Com_Prov" FromRole="Proveedor" ToRole="Compra" />
-  </EntityType>
-  <EntityType Name="Cliente">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cedulaIdentidad" Type="Int64" Nullable="false" />
-    <Property Name="nombreCompleto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="tipo" Type="Int32" Nullable="false" />
-    <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="estado" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Empleado">
     <Key>
@@ -423,6 +418,35 @@
       </Principal>
       <Dependent Role="Producto">
         <PropertyRef Name="idUnidadMedida" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cedulaIdentidad" Type="Int64" Nullable="false" />
+    <Property Name="nombreCompleto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="tipo" Type="Int32" Nullable="false" />
+    <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ventas" Relationship="LabFerreteriaModel.FK_Venta_Cliente" FromRole="Cliente" ToRole="Venta" />
+  </EntityType>
+  <Association Name="FK_Venta_Cliente">
+    <End Type="LabFerreteriaModel.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="LabFerreteriaModel.Venta" Role="Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="idCliente" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

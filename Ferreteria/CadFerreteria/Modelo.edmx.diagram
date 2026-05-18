@@ -14,7 +14,6 @@
         <AssociationConnector Association="LabFerreteriaModel.fk_Sub_Cat" ManuallyRouted="false" />
         <AssociationConnector Association="LabFerreteriaModel.fk_DetVen_Ven" ManuallyRouted="false" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Proveedor" Width="1.5" PointX="2.75" PointY="10.75" />
-        <EntityTypeShape EntityType="LabFerreteriaModel.Cliente" Width="1.5" PointX="5.25" PointY="14.625" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Empleado" Width="1.5" PointX="3.75" PointY="19.5" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Usuario" Width="1.5" PointX="6" PointY="19.75" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Usu_Emp" />
@@ -29,6 +28,8 @@
         <AssociationConnector Association="LabFerreteriaModel.fk_DetVen_Prod" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Prod_Sub" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Prod_UM" />
+        <EntityTypeShape EntityType="LabFerreteriaModel.Cliente" Width="1.5" PointX="4.75" PointY="15.5" />
+        <AssociationConnector Association="LabFerreteriaModel.FK_Venta_Cliente" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

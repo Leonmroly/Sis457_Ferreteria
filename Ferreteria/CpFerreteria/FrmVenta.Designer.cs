@@ -1,6 +1,6 @@
 ﻿namespace CpFerreteria
 {
-    partial class FrmCompra
+    partial class FrmVenta
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,7 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtParametro = new System.Windows.Forms.TextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.gbxLista = new System.Windows.Forms.GroupBox();
             this.dgvLista = new System.Windows.Forms.DataGridView();
             this.pnlAcciones = new System.Windows.Forms.Panel();
@@ -38,7 +39,6 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.gbxLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.pnlAcciones.SuspendLayout();
@@ -50,39 +50,52 @@
             this.lblTitulo.Location = new System.Drawing.Point(3, 9);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(735, 34);
-            this.lblTitulo.TabIndex = 2;
-            this.lblTitulo.Text = "Compras";
+            this.lblTitulo.Size = new System.Drawing.Size(732, 34);
+            this.lblTitulo.TabIndex = 3;
+            this.lblTitulo.Text = "Ventas";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 53);
+            this.label1.Location = new System.Drawing.Point(14, 59);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "buscar Compras:";
+            this.label1.Size = new System.Drawing.Size(116, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "buscar Ventas:";
             // 
             // txtParametro
             // 
-            this.txtParametro.Location = new System.Drawing.Point(242, 50);
+            this.txtParametro.Location = new System.Drawing.Point(223, 56);
             this.txtParametro.MaxLength = 50;
             this.txtParametro.Name = "txtParametro";
             this.txtParametro.Size = new System.Drawing.Size(364, 26);
-            this.txtParametro.TabIndex = 5;
+            this.txtParametro.TabIndex = 7;
             this.txtParametro.TextChanged += new System.EventHandler(this.txtParametro_TextChanged);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Image = global::CpFerreteria.Properties.Resources.search;
+            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscar.Location = new System.Drawing.Point(619, 49);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(99, 40);
+            this.btnBuscar.TabIndex = 8;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // gbxLista
             // 
             this.gbxLista.Controls.Add(this.dgvLista);
-            this.gbxLista.Location = new System.Drawing.Point(12, 89);
+            this.gbxLista.Location = new System.Drawing.Point(12, 95);
             this.gbxLista.Name = "gbxLista";
             this.gbxLista.Size = new System.Drawing.Size(718, 174);
-            this.gbxLista.TabIndex = 7;
+            this.gbxLista.TabIndex = 9;
             this.gbxLista.TabStop = false;
-            this.gbxLista.Text = "Lista de Compra";
+            this.gbxLista.Text = "Lista de Ventas";
             // 
             // dgvLista
             // 
@@ -99,7 +112,6 @@
             this.dgvLista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLista.Size = new System.Drawing.Size(702, 139);
             this.dgvLista.TabIndex = 1;
-            this.dgvLista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_CellContentClick);
             this.dgvLista.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_CellDoubleClick);
             // 
             // pnlAcciones
@@ -108,10 +120,10 @@
             this.pnlAcciones.Controls.Add(this.btnEliminar);
             this.pnlAcciones.Controls.Add(this.btnEditar);
             this.pnlAcciones.Controls.Add(this.btnNuevo);
-            this.pnlAcciones.Location = new System.Drawing.Point(12, 269);
+            this.pnlAcciones.Location = new System.Drawing.Point(12, 275);
             this.pnlAcciones.Name = "pnlAcciones";
             this.pnlAcciones.Size = new System.Drawing.Size(717, 47);
-            this.pnlAcciones.TabIndex = 8;
+            this.pnlAcciones.TabIndex = 10;
             // 
             // btnCerrar
             // 
@@ -163,24 +175,11 @@
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Image = global::CpFerreteria.Properties.Resources.search;
-            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(631, 43);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(99, 40);
-            this.btnBuscar.TabIndex = 6;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // FrmCompra
+            // FrmVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(742, 322);
+            this.ClientSize = new System.Drawing.Size(740, 331);
             this.Controls.Add(this.pnlAcciones);
             this.Controls.Add(this.gbxLista);
             this.Controls.Add(this.btnBuscar);
@@ -191,10 +190,10 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmCompra";
+            this.Name = "FrmVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmCompra";
-            this.Load += new System.EventHandler(this.FrmCompra_Load);
+            this.Text = "FrmVenta";
+            this.Load += new System.EventHandler(this.FrmVenta_Load);
             this.gbxLista.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).EndInit();
             this.pnlAcciones.ResumeLayout(false);

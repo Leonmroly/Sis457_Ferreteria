@@ -23,7 +23,7 @@
     <Property Name="password" Type="varchar" MaxLength="250" />
     <Property Name="tipo" Type="int" Nullable="false" />
     <Property Name="usuarioRegistro" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="fechaRegistro" Type="datetime" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="estado" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Compra">
@@ -296,6 +296,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Venta_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Function Name="paCategoriaListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="parametro" Type="varchar" Mode="In" />
   </Function>
@@ -307,6 +319,12 @@
   </Function>
   <Function Name="paUnidadMedidaListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="parametro" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="paVentaGuardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idCliente" Type="int" Mode="In" />
+    <Parameter Name="usuarioRegistro" Type="varchar" Mode="In" />
+    <Parameter Name="total" Type="decimal" Mode="In" />
+    <Parameter Name="idVenta" Type="bigint" Mode="InOut" />
   </Function>
   <EntityContainer Name="LabFerreteriaModelStoreContainer">
     <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
@@ -364,6 +382,10 @@
     </AssociationSet>
     <AssociationSet Name="fk_Ven_Usu" Association="Self.fk_Ven_Usu">
       <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Venta_Cliente" Association="Self.FK_Venta_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
       <End Role="Venta" EntitySet="Venta" />
     </AssociationSet>
   </EntityContainer>

@@ -66,6 +66,7 @@
     <Compile Include="SubCategoriaCln.cs" />
     <Compile Include="UnidadMedidaCln.cs" />
     <Compile Include="UsuarioCln.cs" />
+    <Compile Include="VentaCln.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

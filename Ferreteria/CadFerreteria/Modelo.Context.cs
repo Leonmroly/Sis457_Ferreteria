@@ -34,12 +34,12 @@ namespace CadFerreteria
         public virtual DbSet<Venta> Venta { get; set; }
         public virtual DbSet<VentaDetalle> VentaDetalle { get; set; }
         public virtual DbSet<Proveedor> Proveedors { get; set; }
-        public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<Empleado> Empleadoes { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Compra> Compras { get; set; }
         public virtual DbSet<CompraDetalle> CompraDetalles { get; set; }
         public virtual DbSet<Producto> Productoes { get; set; }
+        public virtual DbSet<Cliente> Clientes { get; set; }
     
         public virtual ObjectResult<paCategoriaListar_Result> paCategoriaListar(string parametro)
         {
@@ -75,6 +75,23 @@ namespace CadFerreteria
                 new ObjectParameter("parametro", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paProductoListar_Result>("paProductoListar", parametroParameter);
+        }
+    
+        public virtual int paVentaGuardar(Nullable<int> idCliente, string usuarioRegistro, Nullable<decimal> total, ObjectParameter idVenta)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            var usuarioRegistroParameter = usuarioRegistro != null ?
+                new ObjectParameter("usuarioRegistro", usuarioRegistro) :
+                new ObjectParameter("usuarioRegistro", typeof(string));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("total", total) :
+                new ObjectParameter("total", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paVentaGuardar", idClienteParameter, usuarioRegistroParameter, totalParameter, idVenta);
         }
     }
 }

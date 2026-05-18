@@ -38,6 +38,7 @@
             this.btnEmpleado = new System.Windows.Forms.Button();
             this.btnUsuario = new System.Windows.Forms.Button();
             this.btnCompra = new System.Windows.Forms.Button();
+            this.btnVenta = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProductos
@@ -139,11 +140,23 @@
             this.btnCompra.UseVisualStyleBackColor = true;
             this.btnCompra.Click += new System.EventHandler(this.btnCompra_Click);
             // 
+            // btnVenta
+            // 
+            this.btnVenta.Location = new System.Drawing.Point(710, 375);
+            this.btnVenta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnVenta.Name = "btnVenta";
+            this.btnVenta.Size = new System.Drawing.Size(189, 65);
+            this.btnVenta.TabIndex = 9;
+            this.btnVenta.Text = "Ventas";
+            this.btnVenta.UseVisualStyleBackColor = true;
+            this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 532);
+            this.Controls.Add(this.btnVenta);
             this.Controls.Add(this.btnCompra);
             this.Controls.Add(this.btnUsuario);
             this.Controls.Add(this.btnEmpleado);
@@ -176,5 +189,6 @@
         private System.Windows.Forms.Button btnEmpleado;
         private System.Windows.Forms.Button btnUsuario;
         private System.Windows.Forms.Button btnCompra;
+        private System.Windows.Forms.Button btnVenta;
     }
 }

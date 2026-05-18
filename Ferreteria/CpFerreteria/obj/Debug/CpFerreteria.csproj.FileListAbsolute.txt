@@ -27,6 +27,7 @@ C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerre
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmCategoriaEntry.resources
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmCliente.resources
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmCompra.resources
+C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmCompraDetalle.resources
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmCompraNuevo.resources
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmEmpleado.resources
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmMarca.resources
@@ -38,10 +39,12 @@ C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerre
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmUnidadMedida.resources
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmUnidadMedidaEntry.resources
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmUsuario.resources
+C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmVenta.resources
+C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmVentaDetalle.resources
+C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmVentaNuevo.resources
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.Properties.Resources.resources
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.csproj.GenerateResource.cache
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.csproj.CoreCompileInputs.cache
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerret.A7FCED0A.Up2Date
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.exe
 C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.pdb
-C:\Documents\SIS-457\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmCompraDetalle.resources
