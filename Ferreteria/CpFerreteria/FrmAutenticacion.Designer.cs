@@ -62,7 +62,7 @@
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuario.Location = new System.Drawing.Point(96, 43);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(76, 20);
+            this.lblUsuario.Size = new System.Drawing.Size(110, 29);
             this.lblUsuario.TabIndex = 2;
             this.lblUsuario.Text = "Usuario:";
             // 
@@ -73,7 +73,7 @@
             this.lblContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblContraseña.Location = new System.Drawing.Point(96, 105);
             this.lblContraseña.Name = "lblContraseña";
-            this.lblContraseña.Size = new System.Drawing.Size(107, 20);
+            this.lblContraseña.Size = new System.Drawing.Size(153, 29);
             this.lblContraseña.TabIndex = 3;
             this.lblContraseña.Text = "Contraseña:";
             // 
@@ -82,7 +82,7 @@
             this.txtUsuario.Location = new System.Drawing.Point(100, 66);
             this.txtUsuario.MaxLength = 15;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(173, 26);
+            this.txtUsuario.Size = new System.Drawing.Size(173, 35);
             this.txtUsuario.TabIndex = 4;
             // 
             // txtClave
@@ -90,7 +90,7 @@
             this.txtClave.Location = new System.Drawing.Point(100, 128);
             this.txtClave.MaxLength = 50;
             this.txtClave.Name = "txtClave";
-            this.txtClave.Size = new System.Drawing.Size(173, 26);
+            this.txtClave.Size = new System.Drawing.Size(173, 35);
             this.txtClave.TabIndex = 5;
             this.txtClave.UseSystemPasswordChar = true;
             this.txtClave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClave_KeyPress);
@@ -131,7 +131,7 @@
             // 
             // FrmAutenticacion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.BackgroundImage = global::CpFerreteria.Properties.Resources.Ferrr;
