@@ -82,8 +82,9 @@ CREATE TABLE Proveedor (
     estado INT NOT NULL DEFAULT 1 -- 1: Activo, -1: Eliminado
 );
 
+-- TABLA 7
 
-CREATE TABLE Empleado ( -- TABLA 7
+CREATE TABLE Empleado ( 
   id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
   cedulaIdentidad VARCHAR(12) NOT NULL UNIQUE,
   nombres VARCHAR(50) NOT NULL,
@@ -96,8 +97,8 @@ CREATE TABLE Empleado ( -- TABLA 7
   usuarioRegistro VARCHAR(50) NOT NULL DEFAULT (suser_name()),
   fechaRegistro DATETIME NOT NULL DEFAULT GETDATE(),
   estado INT NOT NULL DEFAULT 1);
-
-CREATE TABLE Usuario ( -- TABLA 8
+  -- TABLA 8
+CREATE TABLE Usuario ( 
   id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
   idEmpleado INT NOT NULL,
   usuario VARCHAR(15) NOT NULL UNIQUE,
@@ -381,6 +382,10 @@ VALUES ('654321', 'Roly', 'Leon', 'Mamani', '2005-05-15', 'Avenida Segungo Vasco
 
 INSERT INTO Usuario (idEmpleado, usuario, clave, rol)
 VALUES (1, 'lroly', 'i0hcoO/nssY6WOs9pOp5Xw==', 'Administrador');
+
+-- Cliente (usando la cédula de identidad como clave)
+--INSERT INTO Cliente (cedulaIdentidad, direccion, telefono, email, password) 
+--VALUES (8909899,  'juan', 'av. german', 72727272,  'juan@gmail.com', 'i0hcoO/nssY6WOs9pOp5Xw==');
 
 SELECT * FROM Cliente 
 WHERE email = @usuario AND password = @password AND tipo = 2;

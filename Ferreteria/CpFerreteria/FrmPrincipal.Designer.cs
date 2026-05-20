@@ -142,18 +142,19 @@
             // 
             // btnVenta
             // 
-            this.btnVenta.Location = new System.Drawing.Point(710, 375);
+            this.btnVenta.BackgroundImage = global::CpFerreteria.Properties.Resources.Captura_de_pantalla_2026_05_19_161653;
+            this.btnVenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnVenta.Location = new System.Drawing.Point(442, 386);
             this.btnVenta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnVenta.Name = "btnVenta";
-            this.btnVenta.Size = new System.Drawing.Size(189, 65);
+            this.btnVenta.Size = new System.Drawing.Size(451, 158);
             this.btnVenta.TabIndex = 9;
-            this.btnVenta.Text = "Ventas";
             this.btnVenta.UseVisualStyleBackColor = true;
             this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
             // 
             // FrmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 532);
             this.Controls.Add(this.btnVenta);

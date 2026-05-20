@@ -133,6 +133,9 @@
   <data name="new2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\new2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="FerrCC3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FerrCC3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FerrCC1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FerrCC1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -163,7 +166,7 @@
   <data name="Ferrr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ferrr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FerrCC3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FerrCC3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Captura de pantalla 2026-05-19 161653" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Captura de pantalla 2026-05-19 161653.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
