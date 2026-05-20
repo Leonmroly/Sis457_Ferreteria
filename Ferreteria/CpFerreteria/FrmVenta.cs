@@ -33,6 +33,20 @@ namespace CpFerreteria
                     ).ToList();
                 }
 
+                // 💡 CONFIGURACIÓN DE COLORES PARA EVITAR FILAS INVISIBLES
+                dgvLista.BackgroundColor = System.Drawing.Color.White;
+                dgvLista.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+                dgvLista.DefaultCellStyle.ForeColor = System.Drawing.Color.Black; // Texto negro para que se vea SIEMPRE
+
+                dgvLista.DefaultCellStyle.Font = new System.Drawing.Font(dgvLista.Font, System.Drawing.FontStyle.Regular);
+
+                // Configuración cuando la fila está seleccionada (Azul con letras blancas)
+                dgvLista.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(0, 120, 215);
+                dgvLista.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
+
+                // Quitar la columna vacía de la izquierda (la de la flechita)
+                dgvLista.RowHeadersVisible = false;
+
                 dgvLista.DataSource = null;
                 dgvLista.DataSource = lista;
 
@@ -44,6 +58,9 @@ namespace CpFerreteria
                 if (dgvLista.Columns.Contains("cliente")) dgvLista.Columns["cliente"].HeaderText = "Cliente";
                 if (dgvLista.Columns.Contains("total")) dgvLista.Columns["total"].HeaderText = "Total ($)";
                 if (dgvLista.Columns.Contains("usuarioRegistro")) dgvLista.Columns["usuarioRegistro"].HeaderText = "Usuario";
+
+                dgvLista.BorderStyle = BorderStyle.FixedSingle;
+                dgvLista.GridColor = System.Drawing.Color.LightGray;
 
                 if (lista.Count > 0 && dgvLista.Columns.Contains("fecha"))
                     dgvLista.CurrentCell = dgvLista.Rows[0].Cells["fecha"];

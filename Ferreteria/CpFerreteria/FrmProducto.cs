@@ -44,7 +44,7 @@ namespace CpFerreteria
             if (dgvLista.Columns.Contains("categoria"))
                 dgvLista.Columns["categoria"].HeaderText = "Categoría";
 
-            dgvLista.Columns["saldo"].HeaderText = "Saldo"; // Solo uno
+            dgvLista.Columns["cantidad"].HeaderText = "Cantidad"; // Solo uno
             dgvLista.Columns["precioVenta"].HeaderText = "Precio";
             dgvLista.Columns["usuarioRegistro"].HeaderText = "Usuario";
             dgvLista.Columns["fechaRegistro"].HeaderText = "Fecha";
@@ -107,7 +107,7 @@ namespace CpFerreteria
             cbxUnidadMedida.SelectedIndex = -1;
             cbxMarca.SelectedIndex = -1;
             cbxCategoria.SelectedIndex = -1;
-            nudSaldo.Value = 0;
+            nudCantidad.Value = 0;
             nudPrecioVenta.Value = 0;
             resetearErrores();
         }
@@ -117,7 +117,7 @@ namespace CpFerreteria
             erpCodigo.Clear();
             erpDescripcion.Clear();
             erpUnidadMedida.Clear();
-            erpSaldo.Clear();
+            erpCantidad.Clear();
             erpPrecioVenta.Clear();
         }
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -143,7 +143,7 @@ namespace CpFerreteria
             cbxUnidadMedida.SelectedValue = producto.idUnidadMedida;
             cbxMarca.SelectedValue = producto.idMarca;
             cbxCategoria.SelectedValue = producto.idSubCategoria;
-            nudSaldo.Value = producto.saldo;
+            nudCantidad.Value = producto.cantidad;
             nudPrecioVenta.Value = producto.precioVenta;
 
             txtCodigo.Focus();
@@ -161,7 +161,7 @@ namespace CpFerreteria
             erpCodigo.Clear();
             erpDescripcion.Clear();
             erpPrecioVenta.Clear();
-            erpSaldo.Clear();
+            erpCantidad.Clear();
             erpUnidadMedida.Clear();
             if (string.IsNullOrWhiteSpace(txtCodigo.Text))
             {
@@ -178,9 +178,9 @@ namespace CpFerreteria
                 erpUnidadMedida.SetError(cbxUnidadMedida, "Seleccione la unidad de medida");
                 esValido = false;
             }
-            if (string.IsNullOrWhiteSpace(nudSaldo.ToString()))
+            if (string.IsNullOrWhiteSpace(nudCantidad.ToString()))
             {
-                erpSaldo.SetError(nudSaldo, "Ingrese un saldo válido");
+                erpCantidad.SetError(nudCantidad, "Ingrese un cantidad válido");
                 esValido = false;
             }
             if (string.IsNullOrWhiteSpace(nudPrecioVenta.ToString()))
@@ -211,9 +211,12 @@ namespace CpFerreteria
                     descripcion = txtDescripcion.Text.Trim(),
                     idUnidadMedida = Convert.ToInt32(cbxUnidadMedida.SelectedValue),
                     idMarca = Convert.ToInt32(cbxMarca.SelectedValue),
-                    idSubCategoria = idSubCat, // AQUÍ pones el ID que sacaste del combo
-                    saldo = nudSaldo.Value,
-                    precioVenta = nudPrecioVenta.Value,
+                    idSubCategoria = idSubCat,
+
+                    // SOLUCIÓN: Convertimos el decimal del control a int de C#
+                    cantidad = (int)nudCantidad.Value,
+
+                    precioVenta = nudPrecioVenta.Value, // Este se queda igual porque precioVenta SÍ es decimal
                     usuarioRegistro = Util.usuario.usuario1,
                     estado = 1
                 };

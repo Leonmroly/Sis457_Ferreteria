@@ -38,8 +38,8 @@ namespace CadFerreteria
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Compra> Compras { get; set; }
         public virtual DbSet<CompraDetalle> CompraDetalles { get; set; }
-        public virtual DbSet<Producto> Productoes { get; set; }
         public virtual DbSet<Cliente> Clientes { get; set; }
+        public virtual DbSet<Producto> Productoes { get; set; }
     
         public virtual ObjectResult<paCategoriaListar_Result> paCategoriaListar(string parametro)
         {
@@ -68,6 +68,98 @@ namespace CadFerreteria
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paUnidadMedidaListar_Result>("paUnidadMedidaListar", parametroParameter);
         }
     
+        public virtual int paVentaGuardar(Nullable<int> idUsuario, Nullable<int> idCliente, Nullable<decimal> total)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("total", total) :
+                new ObjectParameter("total", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paVentaGuardar", idUsuarioParameter, idClienteParameter, totalParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> paClienteGuardar(Nullable<long> cedulaIdentidad, string nombreCompleto, string direccion, string telefono, string email, string password, Nullable<int> tipo)
+        {
+            var cedulaIdentidadParameter = cedulaIdentidad.HasValue ?
+                new ObjectParameter("cedulaIdentidad", cedulaIdentidad) :
+                new ObjectParameter("cedulaIdentidad", typeof(long));
+    
+            var nombreCompletoParameter = nombreCompleto != null ?
+                new ObjectParameter("nombreCompleto", nombreCompleto) :
+                new ObjectParameter("nombreCompleto", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("direccion", direccion) :
+                new ObjectParameter("direccion", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("telefono", telefono) :
+                new ObjectParameter("telefono", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("paClienteGuardar", cedulaIdentidadParameter, nombreCompletoParameter, direccionParameter, telefonoParameter, emailParameter, passwordParameter, tipoParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> paCompraGuardar(Nullable<int> idProveedor, Nullable<decimal> total, string usuarioRegistro)
+        {
+            var idProveedorParameter = idProveedor.HasValue ?
+                new ObjectParameter("idProveedor", idProveedor) :
+                new ObjectParameter("idProveedor", typeof(int));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("total", total) :
+                new ObjectParameter("total", typeof(decimal));
+    
+            var usuarioRegistroParameter = usuarioRegistro != null ?
+                new ObjectParameter("usuarioRegistro", usuarioRegistro) :
+                new ObjectParameter("usuarioRegistro", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("paCompraGuardar", idProveedorParameter, totalParameter, usuarioRegistroParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> paProveedorGuardar(Nullable<long> nit, string razonSocial, string direccion, string telefono, string email)
+        {
+            var nitParameter = nit.HasValue ?
+                new ObjectParameter("nit", nit) :
+                new ObjectParameter("nit", typeof(long));
+    
+            var razonSocialParameter = razonSocial != null ?
+                new ObjectParameter("razonSocial", razonSocial) :
+                new ObjectParameter("razonSocial", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("direccion", direccion) :
+                new ObjectParameter("direccion", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("telefono", telefono) :
+                new ObjectParameter("telefono", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("paProveedorGuardar", nitParameter, razonSocialParameter, direccionParameter, telefonoParameter, emailParameter);
+        }
+    
         public virtual ObjectResult<paProductoListar_Result> paProductoListar(string parametro)
         {
             var parametroParameter = parametro != null ?
@@ -75,23 +167,6 @@ namespace CadFerreteria
                 new ObjectParameter("parametro", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paProductoListar_Result>("paProductoListar", parametroParameter);
-        }
-    
-        public virtual int paVentaGuardar(Nullable<int> idCliente, string usuarioRegistro, Nullable<decimal> total, ObjectParameter idVenta)
-        {
-            var idClienteParameter = idCliente.HasValue ?
-                new ObjectParameter("idCliente", idCliente) :
-                new ObjectParameter("idCliente", typeof(int));
-    
-            var usuarioRegistroParameter = usuarioRegistro != null ?
-                new ObjectParameter("usuarioRegistro", usuarioRegistro) :
-                new ObjectParameter("usuarioRegistro", typeof(string));
-    
-            var totalParameter = total.HasValue ?
-                new ObjectParameter("total", total) :
-                new ObjectParameter("total", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paVentaGuardar", idClienteParameter, usuarioRegistroParameter, totalParameter, idVenta);
         }
     }
 }

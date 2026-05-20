@@ -125,9 +125,6 @@
     <FunctionImport Name="paUnidadMedidaListar" ReturnType="Collection(LabFerreteriaModel.paUnidadMedidaListar_Result)">
       <Parameter Name="parametro" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="paProductoListar" ReturnType="Collection(LabFerreteriaModel.paProductoListar_Result)">
-      <Parameter Name="parametro" Mode="In" Type="String" />
-    </FunctionImport>
     <EntitySet Name="Proveedors" EntityType="LabFerreteriaModel.Proveedor" />
     <EntitySet Name="Empleadoes" EntityType="LabFerreteriaModel.Empleado" />
     <EntitySet Name="Usuarios" EntityType="LabFerreteriaModel.Usuario" />
@@ -149,6 +146,37 @@
       <End Role="Compra" EntitySet="Compras" />
       <End Role="CompraDetalle" EntitySet="CompraDetalles" />
     </AssociationSet>
+    <EntitySet Name="Clientes" EntityType="LabFerreteriaModel.Cliente" />
+    <AssociationSet Name="FK_Venta_Cliente" Association="LabFerreteriaModel.FK_Venta_Cliente">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <FunctionImport Name="paVentaGuardar">
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="idCliente" Mode="In" Type="Int32" />
+      <Parameter Name="total" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="paClienteGuardar" ReturnType="Collection(Decimal)">
+      <Parameter Name="cedulaIdentidad" Mode="In" Type="Int64" />
+      <Parameter Name="nombreCompleto" Mode="In" Type="String" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="tipo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="paCompraGuardar" ReturnType="Collection(Decimal)">
+      <Parameter Name="idProveedor" Mode="In" Type="Int32" />
+      <Parameter Name="total" Mode="In" Type="Decimal" />
+      <Parameter Name="usuarioRegistro" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="paProveedorGuardar" ReturnType="Collection(Decimal)">
+      <Parameter Name="nit" Mode="In" Type="Int64" />
+      <Parameter Name="razonSocial" Mode="In" Type="String" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+    </FunctionImport>
     <EntitySet Name="Productoes" EntityType="LabFerreteriaModel.Producto" />
     <AssociationSet Name="fk_DetCom_Prod" Association="LabFerreteriaModel.fk_DetCom_Prod">
       <End Role="Producto" EntitySet="Productoes" />
@@ -170,16 +198,8 @@
       <End Role="UnidadMedida" EntitySet="UnidadMedida" />
       <End Role="Producto" EntitySet="Productoes" />
     </AssociationSet>
-    <EntitySet Name="Clientes" EntityType="LabFerreteriaModel.Cliente" />
-    <AssociationSet Name="FK_Venta_Cliente" Association="LabFerreteriaModel.FK_Venta_Cliente">
-      <End Role="Cliente" EntitySet="Clientes" />
-      <End Role="Venta" EntitySet="Venta" />
-    </AssociationSet>
-    <FunctionImport Name="paVentaGuardar">
-      <Parameter Name="idCliente" Mode="In" Type="Int32" />
-      <Parameter Name="usuarioRegistro" Mode="In" Type="String" />
-      <Parameter Name="total" Mode="In" Type="Decimal" />
-      <Parameter Name="idVenta" Mode="InOut" Type="Int64" />
+    <FunctionImport Name="paProductoListar" ReturnType="Collection(LabFerreteriaModel.paProductoListar_Result)">
+      <Parameter Name="parametro" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="paCategoriaListar_Result">
@@ -199,22 +219,6 @@
   <ComplexType Name="paUnidadMedidaListar_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="usuarioRegistro" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="estado" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="paProductoListar_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="Int32" Name="idSubCategoria" Nullable="false" />
-    <Property Type="Int32" Name="idUnidadMedida" Nullable="false" />
-    <Property Type="Int32" Name="idMarca" Nullable="false" />
-    <Property Type="String" Name="codigo" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="200" />
-    <Property Type="String" Name="unidadMedida" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="marca" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="categoria" Nullable="false" MaxLength="50" />
-    <Property Type="Decimal" Name="saldo" Nullable="false" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="precioVenta" Nullable="false" Precision="18" Scale="0" />
     <Property Type="String" Name="usuarioRegistro" Nullable="false" MaxLength="50" />
     <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="23" />
     <Property Type="Int32" Name="estado" Nullable="false" />
@@ -326,6 +330,9 @@
     <Property Name="cantidad" Type="Int32" Nullable="false" />
     <Property Name="precioCompra" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
     <NavigationProperty Name="Compra" Relationship="LabFerreteriaModel.fk_DetCom_Com" FromRole="CompraDetalle" ToRole="Compra" />
+    <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Producto" Relationship="LabFerreteriaModel.fk_DetCom_Prod" FromRole="CompraDetalle" ToRole="Producto" />
   </EntityType>
   <Association Name="fk_DetCom_Com">
@@ -340,6 +347,35 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cedulaIdentidad" Type="Int64" Nullable="false" />
+    <Property Name="nombreCompleto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="tipo" Type="Int32" Nullable="false" />
+    <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ventas" Relationship="LabFerreteriaModel.FK_Venta_Cliente" FromRole="Cliente" ToRole="Venta" />
+  </EntityType>
+  <Association Name="FK_Venta_Cliente">
+    <End Type="LabFerreteriaModel.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="LabFerreteriaModel.Venta" Role="Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityType Name="Producto">
     <Key>
       <PropertyRef Name="id" />
@@ -350,8 +386,8 @@
     <Property Name="idMarca" Type="Int32" Nullable="false" />
     <Property Name="codigo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="saldo" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-    <Property Name="precioVenta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="precioVenta" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="estado" Type="Int32" Nullable="false" />
@@ -421,33 +457,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Cliente">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cedulaIdentidad" Type="Int64" Nullable="false" />
-    <Property Name="nombreCompleto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="tipo" Type="Int32" Nullable="false" />
-    <Property Name="usuarioRegistro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="estado" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Ventas" Relationship="LabFerreteriaModel.FK_Venta_Cliente" FromRole="Cliente" ToRole="Venta" />
-  </EntityType>
-  <Association Name="FK_Venta_Cliente">
-    <End Type="LabFerreteriaModel.Cliente" Role="Cliente" Multiplicity="1" />
-    <End Type="LabFerreteriaModel.Venta" Role="Venta" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cliente">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Venta">
-        <PropertyRef Name="idCliente" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <ComplexType Name="paProductoListar_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="idSubCategoria" Nullable="false" />
+    <Property Type="Int32" Name="idUnidadMedida" Nullable="false" />
+    <Property Type="Int32" Name="idMarca" Nullable="false" />
+    <Property Type="String" Name="codigo" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="unidadMedida" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="marca" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="categoria" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="cantidad" Nullable="false" />
+    <Property Type="Decimal" Name="precioVenta" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="usuarioRegistro" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="fechaRegistro" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="estado" Nullable="false" />
+  </ComplexType>
 </Schema>

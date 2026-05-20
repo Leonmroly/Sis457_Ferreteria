@@ -22,14 +22,14 @@
         <AssociationConnector Association="LabFerreteriaModel.fk_Com_Prov" />
         <EntityTypeShape EntityType="LabFerreteriaModel.CompraDetalle" Width="1.5" PointX="10.375" PointY="6.875" />
         <AssociationConnector Association="LabFerreteriaModel.fk_DetCom_Com" />
+        <EntityTypeShape EntityType="LabFerreteriaModel.Cliente" Width="1.5" PointX="10.875" PointY="11.125" />
+        <AssociationConnector Association="LabFerreteriaModel.FK_Venta_Cliente" />
         <EntityTypeShape EntityType="LabFerreteriaModel.Producto" Width="1.5" PointX="5.25" PointY="3.25" />
         <AssociationConnector Association="LabFerreteriaModel.fk_DetCom_Prod" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Prod_Marca" />
         <AssociationConnector Association="LabFerreteriaModel.fk_DetVen_Prod" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Prod_Sub" />
         <AssociationConnector Association="LabFerreteriaModel.fk_Prod_UM" />
-        <EntityTypeShape EntityType="LabFerreteriaModel.Cliente" Width="1.5" PointX="10.875" PointY="11.125" />
-        <AssociationConnector Association="LabFerreteriaModel.FK_Venta_Cliente" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -8,9 +8,9 @@ using System.Data.Entity;
 
 namespace ClnFerreteria
 {
+   
     public class CompraCln
     {
-
 
         public static List<CompraDto> listar()
         {
@@ -19,7 +19,7 @@ namespace ClnFerreteria
                 return context.Compras
                     .Include(x => x.Proveedor)
                     .Where(x => x.estado != -1)
-                    .ToList() // Descargamos los datos a la memoria de la aplicación
+                    .ToList()
                     .Select(x => new CompraDto
                     {
                         id = (int)x.id,
@@ -32,65 +32,101 @@ namespace ClnFerreteria
             }
         }
 
-        public static bool GuardarCompra(Compra compra, List<CompraDetalle> detalles)
+        public static bool GuardarCompra(Compra compra, List<CompraDetalle> detalles, out string mensajeError)
         {
+            mensajeError = string.Empty;
+            long idCompraNuevo = 0;
+
             try
             {
-                using (var context = new LabFerreteriaEntities())
+                // BLOQUE 1: Guardamos la cabecera con el SP
+                using (var context1 = new LabFerreteriaEntities())
                 {
-                    using (var transaction = context.Database.BeginTransaction())
+                    context1.paCompraGuardar(
+                        compra.idProveedor,
+                        compra.total,
+                        compra.usuarioRegistro ?? "SISTEMA"
+                    );
+
+                    context1.SaveChanges();
+                }
+
+                // BLOQUE 2: Guardamos el detalle apuntando al ID incremental más alto
+                using (var context2 = new LabFerreteriaEntities())
+                {
+                    // CAMBIO CLAVE: Ordenamos por ID de forma descendente. El ID más grande es SÍ O SÍ la compra actual.
+                    idCompraNuevo = context2.Compras
+                        .Where(x => x.idProveedor == compra.idProveedor)
+                        .OrderByDescending(x => x.id) // <--- Cambiado de 'fecha' a 'id'
+                        .Select(x => x.id)
+                        .FirstOrDefault();
+
+                    if (idCompraNuevo == 0)
                     {
-                        try
+                        mensajeError = "La compra se guardó, pero no se pudo recuperar el ID incremental generado.";
+                        return false;
+                    }
+
+                    // Procesamos e insertamos los detalles en la tabla secundaria
+                    foreach (var detalle in detalles)
+                    {
+                        var producto = context2.Set<Producto>().FirstOrDefault(x => x.id == detalle.idProducto);
+
+                        if (producto != null)
                         {
-                            context.Compras.Add(compra);
-                            context.SaveChanges();
+                            int cantidadComprada = Convert.ToInt32(detalle.cantidad);
+                            producto.cantidad += cantidadComprada;
 
-                            foreach (var detalle in detalles)
-                            {
-                                detalle.idCompra = compra.id;
-                                context.CompraDetalles.Add(detalle);
+                            detalle.idCompra = (int)idCompraNuevo; // Aseguramos que herede el ID correcto
+                            detalle.estado = 1;
+                            detalle.fechaRegistro = DateTime.Now;
+                            detalle.usuarioRegistro = compra.usuarioRegistro ?? "SISTEMA";
 
-                                var producto = context.Productoes.FirstOrDefault(x => x.id == detalle.idProducto);
-                                if (producto != null)
-                                {
-                                    producto.saldo += detalle.cantidad;
-                                }
-                            }
-
-                            context.SaveChanges();
-                            transaction.Commit();
-                            return true;
-                        }
-                        catch (Exception)
-                        {
-                            transaction.Rollback();
-                            throw;
+                            context2.Set<CompraDetalle>().Add(detalle);
                         }
                     }
+
+                    // Confirmamos la inserción de los detalles
+                    context2.SaveChanges();
+                    return true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Exception realEx = ex;
+                while (realEx.InnerException != null)
+                {
+                    realEx = realEx.InnerException;
+                }
+
+                mensajeError = "Fallo en detalles: " + realEx.Message;
                 return false;
             }
         }
 
         public static List<object> obtenerDetalle(int idCompra)
         {
-            using (var context = new LabFerreteriaEntities())
+            try
             {
-                return context.CompraDetalles
-                    .Where(x => x.idCompra == idCompra)
-                    .ToList() // Descargamos primero a memoria para evitar conflictos de contexto
-                    .Select(x => new
-                    {
-                        Producto = context.Productoes.FirstOrDefault(p => p.id == x.idProducto)?.descripcion ?? "Desconocido",
-                        Cantidad = x.cantidad,
-                        // CAMBIAMOS AQUÍ: x.precioCompra en lugar de x.precioUnitario
-                        PrecioUnitario = x.precioCompra,
-                        Subtotal = x.cantidad * x.precioCompra
-                    })
-                    .ToList<object>();
+                using (var context = new LabFerreteriaEntities())
+                {
+                    var consulta = from d in context.CompraDetalles
+                                   join p in context.Productoes on d.idProducto equals p.id
+                                   where d.idCompra == idCompra && d.estado == 1
+                                   select new
+                                   {
+                                       Producto = p.descripcion,
+                                       Cantidad = d.cantidad,
+                                       PrecioUnitario = d.precioCompra,
+                                       Subtotal = d.cantidad * d.precioCompra
+                                   };
+
+                    return consulta.ToList<object>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error interno en obtenerDetalle: " + ex.Message);
             }
         }
 

@@ -21,16 +21,16 @@ namespace CpFerreteria
 
         private void FrmCompraNuevo_Load(object sender, EventArgs e)
         {
-            dgvDetalle.DataSource = null;
-            dgvDetalle.Columns.Clear();
-            dgvDetalle.Columns.Add("idProducto", "ID");
-            dgvDetalle.Columns.Add("descripcion", "Producto");
-            dgvDetalle.Columns.Add("cantidad", "Cantidad");
-            dgvDetalle.Columns.Add("precioCompra", "Precio Unitario");
-            dgvDetalle.Columns.Add("subtotal", "Subtotal");
-            dgvDetalle.Columns["idProducto"].Visible = false;
+            dgvLista.DataSource = null;
+            dgvLista.Columns.Clear();
+            dgvLista.Columns.Add("idProducto", "ID");
+            dgvLista.Columns.Add("descripcion", "Producto");
+            dgvLista.Columns.Add("cantidad", "Cantidad");
+            dgvLista.Columns.Add("precioCompra", "Precio Unitario");
+            dgvLista.Columns.Add("subtotal", "Subtotal");
+            dgvLista.Columns["idProducto"].Visible = false;
 
-            dgvDetalle.AutoGenerateColumns = false;
+            dgvLista.AutoGenerateColumns = false;
             cargarCombos();
         }
 
@@ -49,12 +49,12 @@ namespace CpFerreteria
 
         private void limpiar()
         {
-            dgvDetalle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             cbxProveedor.SelectedIndex = -1;
             cbxProducto.SelectedIndex = -1;
             nudCantidad.Value = 0;
             nudPrecioCompra.Value = 0;
-            dgvDetalle.Rows.Clear();
+            dgvLista.Rows.Clear();
             lblTotal.Text = "TOTAL: 0.00";
         }
 
@@ -80,7 +80,7 @@ namespace CpFerreteria
             decimal precio = nudPrecioCompra.Value;
             decimal subtotal = cant * precio;
 
-            dgvDetalle.Rows.Add(idProd, nombreProd, cant, precio, subtotal);
+            dgvLista.Rows.Add(idProd, nombreProd, cant, precio, subtotal);
             CalcularTotal();
 
             cbxProducto.SelectedIndex = -1;
@@ -91,7 +91,7 @@ namespace CpFerreteria
         private void CalcularTotal()
         {
             decimal totalGeneral = 0;
-            foreach (DataGridViewRow fila in dgvDetalle.Rows)
+            foreach (DataGridViewRow fila in dgvLista.Rows)
             {
                 if (fila.Cells["subtotal"].Value != null)
                 {
@@ -104,59 +104,88 @@ namespace CpFerreteria
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (cbxProveedor.SelectedIndex == -1)
-            {
-                MessageBox.Show("Debe seleccionar un proveedor para la compra.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (dgvDetalle.Rows.Count == 0)
-            {
-                MessageBox.Show("El carrito de compras está vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             try
             {
-                var nuevaCompra = new Compra()
+                if (dgvLista.Rows.Count == 0)
                 {
-                    idProveedor = Convert.ToInt32(cbxProveedor.SelectedValue),
-                    fecha = DateTime.Now,
-                    total = Convert.ToDecimal(lblTotal.Text.Replace("TOTAL: ", "").Trim()),
-                    usuarioRegistro = Util.usuario.usuario1,
-                    estado = 1
-                };
-
-                List<CompraDetalle> listaDetalles = new List<CompraDetalle>();
-
-                foreach (DataGridViewRow fila in dgvDetalle.Rows)
-                {
-                    if (fila.Cells["idProducto"].Value != null)
-                    {
-                        var detalle = new CompraDetalle()
-                        {
-                            idProducto = Convert.ToInt32(fila.Cells["idProducto"].Value),
-                            cantidad = Convert.ToInt32(fila.Cells["cantidad"].Value),
-                            precioCompra = Convert.ToDecimal(fila.Cells["precioCompra"].Value)
-                        };
-                        listaDetalles.Add(detalle);
-                    }
+                    MessageBox.Show("Debe agregar al menos un producto al carrito.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
-                bool exito = CompraCln.GuardarCompra(nuevaCompra, listaDetalles);
+                List<CompraDetalle> listaDetalles = new List<CompraDetalle>();
+                decimal totalAcumuladoCompra = 0; // <--- AQUÍ VAMOS A SUMAR EL TOTAL REAL
+
+                // 1. RECORRIDO ULTRA SEGURO DE LAS FILAS
+                foreach (DataGridViewRow fila in dgvLista.Rows)
+                {
+                    if (fila.IsNewRow) continue;
+
+                    if (fila.Cells["idProducto"].Value == null || string.IsNullOrEmpty(fila.Cells["idProducto"].Value.ToString()))
+                        continue;
+
+                    int cantidad = 0;
+                    if (fila.Cells["cantidad"].Value != null)
+                    {
+                        int.TryParse(fila.Cells["cantidad"].Value.ToString(), out cantidad);
+                    }
+
+                    decimal precio = 0;
+                    if (fila.Cells["precioCompra"].Value != null)
+                    {
+                        // Limpieza de caracteres extraños para el precio unitario
+                        string precioTexto = fila.Cells["precioCompra"].Value.ToString().Replace("$", "").Trim();
+                        decimal.TryParse(precioTexto, out precio);
+                    }
+
+                    if (cantidad == 0) continue;
+
+                    // Calculamos el subtotal de esta fila y lo sumamos al total general de la compra
+                    totalAcumuladoCompra += (cantidad * precio);
+
+                    CompraDetalle detalle = new CompraDetalle
+                    {
+                        idProducto = Convert.ToInt32(fila.Cells["idProducto"].Value),
+                        cantidad = cantidad,
+                        precioCompra = precio,
+                        estado = 1
+                    };
+
+                    listaDetalles.Add(detalle);
+                }
+
+                if (listaDetalles.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron productos válidos con cantidades numéricas en el carrito.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 2. INSTANCIAMOS EL MAESTRO PASANDO EL TOTAL CALCULADO POR C#
+                Compra compra = new Compra
+                {
+                    idProveedor = Convert.ToInt32(cbxProveedor.SelectedValue),
+                    total = totalAcumuladoCompra, // <--- ADIÓS AL TXTTOTAL.TEXT, AHORA ES MATEMÁTICA PURA
+                    usuarioRegistro = "Iroly",
+                    estado = 1,
+                    fecha = DateTime.Now
+                };
+
+                // 3. ENVIAMOS A GUARDAR
+                string mensajeError = string.Empty;
+                bool exito = CompraCln.GuardarCompra(compra, listaDetalles, out mensajeError);
 
                 if (exito)
                 {
                     MessageBox.Show("¡Compra registrada y stock actualizado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close(); // Cierra esta ventana y regresa al menú principal automáticamente limpio
+                    this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Hubo un problema al guardar en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"No se pudo guardar la compra: {mensajeError}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error crítico: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error en el formulario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

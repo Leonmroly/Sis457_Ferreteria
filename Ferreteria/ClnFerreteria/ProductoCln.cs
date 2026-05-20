@@ -31,11 +31,9 @@ namespace ClnFerreteria
                     existente.codigo = producto.codigo;
                     existente.descripcion = producto.descripcion;
                     existente.idUnidadMedida = producto.idUnidadMedida;
-                    existente.saldo = producto.saldo;
+                    existente.cantidad = producto.cantidad;
                     existente.precioVenta = producto.precioVenta;
                     existente.usuarioRegistro = producto.usuarioRegistro;
-
-                    // FALTABAN ESTAS LÍNEAS PARA ACTUALIZAR LAS RELACIONES
                     existente.idMarca = producto.idMarca;
                     existente.idSubCategoria = producto.idSubCategoria;
 
@@ -89,5 +87,6 @@ namespace ClnFerreteria
 
             }
         }
+
     }
 }

@@ -45,9 +45,9 @@
             this.lblMarca = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.nudPrecioVenta = new System.Windows.Forms.NumericUpDown();
-            this.nudSaldo = new System.Windows.Forms.NumericUpDown();
+            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.lblPrecioVenta = new System.Windows.Forms.Label();
-            this.lblSaldo = new System.Windows.Forms.Label();
+            this.lblCantidad = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.cbxUnidadMedida = new System.Windows.Forms.ComboBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
@@ -57,7 +57,7 @@
             this.erpCodigo = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpUnidadMedida = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpDescripcion = new System.Windows.Forms.ErrorProvider(this.components);
-            this.erpSaldo = new System.Windows.Forms.ErrorProvider(this.components);
+            this.erpCantidad = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpPrecioVenta = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnBuscar = new System.Windows.Forms.Button();
             this.cbxMarca = new System.Windows.Forms.ComboBox();
@@ -68,11 +68,11 @@
             this.pnlAcciones.SuspendLayout();
             this.gbxDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioVenta)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSaldo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.erpCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.erpUnidadMedida)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.erpDescripcion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.erpSaldo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.erpCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.erpPrecioVenta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -202,9 +202,9 @@
             this.gbxDatos.Controls.Add(this.lblMarca);
             this.gbxDatos.Controls.Add(this.btnCancelar);
             this.gbxDatos.Controls.Add(this.nudPrecioVenta);
-            this.gbxDatos.Controls.Add(this.nudSaldo);
+            this.gbxDatos.Controls.Add(this.nudCantidad);
             this.gbxDatos.Controls.Add(this.lblPrecioVenta);
-            this.gbxDatos.Controls.Add(this.lblSaldo);
+            this.gbxDatos.Controls.Add(this.lblCantidad);
             this.gbxDatos.Controls.Add(this.txtDescripcion);
             this.gbxDatos.Controls.Add(this.cbxUnidadMedida);
             this.gbxDatos.Controls.Add(this.txtCodigo);
@@ -261,12 +261,12 @@
             this.nudPrecioVenta.Size = new System.Drawing.Size(136, 26);
             this.nudPrecioVenta.TabIndex = 17;
             // 
-            // nudSaldo
+            // nudCantidad
             // 
-            this.nudSaldo.Location = new System.Drawing.Point(522, 20);
-            this.nudSaldo.Name = "nudSaldo";
-            this.nudSaldo.Size = new System.Drawing.Size(136, 26);
-            this.nudSaldo.TabIndex = 16;
+            this.nudCantidad.Location = new System.Drawing.Point(522, 20);
+            this.nudCantidad.Name = "nudCantidad";
+            this.nudCantidad.Size = new System.Drawing.Size(136, 26);
+            this.nudCantidad.TabIndex = 16;
             // 
             // lblPrecioVenta
             // 
@@ -278,15 +278,15 @@
             this.lblPrecioVenta.TabIndex = 15;
             this.lblPrecioVenta.Text = "Precio de Venta:";
             // 
-            // lblSaldo
+            // lblCantidad
             // 
-            this.lblSaldo.AutoSize = true;
-            this.lblSaldo.Location = new System.Drawing.Point(356, 25);
-            this.lblSaldo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblSaldo.Name = "lblSaldo";
-            this.lblSaldo.Size = new System.Drawing.Size(54, 20);
-            this.lblSaldo.TabIndex = 14;
-            this.lblSaldo.Text = "Saldo:";
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Location = new System.Drawing.Point(356, 25);
+            this.lblCantidad.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(77, 20);
+            this.lblCantidad.TabIndex = 14;
+            this.lblCantidad.Text = "Cantidad:";
             // 
             // txtDescripcion
             // 
@@ -357,9 +357,9 @@
             // 
             this.erpDescripcion.ContainerControl = this;
             // 
-            // erpSaldo
+            // erpCantidad
             // 
-            this.erpSaldo.ContainerControl = this;
+            this.erpCantidad.ContainerControl = this;
             // 
             // erpPrecioVenta
             // 
@@ -437,11 +437,11 @@
             this.gbxDatos.ResumeLayout(false);
             this.gbxDatos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioVenta)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSaldo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.erpCodigo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.erpUnidadMedida)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.erpDescripcion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.erpSaldo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.erpCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.erpPrecioVenta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -468,16 +468,16 @@
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.ComboBox cbxUnidadMedida;
         private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.Label lblSaldo;
+        private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Label lblPrecioVenta;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.NumericUpDown nudPrecioVenta;
-        private System.Windows.Forms.NumericUpDown nudSaldo;
+        private System.Windows.Forms.NumericUpDown nudCantidad;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.ErrorProvider erpCodigo;
         private System.Windows.Forms.ErrorProvider erpUnidadMedida;
         private System.Windows.Forms.ErrorProvider erpDescripcion;
-        private System.Windows.Forms.ErrorProvider erpSaldo;
+        private System.Windows.Forms.ErrorProvider erpCantidad;
         private System.Windows.Forms.ErrorProvider erpPrecioVenta;
         private System.Windows.Forms.ComboBox cbxCategoria;
         private System.Windows.Forms.ComboBox cbxMarca;

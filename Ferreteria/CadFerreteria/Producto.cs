@@ -27,7 +27,7 @@ namespace CadFerreteria
         public int idMarca { get; set; }
         public string codigo { get; set; }
         public string descripcion { get; set; }
-        public decimal saldo { get; set; }
+        public int cantidad { get; set; }
         public decimal precioVenta { get; set; }
         public string usuarioRegistro { get; set; }
         public System.DateTime fechaRegistro { get; set; }

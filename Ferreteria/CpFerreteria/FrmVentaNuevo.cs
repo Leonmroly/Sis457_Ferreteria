@@ -117,52 +117,55 @@ namespace CpFerreteria
             try
             {
                 string usuarioActual = Util.usuario != null ? Util.usuario.usuario1 : "Cajero";
+                List<VentaDetalle> listaDetalles = new List<VentaDetalle>();
+                decimal totalAcumuladoVenta = 0; // Calculamos el total puro en C#
 
-                // 1. CREAMOS LA VENTA CON SU FECHA REAL OBLIGATORIA
+                // 1. RECORREMOS EL CARRITO PARA ARMAR LOS DETALLES
+                foreach (DataGridViewRow fila in dgvDetalle.Rows)
+                {
+                    if (fila.Cells["idProducto"].Value == null || string.IsNullOrEmpty(fila.Cells["idProducto"].Value.ToString()))
+                        continue;
+
+                    int cantidad = Convert.ToInt32(fila.Cells["cantidad"].Value);
+                    decimal precio = Convert.ToDecimal(fila.Cells["precioVenta"].Value);
+
+                    // Sumamos al total general de la venta
+                    totalAcumuladoVenta += (cantidad * precio);
+
+                    var detalle = new VentaDetalle()
+                    {
+                        idProducto = Convert.ToInt32(fila.Cells["idProducto"].Value),
+                        cantidad = cantidad,
+                        precioUnitario = precio, // Mapeo correcto según tu propiedad de BD
+                        usuarioRegistro = usuarioActual,
+                        estado = 1
+                    };
+                    listaDetalles.Add(detalle);
+                }
+
+                // 2. CREAMOS LA VENTA CON EL TOTAL CALCULADO
                 var nuevaVenta = new Venta()
                 {
                     idCliente = Convert.ToInt32(cbxCliente.SelectedValue),
-                    fecha = DateTime.Now, // <--- Aquí le mandamos la fecha actual a la Venta
-                    total = Convert.ToDecimal(lblTotal.Text.Replace("TOTAL: ", "").Trim()),
+                    fecha = DateTime.Now,
+                    total = totalAcumuladoVenta, // Adiós problemas de texto
                     usuarioRegistro = usuarioActual,
                     estado = 1
                 };
 
-                List<VentaDetalle> listaDetalles = new List<VentaDetalle>();
-
-                // 2. RECORREMOS EL CARRITO PARA ARMAR LOS DETALLES
-                foreach (DataGridViewRow fila in dgvDetalle.Rows)
-                {
-                    if (fila.Cells["idProducto"].Value != null)
-                    {
-                        var detalle = new VentaDetalle()
-                        {
-                            idProducto = Convert.ToInt32(fila.Cells["idProducto"].Value),
-                            cantidad = Convert.ToInt32(fila.Cells["cantidad"].Value),
-                            precioUnitario = Convert.ToDecimal(fila.Cells["precioVenta"].Value), // El control visual es precioVenta, pero la propiedad de la BD es precioUnitario
-                            usuarioRegistro = usuarioActual,
-                            estado = 1
-                        };
-                        listaDetalles.Add(detalle);
-                    }
-                }
-
-                // 3. ENVIAMOS A LA CAPA LÓGICA
+                // 3. ENVIAMOS A LA CAPA LÓGICA CAPTURANDO EL BOOLEANO CORRETO
                 string msgError = "";
-                int resultado = VentaCln.GuardarVenta(nuevaVenta, listaDetalles, out msgError);
+                bool exito = VentaCln.GuardarVenta(nuevaVenta, listaDetalles, out msgError);
 
-                if (resultado == 1)
+                if (exito)
                 {
                     MessageBox.Show("¡Venta registrada y stock actualizado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
-                else if (resultado == 0)
-                {
-                    MessageBox.Show(msgError, "Stock Insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
                 else
                 {
-                    MessageBox.Show($"No se pudo guardar la venta: {msgError}", "Error de Servidor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Si el método falló por stock insuficiente o error SQL, salta aquí
+                    MessageBox.Show($"No se pudo registrar la venta:\n{msgError}", "Validación / Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)

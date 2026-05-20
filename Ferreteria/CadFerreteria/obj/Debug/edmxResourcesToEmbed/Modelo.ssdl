@@ -46,6 +46,9 @@
     <Property Name="idProducto" Type="int" Nullable="false" />
     <Property Name="cantidad" Type="int" Nullable="false" />
     <Property Name="precioCompra" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="usuarioRegistro" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="estado" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Empleado">
     <Key>
@@ -84,8 +87,8 @@
     <Property Name="idMarca" Type="int" Nullable="false" />
     <Property Name="codigo" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
-    <Property Name="saldo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="precioVenta" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="precioVenta" Type="decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="usuarioRegistro" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
     <Property Name="estado" Type="int" Nullable="false" />
@@ -165,6 +168,18 @@
     <Property Name="estado" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="fk_Com_Prov">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+    <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Compra">
+        <PropertyRef Name="idProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Compra_Proveedor">
     <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
     <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
     <ReferentialConstraint>
@@ -284,6 +299,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_Ven_Cli">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_Ven_Usu">
     <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
     <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
@@ -296,20 +323,22 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Venta_Cliente">
-    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cliente">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Venta">
-        <PropertyRef Name="idCliente" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Function Name="paCategoriaListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="parametro" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="paClienteGuardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cedulaIdentidad" Type="bigint" Mode="In" />
+    <Parameter Name="nombreCompleto" Type="varchar" Mode="In" />
+    <Parameter Name="direccion" Type="varchar" Mode="In" />
+    <Parameter Name="telefono" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+    <Parameter Name="tipo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="paCompraGuardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idProveedor" Type="int" Mode="In" />
+    <Parameter Name="total" Type="decimal" Mode="In" />
+    <Parameter Name="usuarioRegistro" Type="varchar" Mode="In" />
   </Function>
   <Function Name="paMarcaListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="parametro" Type="varchar" Mode="In" />
@@ -317,14 +346,20 @@
   <Function Name="paProductoListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="parametro" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="paProveedorGuardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nit" Type="bigint" Mode="In" />
+    <Parameter Name="razonSocial" Type="varchar" Mode="In" />
+    <Parameter Name="direccion" Type="varchar" Mode="In" />
+    <Parameter Name="telefono" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="paUnidadMedidaListar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="parametro" Type="varchar" Mode="In" />
   </Function>
   <Function Name="paVentaGuardar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
     <Parameter Name="idCliente" Type="int" Mode="In" />
-    <Parameter Name="usuarioRegistro" Type="varchar" Mode="In" />
     <Parameter Name="total" Type="decimal" Mode="In" />
-    <Parameter Name="idVenta" Type="bigint" Mode="InOut" />
   </Function>
   <EntityContainer Name="LabFerreteriaModelStoreContainer">
     <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
@@ -341,6 +376,10 @@
     <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VentaDetalle" EntityType="Self.VentaDetalle" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="fk_Com_Prov" Association="Self.fk_Com_Prov">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="Compra" EntitySet="Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Compra_Proveedor" Association="Self.FK_Compra_Proveedor">
       <End Role="Proveedor" EntitySet="Proveedor" />
       <End Role="Compra" EntitySet="Compra" />
     </AssociationSet>
@@ -380,12 +419,12 @@
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Usuario" EntitySet="Usuario" />
     </AssociationSet>
-    <AssociationSet Name="fk_Ven_Usu" Association="Self.fk_Ven_Usu">
-      <End Role="Usuario" EntitySet="Usuario" />
+    <AssociationSet Name="fk_Ven_Cli" Association="Self.fk_Ven_Cli">
+      <End Role="Cliente" EntitySet="Cliente" />
       <End Role="Venta" EntitySet="Venta" />
     </AssociationSet>
-    <AssociationSet Name="FK_Venta_Cliente" Association="Self.FK_Venta_Cliente">
-      <End Role="Cliente" EntitySet="Cliente" />
+    <AssociationSet Name="fk_Ven_Usu" Association="Self.fk_Ven_Usu">
+      <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Venta" EntitySet="Venta" />
     </AssociationSet>
   </EntityContainer>
