@@ -1,19 +1,4 @@
 <<<<<<< HEAD
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\ClnFerreteria.dll.config
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\ClnFerreteria.dll
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\ClnFerreteria.pdb
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\CadFerreteria.dll
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\EntityFramework.dll
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\CadFerreteria.pdb
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\CadFerreteria.dll.config
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\EntityFramework.xml
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.csproj.AssemblyReference.cache
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.csproj.CoreCompileInputs.cache
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerre.36DAAECF.Up2Date
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.dll
-C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.pdb
 =======
 C:\Users\RL\OneDrive\Documents\SIS-457\sis457_Leon_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\ClnFerreteria.dll
 C:\Users\RL\OneDrive\Documents\SIS-457\sis457_Leon_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\ClnFerreteria.pdb
@@ -52,3 +37,18 @@ C:\Users\install\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerre.3
 C:\Users\install\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.dll
 C:\Users\install\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.pdb
 >>>>>>> 499936b1a8d072409d0c5f959ee0922e42ed5d86
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\ClnFerreteria.dll.config
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\ClnFerreteria.dll
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\ClnFerreteria.pdb
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\CadFerreteria.dll
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\EntityFramework.dll
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\CadFerreteria.pdb
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\CadFerreteria.dll.config
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\EntityFramework.xml
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.csproj.AssemblyReference.cache
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.csproj.CoreCompileInputs.cache
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerre.36DAAECF.Up2Date
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.dll
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\ClnFerreteria\obj\Debug\ClnFerreteria.pdb

@@ -23,7 +23,6 @@ namespace ClnFerreteria
                 cliente.fechaRegistro = DateTime.Now;
                 cliente.estado = 1;
 
-                // Si desde el Form ya viene con tipo 2, lo respetamos
                 if (esCuentaNueva)
                 {
                     cliente.tipo = 2;
@@ -61,8 +60,6 @@ namespace ClnFerreteria
                     existente.telefono = cliente.telefono;
                     existente.email = cliente.email;
 
-                    // LÓGICA DE CUENTA REFORZADA
-                    // Si el password que viene no es nulo, actualizamos y aseguramos tipo 2
                     if (!string.IsNullOrWhiteSpace(cliente.password))
                     {
                         existente.password = cliente.password;
@@ -70,7 +67,6 @@ namespace ClnFerreteria
                     }
                     else
                     {
-                        // Si borraron la clave en el form, vuelve a ser cliente normal
                         existente.tipo = 1;
                         existente.password = null;
                     }
@@ -99,11 +95,21 @@ namespace ClnFerreteria
 
         public static List<Cliente> listar()
         {
-            using (var context = new LabFerreteriaEntities())
+            try
             {
-                return context.Clientes
-                    .Where(x => x.estado == 1)
-                    .ToList();
+                using (var context = new LabFerreteriaEntities())
+                {
+                    context.Configuration.LazyLoadingEnabled = false;
+                    context.Configuration.ProxyCreationEnabled = false;
+
+                    var resultado = context.Set<Cliente>().Where(x => x.estado != -1).ToList();
+
+                    return resultado;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al recuperar el listado de clientes: " + ex.Message);
             }
         }
 
