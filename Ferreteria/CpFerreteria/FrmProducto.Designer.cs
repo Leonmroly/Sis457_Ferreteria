@@ -94,19 +94,19 @@
             this.dgvLista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvLista.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLista.Location = new System.Drawing.Point(8, 27);
+            this.dgvLista.Location = new System.Drawing.Point(8, 20);
             this.dgvLista.Margin = new System.Windows.Forms.Padding(5);
             this.dgvLista.MultiSelect = false;
             this.dgvLista.Name = "dgvLista";
             this.dgvLista.ReadOnly = true;
             this.dgvLista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLista.Size = new System.Drawing.Size(702, 125);
+            this.dgvLista.Size = new System.Drawing.Size(702, 149);
             this.dgvLista.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 49);
+            this.label1.Location = new System.Drawing.Point(8, 39);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(227, 20);
@@ -115,7 +115,7 @@
             // 
             // txtParametro
             // 
-            this.txtParametro.Location = new System.Drawing.Point(249, 46);
+            this.txtParametro.Location = new System.Drawing.Point(243, 36);
             this.txtParametro.MaxLength = 50;
             this.txtParametro.Name = "txtParametro";
             this.txtParametro.Size = new System.Drawing.Size(364, 26);
@@ -126,9 +126,9 @@
             // gbxLista
             // 
             this.gbxLista.Controls.Add(this.dgvLista);
-            this.gbxLista.Location = new System.Drawing.Point(12, 85);
+            this.gbxLista.Location = new System.Drawing.Point(12, 68);
             this.gbxLista.Name = "gbxLista";
-            this.gbxLista.Size = new System.Drawing.Size(718, 160);
+            this.gbxLista.Size = new System.Drawing.Size(718, 177);
             this.gbxLista.TabIndex = 5;
             this.gbxLista.TabStop = false;
             this.gbxLista.Text = "Lista de Productos";
@@ -369,7 +369,7 @@
             // 
             this.btnBuscar.Image = global::CpFerreteria.Properties.Resources.search;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(631, 39);
+            this.btnBuscar.Location = new System.Drawing.Point(631, 29);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(99, 40);
             this.btnBuscar.TabIndex = 4;

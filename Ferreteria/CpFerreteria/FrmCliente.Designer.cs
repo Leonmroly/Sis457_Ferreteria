@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCliente));
             this.lblTitulo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtParametro = new System.Windows.Forms.TextBox();
@@ -41,6 +42,8 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.gbxDatos = new System.Windows.Forms.GroupBox();
+            this.txtClave = new System.Windows.Forms.TextBox();
+            this.cbCrearCuenta = new System.Windows.Forms.CheckBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
@@ -56,8 +59,6 @@
             this.lblNombreCompleto = new System.Windows.Forms.Label();
             this.erpCi = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpNombre = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cbCrearCuenta = new System.Windows.Forms.CheckBox();
-            this.txtClave = new System.Windows.Forms.TextBox();
             this.erpClave = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpEmail = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbxLista.SuspendLayout();
@@ -84,7 +85,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 41);
+            this.label1.Location = new System.Drawing.Point(16, 34);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 20);
@@ -93,7 +94,7 @@
             // 
             // txtParametro
             // 
-            this.txtParametro.Location = new System.Drawing.Point(222, 38);
+            this.txtParametro.Location = new System.Drawing.Point(222, 31);
             this.txtParametro.MaxLength = 50;
             this.txtParametro.Name = "txtParametro";
             this.txtParametro.Size = new System.Drawing.Size(364, 26);
@@ -104,7 +105,7 @@
             // 
             this.btnBuscar.Image = global::CpFerreteria.Properties.Resources.search;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(622, 31);
+            this.btnBuscar.Location = new System.Drawing.Point(623, 24);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(99, 40);
             this.btnBuscar.TabIndex = 5;
@@ -115,9 +116,9 @@
             // gbxLista
             // 
             this.gbxLista.Controls.Add(this.dgvLista);
-            this.gbxLista.Location = new System.Drawing.Point(12, 77);
+            this.gbxLista.Location = new System.Drawing.Point(12, 63);
             this.gbxLista.Name = "gbxLista";
-            this.gbxLista.Size = new System.Drawing.Size(718, 160);
+            this.gbxLista.Size = new System.Drawing.Size(718, 174);
             this.gbxLista.TabIndex = 6;
             this.gbxLista.TabStop = false;
             this.gbxLista.Text = "Lista de Clientes";
@@ -126,16 +127,16 @@
             // 
             this.dgvLista.AllowUserToAddRows = false;
             this.dgvLista.AllowUserToDeleteRows = false;
-            this.dgvLista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvLista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvLista.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLista.Location = new System.Drawing.Point(8, 27);
+            this.dgvLista.Location = new System.Drawing.Point(8, 20);
             this.dgvLista.Margin = new System.Windows.Forms.Padding(5);
             this.dgvLista.MultiSelect = false;
             this.dgvLista.Name = "dgvLista";
             this.dgvLista.ReadOnly = true;
             this.dgvLista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLista.Size = new System.Drawing.Size(702, 125);
+            this.dgvLista.Size = new System.Drawing.Size(702, 146);
             this.dgvLista.TabIndex = 1;
             // 
             // pnlAcciones
@@ -224,6 +225,23 @@
             this.gbxDatos.TabIndex = 8;
             this.gbxDatos.TabStop = false;
             this.gbxDatos.Text = "Datos";
+            // 
+            // txtClave
+            // 
+            this.txtClave.Location = new System.Drawing.Point(148, 119);
+            this.txtClave.Name = "txtClave";
+            this.txtClave.Size = new System.Drawing.Size(144, 26);
+            this.txtClave.TabIndex = 28;
+            // 
+            // cbCrearCuenta
+            // 
+            this.cbCrearCuenta.AutoSize = true;
+            this.cbCrearCuenta.Location = new System.Drawing.Point(10, 121);
+            this.cbCrearCuenta.Name = "cbCrearCuenta";
+            this.cbCrearCuenta.Size = new System.Drawing.Size(132, 24);
+            this.cbCrearCuenta.TabIndex = 27;
+            this.cbCrearCuenta.Text = "Crear Cuenta?";
+            this.cbCrearCuenta.UseVisualStyleBackColor = true;
             // 
             // txtEmail
             // 
@@ -358,23 +376,6 @@
             // 
             this.erpNombre.ContainerControl = this;
             // 
-            // cbCrearCuenta
-            // 
-            this.cbCrearCuenta.AutoSize = true;
-            this.cbCrearCuenta.Location = new System.Drawing.Point(10, 121);
-            this.cbCrearCuenta.Name = "cbCrearCuenta";
-            this.cbCrearCuenta.Size = new System.Drawing.Size(132, 24);
-            this.cbCrearCuenta.TabIndex = 27;
-            this.cbCrearCuenta.Text = "Crear Cuenta?";
-            this.cbCrearCuenta.UseVisualStyleBackColor = true;
-            // 
-            // txtClave
-            // 
-            this.txtClave.Location = new System.Drawing.Point(148, 119);
-            this.txtClave.Name = "txtClave";
-            this.txtClave.Size = new System.Drawing.Size(144, 26);
-            this.txtClave.TabIndex = 28;
-            // 
             // erpClave
             // 
             this.erpClave.ContainerControl = this;
@@ -396,8 +397,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitulo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "::: Ferreteria - Cliente :::";
             this.Load += new System.EventHandler(this.FrmCliente_Load);
             this.gbxLista.ResumeLayout(false);

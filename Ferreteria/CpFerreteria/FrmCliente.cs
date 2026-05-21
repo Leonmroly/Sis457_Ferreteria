@@ -38,10 +38,10 @@ namespace CpFerreteria
 
             // Nombres para humanos
             dgvLista.Columns["cedulaIdentidad"].HeaderText = "C.I.";
-            dgvLista.Columns["nombreCompleto"].HeaderText = "Cliente / Razón Social";
+            dgvLista.Columns["nombreCompleto"].HeaderText = "Cliente";
             dgvLista.Columns["telefono"].HeaderText = "Celular/Tel.";
-            dgvLista.Columns["direccion"].HeaderText = "Dirección de Envío";
-            dgvLista.Columns["email"].HeaderText = "Correo / Usuario"; // El email sirve de Login
+            dgvLista.Columns["direccion"].HeaderText = "Dirección";
+            dgvLista.Columns["email"].HeaderText = "Correo/Usuario"; // El email sirve de Login
             dgvLista.Columns["usuarioRegistro"].HeaderText = "Atendido por";
         }
 

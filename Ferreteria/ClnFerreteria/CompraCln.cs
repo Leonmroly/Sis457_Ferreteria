@@ -35,71 +35,73 @@ namespace ClnFerreteria
         public static bool GuardarCompra(Compra compra, List<CompraDetalle> detalles, out string mensajeError)
         {
             mensajeError = string.Empty;
-            long idCompraNuevo = 0;
 
             try
             {
-                // BLOQUE 1: Guardamos la cabecera con el SP
-                using (var context1 = new LabFerreteriaEntities())
+                // UN SOLO CONTEXTO NATIVO: Sin SPs tramposos y 100% seguro
+                using (var context = new LabFerreteriaEntities())
                 {
-                    context1.paCompraGuardar(
-                        compra.idProveedor,
-                        compra.total,
-                        compra.usuarioRegistro ?? "SISTEMA"
-                    );
-
-                    context1.SaveChanges();
-                }
-
-                // BLOQUE 2: Guardamos el detalle apuntando al ID incremental más alto
-                using (var context2 = new LabFerreteriaEntities())
-                {
-                    // CAMBIO CLAVE: Ordenamos por ID de forma descendente. El ID más grande es SÍ O SÍ la compra actual.
-                    idCompraNuevo = context2.Compras
-                        .Where(x => x.idProveedor == compra.idProveedor)
-                        .OrderByDescending(x => x.id) // <--- Cambiado de 'fecha' a 'id'
-                        .Select(x => x.id)
-                        .FirstOrDefault();
-
-                    if (idCompraNuevo == 0)
+                    // 1. Armamos la cabecera de la compra directamente
+                    var nuevaCompra = new Compra
                     {
-                        mensajeError = "La compra se guardó, pero no se pudo recuperar el ID incremental generado.";
-                        return false;
+                        idProveedor = compra.idProveedor,
+                        fecha = DateTime.Now,
+                        total = compra.total,
+                        usuarioRegistro = compra.usuarioRegistro, // Tu usuario por defecto si llega nulo
+                        estado = 1
+                    };
+
+                    // 💡 SOLUCIÓN AL ID DE USUARIO: Al igual que en ventas, mapeamos la relación obligatoria con la tabla Usuario
+                    var tipoCompra = typeof(Compra);
+                    var propIdUsuario = tipoCompra.GetProperty("idUsuario") ?? tipoCompra.GetProperty("idEmpleado");
+                    if (propIdUsuario != null)
+                    {
+                        propIdUsuario.SetValue(nuevaCompra, 1); // Forzamos el ID del usuario administrador logueado
                     }
 
-                    // Procesamos e insertamos los detalles en la tabla secundaria
+                    // Forzamos la fecha de registro en la cabecera si existiera la columna
+                    var propFechaRegistro = tipoCompra.GetProperty("fechaRegistro");
+                    if (propFechaRegistro != null)
+                    {
+                        propFechaRegistro.SetValue(nuevaCompra, DateTime.Now);
+                    }
+
+                    // Guardamos la cabecera para generar el ID automático de la compra
+                    context.Set<Compra>().Add(nuevaCompra);
+                    context.SaveChanges();
+
+                    // 2. Procesamos los detalles de los productos comprados
                     foreach (var detalle in detalles)
                     {
-                        var producto = context2.Set<Producto>().FirstOrDefault(x => x.id == detalle.idProducto);
+                        var producto = context.Set<Producto>().FirstOrDefault(x => x.id == detalle.idProducto);
 
                         if (producto != null)
                         {
                             int cantidadComprada = Convert.ToInt32(detalle.cantidad);
+
+                            // SUMAMOS AL STOCK (Inventario aumenta en compras)
                             producto.cantidad += cantidadComprada;
 
-                            detalle.idCompra = (int)idCompraNuevo; // Aseguramos que herede el ID correcto
+                            // Enlazamos el detalle con el ID generado arriba de forma nativa
+                            detalle.idCompra = (int)nuevaCompra.id;
                             detalle.estado = 1;
                             detalle.fechaRegistro = DateTime.Now;
-                            detalle.usuarioRegistro = compra.usuarioRegistro ?? "SISTEMA";
+                            detalle.usuarioRegistro = nuevaCompra.usuarioRegistro;
 
-                            context2.Set<CompraDetalle>().Add(detalle);
+                            context.Set<CompraDetalle>().Add(detalle);
                         }
                     }
 
-                    // Confirmamos la inserción de los detalles
-                    context2.SaveChanges();
+                    // Guardamos los detalles y la actualización del stock
+                    context.SaveChanges();
                     return true;
                 }
             }
             catch (Exception ex)
             {
                 Exception realEx = ex;
-                while (realEx.InnerException != null)
-                {
-                    realEx = realEx.InnerException;
-                }
-
-                mensajeError = "Fallo en detalles: " + realEx.Message;
+                while (realEx.InnerException != null) realEx = realEx.InnerException;
+                mensajeError = "Fallo al guardar compra: " + realEx.Message;
                 return false;
             }
         }

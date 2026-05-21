@@ -112,8 +112,11 @@ namespace CpFerreteria
                     return;
                 }
 
+                // 💡 CAPTURAMOS EL USUARIO DE SESIÓN DINÁMICO (Exactamente igual que en Ventas)
+                string usuarioActual = Util.usuario != null ? Util.usuario.usuario1 : "Comprador";
+
                 List<CompraDetalle> listaDetalles = new List<CompraDetalle>();
-                decimal totalAcumuladoCompra = 0; // <--- AQUÍ VAMOS A SUMAR EL TOTAL REAL
+                decimal totalAcumuladoCompra = 0;
 
                 // 1. RECORRIDO ULTRA SEGURO DE LAS FILAS
                 foreach (DataGridViewRow fila in dgvLista.Rows)
@@ -132,14 +135,12 @@ namespace CpFerreteria
                     decimal precio = 0;
                     if (fila.Cells["precioCompra"].Value != null)
                     {
-                        // Limpieza de caracteres extraños para el precio unitario
                         string precioTexto = fila.Cells["precioCompra"].Value.ToString().Replace("$", "").Trim();
                         decimal.TryParse(precioTexto, out precio);
                     }
 
                     if (cantidad == 0) continue;
 
-                    // Calculamos el subtotal de esta fila y lo sumamos al total general de la compra
                     totalAcumuladoCompra += (cantidad * precio);
 
                     CompraDetalle detalle = new CompraDetalle
@@ -147,6 +148,7 @@ namespace CpFerreteria
                         idProducto = Convert.ToInt32(fila.Cells["idProducto"].Value),
                         cantidad = cantidad,
                         precioCompra = precio,
+                        usuarioRegistro = usuarioActual, // Inyectamos el usuario real al detalle
                         estado = 1
                     };
 
@@ -159,12 +161,12 @@ namespace CpFerreteria
                     return;
                 }
 
-                // 2. INSTANCIAMOS EL MAESTRO PASANDO EL TOTAL CALCULADO POR C#
+                // 2. INSTANCIAMOS EL MAESTRO CON EL USUARIO REAL DE SESIÓN
                 Compra compra = new Compra
                 {
                     idProveedor = Convert.ToInt32(cbxProveedor.SelectedValue),
-                    total = totalAcumuladoCompra, // <--- ADIÓS AL TXTTOTAL.TEXT, AHORA ES MATEMÁTICA PURA
-                    usuarioRegistro = "Iroly",
+                    total = totalAcumuladoCompra,
+                    usuarioRegistro = usuarioActual, // <--- CAMBIO CLAVE: Ya no es "Iroly" fijo, es el que inició sesión
                     estado = 1,
                     fecha = DateTime.Now
                 };
