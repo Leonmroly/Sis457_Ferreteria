@@ -31,9 +31,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Documents\\SIS-457\\Sis457_Ferreteria\\ddl_dml_ferreteria.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\install\\Sis457_Ferreteria\\ddl_dml_ferreteria.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -65,14 +62,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ddl_dml_ferreteria.sql ",
+              "Title": "ddl_dml_ferreteria.sql",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\ddl_dml_ferreteria.sql",
               "RelativeDocumentMoniker": "..\\ddl_dml_ferreteria.sql",
               "ToolTip": "C:\\Users\\install\\Sis457_Ferreteria\\ddl_dml_ferreteria.sql",
               "RelativeToolTip": "..\\ddl_dml_ferreteria.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2026-05-22T12:15:30.668Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-22T12:15:30.668Z"
             },
             {
               "$type": "Document",
