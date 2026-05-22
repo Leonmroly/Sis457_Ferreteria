@@ -87,7 +87,7 @@ namespace CpFerreteria
             nuevoForm.ShowDialog();
             listar();
         }
-        
+
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();

@@ -163,6 +163,26 @@ namespace CpFerreteria.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Captura_de_pantalla_2026_05_22_143417 {
+            get {
+                object obj = ResourceManager.GetObject("Captura de pantalla 2026-05-22 143417", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Captura_de_pantalla_2026_05_22_152801 {
+            get {
+                object obj = ResourceManager.GetObject("Captura de pantalla 2026-05-22 152801", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cerradura {
             get {
                 object obj = ResourceManager.GetObject("cerradura", resourceCulture);

@@ -45,10 +45,10 @@
             // lblTitulo
             // 
             this.lblTitulo.Font = new System.Drawing.Font("Ebrima", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(2, 9);
+            this.lblTitulo.Location = new System.Drawing.Point(238, 9);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(747, 28);
+            this.lblTitulo.Size = new System.Drawing.Size(304, 28);
             this.lblTitulo.TabIndex = 1;
             this.lblTitulo.Text = "Marcas";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -166,6 +166,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::CpFerreteria.Properties.Resources.Captura_de_pantalla_2026_05_22_143417;
             this.ClientSize = new System.Drawing.Size(750, 311);
             this.Controls.Add(this.dgvLista);
             this.Controls.Add(this.pnlAcciones);
