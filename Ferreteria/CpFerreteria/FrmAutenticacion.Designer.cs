@@ -47,7 +47,8 @@
             // 
             this.lblTitulo.BackColor = System.Drawing.Color.Transparent;
             this.lblTitulo.Font = new System.Drawing.Font("Arial Black", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(1, 9);
+            this.lblTitulo.ForeColor = System.Drawing.Color.Yellow;
+            this.lblTitulo.Location = new System.Drawing.Point(6, 9);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(360, 28);
@@ -60,9 +61,9 @@
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.BackColor = System.Drawing.Color.Transparent;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(96, 43);
+            this.lblUsuario.Location = new System.Drawing.Point(12, 53);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(110, 29);
+            this.lblUsuario.Size = new System.Drawing.Size(76, 20);
             this.lblUsuario.TabIndex = 2;
             this.lblUsuario.Text = "Usuario:";
             // 
@@ -71,26 +72,26 @@
             this.lblContraseña.AutoSize = true;
             this.lblContraseña.BackColor = System.Drawing.Color.Transparent;
             this.lblContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContraseña.Location = new System.Drawing.Point(96, 105);
+            this.lblContraseña.Location = new System.Drawing.Point(8, 105);
             this.lblContraseña.Name = "lblContraseña";
-            this.lblContraseña.Size = new System.Drawing.Size(153, 29);
+            this.lblContraseña.Size = new System.Drawing.Size(107, 20);
             this.lblContraseña.TabIndex = 3;
             this.lblContraseña.Text = "Contraseña:";
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(100, 66);
+            this.txtUsuario.Location = new System.Drawing.Point(16, 76);
             this.txtUsuario.MaxLength = 15;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(173, 35);
+            this.txtUsuario.Size = new System.Drawing.Size(173, 26);
             this.txtUsuario.TabIndex = 4;
             // 
             // txtClave
             // 
-            this.txtClave.Location = new System.Drawing.Point(100, 128);
+            this.txtClave.Location = new System.Drawing.Point(16, 128);
             this.txtClave.MaxLength = 50;
             this.txtClave.Name = "txtClave";
-            this.txtClave.Size = new System.Drawing.Size(173, 35);
+            this.txtClave.Size = new System.Drawing.Size(173, 26);
             this.txtClave.TabIndex = 5;
             this.txtClave.UseSystemPasswordChar = true;
             this.txtClave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClave_KeyPress);
@@ -99,7 +100,7 @@
             // 
             this.btnIngresar.Image = global::CpFerreteria.Properties.Resources.login_ok;
             this.btnIngresar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIngresar.Location = new System.Drawing.Point(65, 169);
+            this.btnIngresar.Location = new System.Drawing.Point(39, 169);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(107, 40);
             this.btnIngresar.TabIndex = 11;
@@ -112,7 +113,7 @@
             // 
             this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalir.Location = new System.Drawing.Point(201, 169);
+            this.btnSalir.Location = new System.Drawing.Point(199, 169);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(83, 40);
             this.btnSalir.TabIndex = 12;
@@ -131,10 +132,10 @@
             // 
             // FrmAutenticacion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.BackgroundImage = global::CpFerreteria.Properties.Resources.Ferrr;
+            this.BackgroundImage = global::CpFerreteria.Properties.Resources.Captura_de_pantalla_2026_05_22_083012;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(363, 257);
             this.Controls.Add(this.btnSalir);
