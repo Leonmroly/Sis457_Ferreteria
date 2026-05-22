@@ -131,3 +131,4 @@ C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Deb
 C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerret.A7FCED0A.Up2Date
 C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.exe
 C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.pdb
+C:\Users\RL\OneDrive\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmPerfil.resources

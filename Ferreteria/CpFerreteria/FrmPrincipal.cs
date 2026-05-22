@@ -74,5 +74,23 @@ namespace CpFerreteria
         {
             new FrmVenta().ShowDialog();
         }
+
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            FrmPerfil pantallaPerfil = new FrmPerfil();
+
+            pantallaPerfil.StartPosition = FormStartPosition.CenterParent;
+            pantallaPerfil.ShowDialog();
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            lblBienvenida.Text = $"¡Hola, bienvenido\n de nuevo,  {Util.usuario.usuario1}!";
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

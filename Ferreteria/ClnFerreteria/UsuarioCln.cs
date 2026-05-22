@@ -99,5 +99,16 @@ namespace ClnFerreteria
             }
         }
 
+        public static Usuario ObtenerUsuarioConEmpleado(int idUsuario)
+        {
+            using (var context = new LabFerreteriaEntities())
+            {
+                // Pasamos el nombre de la relación como "string" para que EF lo entienda perfectamente
+                return context.Usuarios
+                    .Include("Empleado")
+                    .FirstOrDefault(x => x.id == idUsuario);
+            }
+        }
+
     }
 }
