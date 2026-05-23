@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\cpferreteria\\frmcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|c:\\users\\install\\sis457_ferreteria\\ferreteria\\cpferreteria\\frmproveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|solutionrelative:cpferreteria\\frmproveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|c:\\users\\install\\sis457_ferreteria\\ferreteria\\cpferreteria\\frmcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|solutionrelative:cpferreteria\\frmcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|c:\\users\\install\\sis457_ferreteria\\ferreteria\\cpferreteria\\frmventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\cpferreteria\\frmventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|solutionrelative:cpferreteria\\frmventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -96,7 +100,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -104,19 +108,30 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "FrmProveedor.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmProveedor.cs",
+              "RelativeDocumentMoniker": "CpFerreteria\\FrmProveedor.cs",
+              "ToolTip": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmProveedor.cs [Dise\u00F1o]*",
+              "RelativeToolTip": "CpFerreteria\\FrmProveedor.cs [Dise\u00F1o]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T00:55:34.901Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "FrmVenta.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmVenta.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmVenta.cs",
               "ToolTip": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmVenta.cs [Dise\u00F1o]",
               "RelativeToolTip": "CpFerreteria\\FrmVenta.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T20:26:50.837Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-05-22T20:26:50.837Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "FrmCompra.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmCompra.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmCompra.cs",
@@ -127,7 +142,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "FrmAutenticacion.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmAutenticacion.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmAutenticacion.cs",
@@ -138,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "FrmAutenticacion.cs",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmAutenticacion.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmAutenticacion.cs",
@@ -150,19 +165,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "FrmCliente.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmCliente.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmCliente.cs",
-              "ToolTip": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmCliente.cs [Dise\u00F1o]*",
-              "RelativeToolTip": "CpFerreteria\\FrmCliente.cs [Dise\u00F1o]*",
+              "ToolTip": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmCliente.cs [Dise\u00F1o]",
+              "RelativeToolTip": "CpFerreteria\\FrmCliente.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-22T18:16:59.012Z",
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "FrmCompraNuevo.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmCompraNuevo.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmCompraNuevo.cs",
@@ -173,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "FrmCompra.cs",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmCompra.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmCompra.cs",
@@ -185,7 +200,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "FrmPerfil.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmPerfil.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmPerfil.cs",
@@ -196,7 +211,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "FrmMarca.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmMarca.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmMarca.cs",
@@ -207,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "FrmMarca.cs",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmMarca.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmMarca.cs",
@@ -219,7 +234,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "FrmMarcaEntry.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmMarcaEntry.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmMarcaEntry.cs",
@@ -230,7 +245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "ddl_dml_ferreteria.sql",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\ddl_dml_ferreteria.sql",
               "RelativeDocumentMoniker": "..\\ddl_dml_ferreteria.sql",
@@ -241,7 +256,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "FrmEmpleado.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmEmpleado.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmEmpleado.cs",
@@ -252,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "FrmCompraDetalle.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmCompraDetalle.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmCompraDetalle.cs",
@@ -263,7 +278,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "FrmCategoriaEntry.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmCategoriaEntry.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmCategoriaEntry.cs",
@@ -274,7 +289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "FrmCategoria.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmCategoria.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmCategoria.cs",
@@ -285,7 +300,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "FrmUnidadMedida.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmUnidadMedida.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmUnidadMedida.cs",
@@ -296,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "FrmUsuario.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmUsuario.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmUsuario.cs",
@@ -307,7 +322,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "FrmUnidadMedidaEntry.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmUnidadMedidaEntry.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmUnidadMedidaEntry.cs",
@@ -318,7 +333,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "FrmPerfil.cs",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmPerfil.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmPerfil.cs",
@@ -330,7 +345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "FrmPrincipal.cs",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmPrincipal.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmPrincipal.cs",
@@ -342,7 +357,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "ddl_dml_ferreteria.sql",
               "DocumentMoniker": "C:\\Documents\\SIS-457\\Sis457_Ferreteria\\ddl_dml_ferreteria.sql",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\Documents\\SIS-457\\Sis457_Ferreteria\\ddl_dml_ferreteria.sql",

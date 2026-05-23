@@ -71,7 +71,9 @@
             // 
             // lblTitulo
             // 
+            this.lblTitulo.BackColor = System.Drawing.Color.Transparent;
             this.lblTitulo.Font = new System.Drawing.Font("Ebrima", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.ForeColor = System.Drawing.Color.Transparent;
             this.lblTitulo.Location = new System.Drawing.Point(2, 9);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitulo.Name = "lblTitulo";
@@ -82,7 +84,9 @@
             // 
             // gbxLista
             // 
+            this.gbxLista.BackColor = System.Drawing.Color.Transparent;
             this.gbxLista.Controls.Add(this.dgvLista);
+            this.gbxLista.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.gbxLista.Location = new System.Drawing.Point(8, 79);
             this.gbxLista.Name = "gbxLista";
             this.gbxLista.Size = new System.Drawing.Size(691, 160);
@@ -102,6 +106,7 @@
             this.dgvLista.MultiSelect = false;
             this.dgvLista.Name = "dgvLista";
             this.dgvLista.ReadOnly = true;
+            this.dgvLista.RowHeadersWidth = 62;
             this.dgvLista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLista.Size = new System.Drawing.Size(670, 125);
             this.dgvLista.TabIndex = 1;
@@ -111,12 +116,14 @@
             this.txtParametro.Location = new System.Drawing.Point(217, 40);
             this.txtParametro.MaxLength = 50;
             this.txtParametro.Name = "txtParametro";
-            this.txtParametro.Size = new System.Drawing.Size(364, 26);
+            this.txtParametro.Size = new System.Drawing.Size(364, 35);
             this.txtParametro.TabIndex = 4;
             this.txtParametro.TextChanged += new System.EventHandler(this.txtParametro_TextChanged);
             // 
             // btnBuscar
             // 
+            this.btnBuscar.BackgroundImage = global::CpFerreteria.Properties.Resources.Captura_de_pantalla_2026_05_22_152801;
+            this.btnBuscar.ForeColor = System.Drawing.Color.Transparent;
             this.btnBuscar.Image = global::CpFerreteria.Properties.Resources.search;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscar.Location = new System.Drawing.Point(587, 33);
@@ -130,15 +137,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(14, 43);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 20);
+            this.label1.Size = new System.Drawing.Size(229, 29);
             this.label1.TabIndex = 8;
             this.label1.Text = "Buscar por Nombre:";
             // 
             // pnlAcciones
             // 
+            this.pnlAcciones.BackColor = System.Drawing.Color.Transparent;
             this.pnlAcciones.Controls.Add(this.btnCerrar);
             this.pnlAcciones.Controls.Add(this.btnEliminar);
             this.pnlAcciones.Controls.Add(this.btnEditar);
@@ -215,7 +225,7 @@
             this.lblRazonSocial.Location = new System.Drawing.Point(47, 58);
             this.lblRazonSocial.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRazonSocial.Name = "lblRazonSocial";
-            this.lblRazonSocial.Size = new System.Drawing.Size(111, 20);
+            this.lblRazonSocial.Size = new System.Drawing.Size(166, 29);
             this.lblRazonSocial.TabIndex = 15;
             this.lblRazonSocial.Text = "Razon Social: ";
             // 
@@ -225,7 +235,7 @@
             this.txtDireccion.Location = new System.Drawing.Point(166, 94);
             this.txtDireccion.MaxLength = 20;
             this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(163, 26);
+            this.txtDireccion.Size = new System.Drawing.Size(163, 35);
             this.txtDireccion.TabIndex = 16;
             // 
             // lblDireccion
@@ -234,7 +244,7 @@
             this.lblDireccion.Location = new System.Drawing.Point(47, 97);
             this.lblDireccion.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDireccion.Name = "lblDireccion";
-            this.lblDireccion.Size = new System.Drawing.Size(83, 20);
+            this.lblDireccion.Size = new System.Drawing.Size(127, 29);
             this.lblDireccion.TabIndex = 17;
             this.lblDireccion.Text = "Direccion: ";
             // 
@@ -244,7 +254,7 @@
             this.lblTelefono.Location = new System.Drawing.Point(360, 25);
             this.lblTelefono.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(79, 20);
+            this.lblTelefono.Size = new System.Drawing.Size(122, 29);
             this.lblTelefono.TabIndex = 18;
             this.lblTelefono.Text = "Telefono: ";
             // 
@@ -254,7 +264,7 @@
             this.txtTelefono.Location = new System.Drawing.Point(459, 22);
             this.txtTelefono.MaxLength = 20;
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(155, 26);
+            this.txtTelefono.Size = new System.Drawing.Size(155, 35);
             this.txtTelefono.TabIndex = 19;
             // 
             // lblEmail
@@ -263,7 +273,7 @@
             this.lblEmail.Location = new System.Drawing.Point(360, 55);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(52, 20);
+            this.lblEmail.Size = new System.Drawing.Size(80, 29);
             this.lblEmail.TabIndex = 20;
             this.lblEmail.Text = "Email:";
             // 
@@ -273,11 +283,12 @@
             this.txtEmail.Location = new System.Drawing.Point(459, 52);
             this.txtEmail.MaxLength = 20;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(155, 26);
+            this.txtEmail.Size = new System.Drawing.Size(155, 35);
             this.txtEmail.TabIndex = 21;
             // 
             // btnGuardar
             // 
+            this.btnGuardar.ForeColor = System.Drawing.Color.Black;
             this.btnGuardar.Image = global::CpFerreteria.Properties.Resources.save;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGuardar.Location = new System.Drawing.Point(364, 87);
@@ -291,6 +302,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.ForeColor = System.Drawing.Color.Black;
             this.btnCancelar.Image = global::CpFerreteria.Properties.Resources.cancel;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.Location = new System.Drawing.Point(526, 87);
@@ -308,7 +320,7 @@
             this.lblNit.Location = new System.Drawing.Point(47, 25);
             this.lblNit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNit.Name = "lblNit";
-            this.lblNit.Size = new System.Drawing.Size(42, 20);
+            this.lblNit.Size = new System.Drawing.Size(65, 29);
             this.lblNit.TabIndex = 24;
             this.lblNit.Text = "NIT: ";
             // 
@@ -318,11 +330,12 @@
             this.txtNit.Location = new System.Drawing.Point(166, 22);
             this.txtNit.MaxLength = 20;
             this.txtNit.Name = "txtNit";
-            this.txtNit.Size = new System.Drawing.Size(163, 26);
+            this.txtNit.Size = new System.Drawing.Size(163, 35);
             this.txtNit.TabIndex = 25;
             // 
             // gbxDatos
             // 
+            this.gbxDatos.BackColor = System.Drawing.Color.Transparent;
             this.gbxDatos.Controls.Add(this.txtRazonSocial);
             this.gbxDatos.Controls.Add(this.txtNit);
             this.gbxDatos.Controls.Add(this.lblRazonSocial);
@@ -335,6 +348,7 @@
             this.gbxDatos.Controls.Add(this.txtEmail);
             this.gbxDatos.Controls.Add(this.txtTelefono);
             this.gbxDatos.Controls.Add(this.lblEmail);
+            this.gbxDatos.ForeColor = System.Drawing.Color.Transparent;
             this.gbxDatos.Location = new System.Drawing.Point(8, 299);
             this.gbxDatos.Name = "gbxDatos";
             this.gbxDatos.Size = new System.Drawing.Size(691, 139);
@@ -364,8 +378,9 @@
             // 
             // FrmProveedor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::CpFerreteria.Properties.Resources.Captura_de_pantalla_2026_05_22_152801;
             this.ClientSize = new System.Drawing.Size(708, 447);
             this.Controls.Add(this.gbxDatos);
             this.Controls.Add(this.pnlAcciones);
