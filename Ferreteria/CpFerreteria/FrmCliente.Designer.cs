@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Button btnBuscar;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCliente));
             this.lblTitulo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtParametro = new System.Windows.Forms.TextBox();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.gbxLista = new System.Windows.Forms.GroupBox();
             this.dgvLista = new System.Windows.Forms.DataGridView();
             this.pnlAcciones = new System.Windows.Forms.Panel();
@@ -61,6 +61,7 @@
             this.erpNombre = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpClave = new System.Windows.Forms.ErrorProvider(this.components);
             this.erpEmail = new System.Windows.Forms.ErrorProvider(this.components);
+            btnBuscar = new System.Windows.Forms.Button();
             this.gbxLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.pnlAcciones.SuspendLayout();
@@ -73,7 +74,9 @@
             // 
             // lblTitulo
             // 
-            this.lblTitulo.Font = new System.Drawing.Font("Ebrima", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft JhengHei", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.ForeColor = System.Drawing.Color.Transparent;
             this.lblTitulo.Location = new System.Drawing.Point(4, 0);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitulo.Name = "lblTitulo";
@@ -85,37 +88,44 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(16, 34);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 20);
+            this.label1.Size = new System.Drawing.Size(175, 29);
             this.label1.TabIndex = 3;
             this.label1.Text = "Buscar Cliente:";
             // 
             // txtParametro
             // 
+            this.txtParametro.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.txtParametro.Location = new System.Drawing.Point(222, 31);
             this.txtParametro.MaxLength = 50;
             this.txtParametro.Name = "txtParametro";
-            this.txtParametro.Size = new System.Drawing.Size(364, 26);
+            this.txtParametro.Size = new System.Drawing.Size(364, 35);
             this.txtParametro.TabIndex = 4;
             this.txtParametro.TextChanged += new System.EventHandler(this.txtParametro_TextChanged);
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Image = global::CpFerreteria.Properties.Resources.search;
-            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(623, 24);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(99, 40);
-            this.btnBuscar.TabIndex = 5;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.BackgroundImage = global::CpFerreteria.Properties.Resources.Captura_de_pantalla_2026_05_22_152801;
+            btnBuscar.ForeColor = System.Drawing.Color.White;
+            btnBuscar.Image = global::CpFerreteria.Properties.Resources.search;
+            btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btnBuscar.Location = new System.Drawing.Point(623, 24);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new System.Drawing.Size(99, 40);
+            btnBuscar.TabIndex = 5;
+            btnBuscar.Text = "Buscar";
+            btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btnBuscar.UseVisualStyleBackColor = true;
             // 
             // gbxLista
             // 
+            this.gbxLista.BackColor = System.Drawing.Color.Transparent;
             this.gbxLista.Controls.Add(this.dgvLista);
+            this.gbxLista.ForeColor = System.Drawing.Color.White;
             this.gbxLista.Location = new System.Drawing.Point(12, 63);
             this.gbxLista.Name = "gbxLista";
             this.gbxLista.Size = new System.Drawing.Size(718, 174);
@@ -128,19 +138,21 @@
             this.dgvLista.AllowUserToAddRows = false;
             this.dgvLista.AllowUserToDeleteRows = false;
             this.dgvLista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvLista.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvLista.BackgroundColor = System.Drawing.SystemColors.InactiveBorder;
             this.dgvLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLista.Location = new System.Drawing.Point(8, 20);
             this.dgvLista.Margin = new System.Windows.Forms.Padding(5);
             this.dgvLista.MultiSelect = false;
             this.dgvLista.Name = "dgvLista";
             this.dgvLista.ReadOnly = true;
+            this.dgvLista.RowHeadersWidth = 62;
             this.dgvLista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLista.Size = new System.Drawing.Size(702, 146);
             this.dgvLista.TabIndex = 1;
             // 
             // pnlAcciones
             // 
+            this.pnlAcciones.BackColor = System.Drawing.Color.Transparent;
             this.pnlAcciones.Controls.Add(this.btnCerrar);
             this.pnlAcciones.Controls.Add(this.btnEliminar);
             this.pnlAcciones.Controls.Add(this.btnEditar);
@@ -204,6 +216,7 @@
             // 
             // gbxDatos
             // 
+            this.gbxDatos.BackColor = System.Drawing.Color.Transparent;
             this.gbxDatos.Controls.Add(this.txtClave);
             this.gbxDatos.Controls.Add(this.cbCrearCuenta);
             this.gbxDatos.Controls.Add(this.txtEmail);
@@ -219,6 +232,7 @@
             this.gbxDatos.Controls.Add(this.lblDescripcion);
             this.gbxDatos.Controls.Add(this.lblCi);
             this.gbxDatos.Controls.Add(this.lblNombreCompleto);
+            this.gbxDatos.ForeColor = System.Drawing.Color.White;
             this.gbxDatos.Location = new System.Drawing.Point(10, 301);
             this.gbxDatos.Name = "gbxDatos";
             this.gbxDatos.Size = new System.Drawing.Size(717, 161);
@@ -228,9 +242,10 @@
             // 
             // txtClave
             // 
+            this.txtClave.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.txtClave.Location = new System.Drawing.Point(148, 119);
             this.txtClave.Name = "txtClave";
-            this.txtClave.Size = new System.Drawing.Size(144, 26);
+            this.txtClave.Size = new System.Drawing.Size(144, 35);
             this.txtClave.TabIndex = 28;
             // 
             // cbCrearCuenta
@@ -238,33 +253,36 @@
             this.cbCrearCuenta.AutoSize = true;
             this.cbCrearCuenta.Location = new System.Drawing.Point(10, 121);
             this.cbCrearCuenta.Name = "cbCrearCuenta";
-            this.cbCrearCuenta.Size = new System.Drawing.Size(132, 24);
+            this.cbCrearCuenta.Size = new System.Drawing.Size(193, 33);
             this.cbCrearCuenta.TabIndex = 27;
             this.cbCrearCuenta.Text = "Crear Cuenta?";
             this.cbCrearCuenta.UseVisualStyleBackColor = true;
             // 
             // txtEmail
             // 
+            this.txtEmail.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.txtEmail.Location = new System.Drawing.Point(465, 54);
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(155, 26);
+            this.txtEmail.Size = new System.Drawing.Size(155, 35);
             this.txtEmail.TabIndex = 26;
             // 
             // txtTelefono
             // 
+            this.txtTelefono.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.txtTelefono.Location = new System.Drawing.Point(465, 22);
             this.txtTelefono.MaxLength = 50;
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(155, 26);
+            this.txtTelefono.Size = new System.Drawing.Size(155, 35);
             this.txtTelefono.TabIndex = 25;
             // 
             // txtDireccion
             // 
+            this.txtDireccion.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.txtDireccion.Location = new System.Drawing.Point(137, 86);
             this.txtDireccion.MaxLength = 50;
             this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(155, 26);
+            this.txtDireccion.Size = new System.Drawing.Size(155, 35);
             this.txtDireccion.TabIndex = 24;
             // 
             // lblEmail
@@ -273,7 +291,7 @@
             this.lblEmail.Location = new System.Drawing.Point(369, 57);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(56, 20);
+            this.lblEmail.Size = new System.Drawing.Size(86, 29);
             this.lblEmail.TabIndex = 23;
             this.lblEmail.Text = "Email :";
             // 
@@ -283,7 +301,7 @@
             this.lblTelefono.Location = new System.Drawing.Point(369, 25);
             this.lblTelefono.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(75, 20);
+            this.lblTelefono.Size = new System.Drawing.Size(116, 29);
             this.lblTelefono.TabIndex = 22;
             this.lblTelefono.Text = "Telefono:";
             // 
@@ -293,28 +311,31 @@
             this.lblDireccion.Location = new System.Drawing.Point(8, 89);
             this.lblDireccion.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDireccion.Name = "lblDireccion";
-            this.lblDireccion.Size = new System.Drawing.Size(79, 20);
+            this.lblDireccion.Size = new System.Drawing.Size(121, 29);
             this.lblDireccion.TabIndex = 21;
             this.lblDireccion.Text = "Direccion:";
             // 
             // txtNombre
             // 
+            this.txtNombre.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.txtNombre.Location = new System.Drawing.Point(137, 54);
             this.txtNombre.MaxLength = 50;
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(155, 26);
+            this.txtNombre.Size = new System.Drawing.Size(155, 35);
             this.txtNombre.TabIndex = 20;
             // 
             // txtCi
             // 
+            this.txtCi.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.txtCi.Location = new System.Drawing.Point(137, 22);
             this.txtCi.MaxLength = 50;
             this.txtCi.Name = "txtCi";
-            this.txtCi.Size = new System.Drawing.Size(155, 26);
+            this.txtCi.Size = new System.Drawing.Size(155, 35);
             this.txtCi.TabIndex = 9;
             // 
             // btnGuardar
             // 
+            this.btnGuardar.ForeColor = System.Drawing.Color.Black;
             this.btnGuardar.Image = global::CpFerreteria.Properties.Resources.save;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGuardar.Location = new System.Drawing.Point(347, 105);
@@ -328,6 +349,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.ForeColor = System.Drawing.Color.Black;
             this.btnCancelar.Image = global::CpFerreteria.Properties.Resources.cancel;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.Location = new System.Drawing.Point(550, 105);
@@ -345,7 +367,7 @@
             this.lblDescripcion.Location = new System.Drawing.Point(3, 88);
             this.lblDescripcion.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(0, 20);
+            this.lblDescripcion.Size = new System.Drawing.Size(0, 29);
             this.lblDescripcion.TabIndex = 10;
             // 
             // lblCi
@@ -354,7 +376,7 @@
             this.lblCi.Location = new System.Drawing.Point(8, 25);
             this.lblCi.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCi.Name = "lblCi";
-            this.lblCi.Size = new System.Drawing.Size(37, 20);
+            this.lblCi.Size = new System.Drawing.Size(54, 29);
             this.lblCi.TabIndex = 9;
             this.lblCi.Text = "C.I.:";
             // 
@@ -364,7 +386,7 @@
             this.lblNombreCompleto.Location = new System.Drawing.Point(8, 57);
             this.lblNombreCompleto.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNombreCompleto.Name = "lblNombreCompleto";
-            this.lblNombreCompleto.Size = new System.Drawing.Size(77, 20);
+            this.lblNombreCompleto.Size = new System.Drawing.Size(119, 29);
             this.lblNombreCompleto.TabIndex = 8;
             this.lblNombreCompleto.Text = "Nombres:";
             // 
@@ -386,13 +408,14 @@
             // 
             // FrmCliente
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::CpFerreteria.Properties.Resources.Captura_de_pantalla_2026_05_22_152801;
             this.ClientSize = new System.Drawing.Size(746, 470);
             this.Controls.Add(this.gbxDatos);
             this.Controls.Add(this.pnlAcciones);
             this.Controls.Add(this.gbxLista);
-            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(btnBuscar);
             this.Controls.Add(this.txtParametro);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitulo);
@@ -422,7 +445,6 @@
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtParametro;
-        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.GroupBox gbxLista;
         private System.Windows.Forms.DataGridView dgvLista;
         private System.Windows.Forms.Panel pnlAcciones;
