@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|c:\\users\\install\\sis457_ferreteria\\ferreteria\\cpferreteria\\frmempleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|solutionrelative:cpferreteria\\frmempleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|c:\\users\\install\\sis457_ferreteria\\ferreteria\\cpferreteria\\frmusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|solutionrelative:cpferreteria\\frmusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|c:\\users\\install\\sis457_ferreteria\\ferreteria\\cpferreteria\\frmproveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\cpferreteria\\frmproveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E1930E40-0B4B-4428-8BA4-490DF1CB9787}|CpFerreteria\\CpFerreteria.csproj|solutionrelative:cpferreteria\\frmproveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -27,26 +31,37 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "FrmEmpleado.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmEmpleado.cs",
+              "RelativeDocumentMoniker": "CpFerreteria\\FrmEmpleado.cs",
+              "ToolTip": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmEmpleado.cs [Dise\u00F1o]*",
+              "RelativeToolTip": "CpFerreteria\\FrmEmpleado.cs [Dise\u00F1o]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T19:22:47.5Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "FrmUsuario.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmUsuario.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmUsuario.cs",
-              "ToolTip": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmUsuario.cs [Dise\u00F1o]*",
-              "RelativeToolTip": "CpFerreteria\\FrmUsuario.cs [Dise\u00F1o]*",
+              "ToolTip": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmUsuario.cs [Dise\u00F1o]",
+              "RelativeToolTip": "CpFerreteria\\FrmUsuario.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-25T18:59:52.039Z",
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "FrmProveedor.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmProveedor.cs",
               "RelativeDocumentMoniker": "CpFerreteria\\FrmProveedor.cs",
-              "ToolTip": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmProveedor.cs [Dise\u00F1o]*",
-              "RelativeToolTip": "CpFerreteria\\FrmProveedor.cs [Dise\u00F1o]*",
+              "ToolTip": "C:\\Users\\install\\Sis457_Ferreteria\\Ferreteria\\CpFerreteria\\FrmProveedor.cs [Dise\u00F1o]",
+              "RelativeToolTip": "CpFerreteria\\FrmProveedor.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-25T18:59:48.215Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-05-25T18:59:48.215Z"
             }
           ]
         },
