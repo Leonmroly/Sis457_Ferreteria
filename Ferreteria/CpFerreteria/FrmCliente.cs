@@ -48,6 +48,7 @@ namespace CpFerreteria
         private void FrmCliente_Load(object sender, EventArgs e)
         {
             Size = new Size(762, 337);
+            txtParametro.Clear();
             listar();
 
         }
@@ -226,6 +227,7 @@ namespace CpFerreteria
 
         private void limpiar()
         {
+            txtParametro.Clear();
             txtCi.Clear();
             txtNombre.Clear();
             txtDireccion.Clear();
