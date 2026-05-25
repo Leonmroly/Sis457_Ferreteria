@@ -67,7 +67,9 @@
             // 
             // lblTitulo
             // 
+            this.lblTitulo.BackColor = System.Drawing.Color.Transparent;
             this.lblTitulo.Font = new System.Drawing.Font("Ebrima", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.ForeColor = System.Drawing.Color.Transparent;
             this.lblTitulo.Location = new System.Drawing.Point(4, 9);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitulo.Name = "lblTitulo";
@@ -79,10 +81,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(6, 53);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 20);
+            this.label1.Size = new System.Drawing.Size(180, 29);
             this.label1.TabIndex = 4;
             this.label1.Text = "buscar Usuario:";
             // 
@@ -91,12 +95,14 @@
             this.txtParametro.Location = new System.Drawing.Point(202, 50);
             this.txtParametro.MaxLength = 50;
             this.txtParametro.Name = "txtParametro";
-            this.txtParametro.Size = new System.Drawing.Size(364, 26);
+            this.txtParametro.Size = new System.Drawing.Size(364, 35);
             this.txtParametro.TabIndex = 5;
             this.txtParametro.TextChanged += new System.EventHandler(this.txtParametro_TextChanged);
             // 
             // btnBuscar
             // 
+            this.btnBuscar.BackgroundImage = global::CpFerreteria.Properties.Resources.Captura_de_pantalla_2026_05_22_152801;
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
             this.btnBuscar.Image = global::CpFerreteria.Properties.Resources.search;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscar.Location = new System.Drawing.Point(619, 43);
@@ -110,7 +116,9 @@
             // 
             // gbxLista
             // 
+            this.gbxLista.BackColor = System.Drawing.Color.Transparent;
             this.gbxLista.Controls.Add(this.dgvLista);
+            this.gbxLista.ForeColor = System.Drawing.Color.White;
             this.gbxLista.Location = new System.Drawing.Point(12, 89);
             this.gbxLista.Name = "gbxLista";
             this.gbxLista.Size = new System.Drawing.Size(718, 174);
@@ -130,12 +138,14 @@
             this.dgvLista.MultiSelect = false;
             this.dgvLista.Name = "dgvLista";
             this.dgvLista.ReadOnly = true;
+            this.dgvLista.RowHeadersWidth = 62;
             this.dgvLista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLista.Size = new System.Drawing.Size(702, 139);
             this.dgvLista.TabIndex = 1;
             // 
             // pnlAcciones
             // 
+            this.pnlAcciones.BackColor = System.Drawing.Color.Transparent;
             this.pnlAcciones.Controls.Add(this.btnCerrar);
             this.pnlAcciones.Controls.Add(this.btnEliminar);
             this.pnlAcciones.Controls.Add(this.btnEditar);
@@ -199,6 +209,7 @@
             // 
             // gbxDatos
             // 
+            this.gbxDatos.BackColor = System.Drawing.Color.Transparent;
             this.gbxDatos.Controls.Add(this.cbxRol);
             this.gbxDatos.Controls.Add(this.cbxEmpleado);
             this.gbxDatos.Controls.Add(this.txtClave);
@@ -209,6 +220,7 @@
             this.gbxDatos.Controls.Add(this.lblClave);
             this.gbxDatos.Controls.Add(this.lblEmpleado);
             this.gbxDatos.Controls.Add(this.lblNombreUsuario);
+            this.gbxDatos.ForeColor = System.Drawing.Color.Transparent;
             this.gbxDatos.Location = new System.Drawing.Point(10, 322);
             this.gbxDatos.Name = "gbxDatos";
             this.gbxDatos.Size = new System.Drawing.Size(720, 206);
@@ -222,7 +234,7 @@
             this.cbxRol.FormattingEnabled = true;
             this.cbxRol.Location = new System.Drawing.Point(167, 117);
             this.cbxRol.Name = "cbxRol";
-            this.cbxRol.Size = new System.Drawing.Size(155, 28);
+            this.cbxRol.Size = new System.Drawing.Size(155, 37);
             this.cbxRol.TabIndex = 32;
             // 
             // cbxEmpleado
@@ -231,7 +243,7 @@
             this.cbxEmpleado.FormattingEnabled = true;
             this.cbxEmpleado.Location = new System.Drawing.Point(167, 22);
             this.cbxEmpleado.Name = "cbxEmpleado";
-            this.cbxEmpleado.Size = new System.Drawing.Size(155, 28);
+            this.cbxEmpleado.Size = new System.Drawing.Size(155, 37);
             this.cbxEmpleado.TabIndex = 31;
             // 
             // txtClave
@@ -239,7 +251,7 @@
             this.txtClave.Location = new System.Drawing.Point(167, 85);
             this.txtClave.MaxLength = 50;
             this.txtClave.Name = "txtClave";
-            this.txtClave.Size = new System.Drawing.Size(155, 26);
+            this.txtClave.Size = new System.Drawing.Size(155, 35);
             this.txtClave.TabIndex = 21;
             // 
             // txtUsuario
@@ -247,11 +259,12 @@
             this.txtUsuario.Location = new System.Drawing.Point(167, 54);
             this.txtUsuario.MaxLength = 50;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(155, 26);
+            this.txtUsuario.Size = new System.Drawing.Size(155, 35);
             this.txtUsuario.TabIndex = 20;
             // 
             // btnGuardar
             // 
+            this.btnGuardar.ForeColor = System.Drawing.Color.Black;
             this.btnGuardar.Image = global::CpFerreteria.Properties.Resources.save;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGuardar.Location = new System.Drawing.Point(387, 149);
@@ -269,12 +282,13 @@
             this.lblRolSistema.Location = new System.Drawing.Point(4, 120);
             this.lblRolSistema.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRolSistema.Name = "lblRolSistema";
-            this.lblRolSistema.Size = new System.Drawing.Size(124, 20);
+            this.lblRolSistema.Size = new System.Drawing.Size(189, 29);
             this.lblRolSistema.TabIndex = 19;
             this.lblRolSistema.Text = "Rol del Sistema:";
             // 
             // btnCancelar
             // 
+            this.btnCancelar.ForeColor = System.Drawing.Color.Black;
             this.btnCancelar.Image = global::CpFerreteria.Properties.Resources.cancel;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.Location = new System.Drawing.Point(563, 149);
@@ -292,7 +306,7 @@
             this.lblClave.Location = new System.Drawing.Point(3, 88);
             this.lblClave.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblClave.Name = "lblClave";
-            this.lblClave.Size = new System.Drawing.Size(139, 20);
+            this.lblClave.Size = new System.Drawing.Size(210, 29);
             this.lblClave.TabIndex = 10;
             this.lblClave.Text = "Contraseña/Clave:";
             // 
@@ -302,7 +316,7 @@
             this.lblEmpleado.Location = new System.Drawing.Point(3, 25);
             this.lblEmpleado.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblEmpleado.Name = "lblEmpleado";
-            this.lblEmpleado.Size = new System.Drawing.Size(85, 20);
+            this.lblEmpleado.Size = new System.Drawing.Size(130, 29);
             this.lblEmpleado.TabIndex = 9;
             this.lblEmpleado.Text = "Empleado:";
             // 
@@ -312,7 +326,7 @@
             this.lblNombreUsuario.Location = new System.Drawing.Point(3, 57);
             this.lblNombreUsuario.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNombreUsuario.Name = "lblNombreUsuario";
-            this.lblNombreUsuario.Size = new System.Drawing.Size(158, 20);
+            this.lblNombreUsuario.Size = new System.Drawing.Size(242, 29);
             this.lblNombreUsuario.TabIndex = 8;
             this.lblNombreUsuario.Text = "Nombres de Usuario:";
             // 
@@ -334,8 +348,9 @@
             // 
             // FrmUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::CpFerreteria.Properties.Resources.Captura_de_pantalla_2026_05_22_152801;
             this.ClientSize = new System.Drawing.Size(742, 533);
             this.Controls.Add(this.gbxDatos);
             this.Controls.Add(this.pnlAcciones);
