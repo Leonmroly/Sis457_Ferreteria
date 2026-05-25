@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.gbxLista = new System.Windows.Forms.GroupBox();
             this.dgvLista = new System.Windows.Forms.DataGridView();
@@ -102,14 +101,6 @@
             this.dgvLista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvLista.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvLista.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvLista.Location = new System.Drawing.Point(8, 27);
             this.dgvLista.Margin = new System.Windows.Forms.Padding(5);
             this.dgvLista.MultiSelect = false;
@@ -125,7 +116,7 @@
             this.txtParametro.Location = new System.Drawing.Point(217, 40);
             this.txtParametro.MaxLength = 50;
             this.txtParametro.Name = "txtParametro";
-            this.txtParametro.Size = new System.Drawing.Size(364, 26);
+            this.txtParametro.Size = new System.Drawing.Size(364, 35);
             this.txtParametro.TabIndex = 4;
             this.txtParametro.TextChanged += new System.EventHandler(this.txtParametro_TextChanged);
             // 
@@ -151,7 +142,7 @@
             this.label1.Location = new System.Drawing.Point(14, 43);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 20);
+            this.label1.Size = new System.Drawing.Size(229, 29);
             this.label1.TabIndex = 8;
             this.label1.Text = "Buscar por Nombre:";
             // 
@@ -243,7 +234,7 @@
             this.lblRazonSocial.Location = new System.Drawing.Point(47, 58);
             this.lblRazonSocial.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRazonSocial.Name = "lblRazonSocial";
-            this.lblRazonSocial.Size = new System.Drawing.Size(111, 20);
+            this.lblRazonSocial.Size = new System.Drawing.Size(166, 29);
             this.lblRazonSocial.TabIndex = 15;
             this.lblRazonSocial.Text = "Razon Social: ";
             // 
@@ -253,7 +244,7 @@
             this.txtDireccion.Location = new System.Drawing.Point(166, 94);
             this.txtDireccion.MaxLength = 20;
             this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(163, 26);
+            this.txtDireccion.Size = new System.Drawing.Size(163, 35);
             this.txtDireccion.TabIndex = 16;
             // 
             // lblDireccion
@@ -262,7 +253,7 @@
             this.lblDireccion.Location = new System.Drawing.Point(47, 97);
             this.lblDireccion.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDireccion.Name = "lblDireccion";
-            this.lblDireccion.Size = new System.Drawing.Size(83, 20);
+            this.lblDireccion.Size = new System.Drawing.Size(127, 29);
             this.lblDireccion.TabIndex = 17;
             this.lblDireccion.Text = "Direccion: ";
             // 
@@ -272,7 +263,7 @@
             this.lblTelefono.Location = new System.Drawing.Point(360, 25);
             this.lblTelefono.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(79, 20);
+            this.lblTelefono.Size = new System.Drawing.Size(122, 29);
             this.lblTelefono.TabIndex = 18;
             this.lblTelefono.Text = "Telefono: ";
             // 
@@ -282,7 +273,7 @@
             this.txtTelefono.Location = new System.Drawing.Point(459, 22);
             this.txtTelefono.MaxLength = 20;
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(155, 26);
+            this.txtTelefono.Size = new System.Drawing.Size(155, 35);
             this.txtTelefono.TabIndex = 19;
             // 
             // lblEmail
@@ -291,7 +282,7 @@
             this.lblEmail.Location = new System.Drawing.Point(360, 55);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(52, 20);
+            this.lblEmail.Size = new System.Drawing.Size(80, 29);
             this.lblEmail.TabIndex = 20;
             this.lblEmail.Text = "Email:";
             // 
@@ -301,7 +292,7 @@
             this.txtEmail.Location = new System.Drawing.Point(459, 52);
             this.txtEmail.MaxLength = 20;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(155, 26);
+            this.txtEmail.Size = new System.Drawing.Size(155, 35);
             this.txtEmail.TabIndex = 21;
             // 
             // btnGuardar
@@ -341,7 +332,7 @@
             this.lblNit.Location = new System.Drawing.Point(47, 25);
             this.lblNit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNit.Name = "lblNit";
-            this.lblNit.Size = new System.Drawing.Size(42, 20);
+            this.lblNit.Size = new System.Drawing.Size(65, 29);
             this.lblNit.TabIndex = 24;
             this.lblNit.Text = "NIT: ";
             // 
@@ -351,7 +342,7 @@
             this.txtNit.Location = new System.Drawing.Point(166, 22);
             this.txtNit.MaxLength = 20;
             this.txtNit.Name = "txtNit";
-            this.txtNit.Size = new System.Drawing.Size(163, 26);
+            this.txtNit.Size = new System.Drawing.Size(163, 35);
             this.txtNit.TabIndex = 25;
             // 
             // gbxDatos
@@ -399,7 +390,7 @@
             // 
             // FrmProveedor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::CpFerreteria.Properties.Resources.Captura_de_pantalla_2026_05_22_152801;
             this.ClientSize = new System.Drawing.Size(708, 447);
