@@ -54,6 +54,14 @@ namespace ClnFerreteria
             }
         }
 
+        public static int obtenerCantidadProveedores()
+        {
+            using (var context = new LabFerreteriaEntities())
+            {
+                return context.Proveedors.Count(x => x.estado != -1);
+            }
+        }
+
         // 4. Listar solo los activos
         public static List<Proveedor> listar()
         {

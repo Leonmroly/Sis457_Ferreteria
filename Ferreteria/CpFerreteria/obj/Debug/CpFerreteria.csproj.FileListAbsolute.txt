@@ -147,6 +147,7 @@ C:\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\bin\Debug\ClnFerreteria.d
 C:\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\bin\Debug\EntityFramework.xml
 C:\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\bin\Debug\EntityFramework.SqlServer.xml
 C:\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.csproj.AssemblyReference.cache
+C:\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmAlertasStock.resources
 C:\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmAutenticacion.resources
 C:\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmCategoria.resources
 C:\Documents\Sis457_Ferreteria\Ferreteria\CpFerreteria\obj\Debug\CpFerreteria.FrmCategoriaEntry.resources

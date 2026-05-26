@@ -106,6 +106,18 @@ namespace ClnFerreteria
             }
         }
 
+        public static decimal obtenerTotalComprasHoy()
+        {
+            using (var context = new LabFerreteriaEntities())
+            {
+                DateTime hoy = DateTime.Today;
+                return context.Compras
+                    .Where(x => x.estado != -1 && x.fecha >= hoy)
+                    .Select(x => (decimal?)x.total)
+                    .Sum() ?? 0;
+            }
+        }
+
         public static List<object> obtenerDetalle(int idCompra)
         {
             try

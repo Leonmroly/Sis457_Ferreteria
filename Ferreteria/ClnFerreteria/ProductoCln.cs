@@ -79,12 +79,44 @@ namespace ClnFerreteria
             }
         }
 
+        public static int obtenerCantidadProductos()
+        {
+            using (var context = new LabFerreteriaEntities())
+            {
+                return context.Productoes.Count(x => x.estado != -1);
+            }
+        }
+
         public static List<paProductoListar_Result> listarPa(string parametro)
         {
             using (var context = new LabFerreteriaEntities())
             {
                 return context.paProductoListar(parametro.Trim()).ToList();
 
+            }
+        }
+
+        public static int obtenerProductosBajos()
+        {
+            using (var context = new LabFerreteriaEntities())
+            {
+                // 💡 Cambiado a '== 1' (Solo activos)
+                return context.Productoes.Count(x => x.estado == 1 && x.cantidad <= 5);
+            }
+        }
+
+        // 2. Para la tablita que se abre al hacer clic
+        public static List<Producto> listarProductosBajos()
+        {
+            using (var context = new LabFerreteriaEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+
+                // 💡 Cambiado a '== 1' (Solo activos)
+                return context.Productoes
+                    .Where(x => x.estado == 1 && x.cantidad <= 5)
+                    .OrderBy(x => x.descripcion)
+                    .ToList();
             }
         }
 

@@ -454,3 +454,4 @@ SELECT id, nombre FROM Categoria;
 SELECT * FROM SubCategoria;
 SELECT * FROM Proveedor;
 SELECT * FROM Cliente;
+

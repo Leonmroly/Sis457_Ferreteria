@@ -136,6 +136,19 @@ namespace ClnFerreteria
             }
         }
 
+        public static decimal obtenerTotalVentasHoy()
+        {
+            using (var context = new LabFerreteriaEntities())
+            {
+                DateTime hoy = DateTime.Today;
+                // Suma el campo 'total' de todas las ventas realizadas hoy
+                return context.Venta
+                    .Where(x => x.estado != -1 && x.fechaRegistro >= hoy)
+                    .Select(x => (decimal?)x.total) // Evita errores si no hay ventas aún
+                    .Sum() ?? 0;
+            }
+        }
+
         // SOLO DEJAMOS UNA COPIA DE obtenerDetalle (Eliminando la duplicada de raíz)
         public static List<object> obtenerDetalle(int idVenta)
         {

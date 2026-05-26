@@ -93,6 +93,14 @@ namespace ClnFerreteria
             }
         }
 
+        public static int obtenerCantidadClientes()
+        {
+            using (var context = new LabFerreteriaEntities()) // Tu contexto de EF
+            {
+                return context.Clientes.Count(x => x.estado != -1); // No cuenta eliminados
+            }
+        }
+
         public static List<Cliente> listar()
         {
             try

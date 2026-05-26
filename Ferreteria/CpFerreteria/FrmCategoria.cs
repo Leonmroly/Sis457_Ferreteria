@@ -27,11 +27,9 @@ namespace CpFerreteria
             var lista = CategoriaCln.listarPa(txtParametro.Text);
             dgvLista.DataSource = lista;
 
-            // Ocultamos los campos técnicos
             if (dgvLista.Columns.Contains("id")) dgvLista.Columns["id"].Visible = false;
             if (dgvLista.Columns.Contains("estado")) dgvLista.Columns["estado"].Visible = false;
 
-            // Ponemos nombres legibles a las columnas de auditoría
             if (dgvLista.Columns.Contains("nombre"))
                 dgvLista.Columns["nombre"].HeaderText = "Categoría";
 
@@ -55,7 +53,7 @@ namespace CpFerreteria
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            FrmCategoriaEntry frm = new FrmCategoriaEntry(); // ID por defecto es 0
+            FrmCategoriaEntry frm = new FrmCategoriaEntry();
             frm.ShowDialog();
             listar();
         }
@@ -63,7 +61,7 @@ namespace CpFerreteria
         private void btnEditar_Click(object sender, EventArgs e)
         {
             int id = (int)dgvLista.CurrentRow.Cells["id"].Value;
-            FrmCategoriaEntry frm = new FrmCategoriaEntry(id); // Le pasamos el ID para editar
+            FrmCategoriaEntry frm = new FrmCategoriaEntry(id);
             frm.ShowDialog();
             listar();
         }
@@ -78,7 +76,7 @@ namespace CpFerreteria
 
             if (result == DialogResult.Yes)
             {
-                CategoriaCln.eliminar(id, "admin"); // Llamamos a la lógica, no a la DB directo
+                CategoriaCln.eliminar(id, "admin");
                 listar();
             }
         }
