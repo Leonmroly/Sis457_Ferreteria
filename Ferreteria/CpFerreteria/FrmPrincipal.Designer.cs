@@ -31,10 +31,19 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.pnlLateral = new System.Windows.Forms.Panel();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.btnEmpleado = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnVenta = new System.Windows.Forms.Button();
+            this.btnPerfil = new System.Windows.Forms.Button();
+            this.btnUsuario = new System.Windows.Forms.Button();
             this.lblBienvenida = new System.Windows.Forms.Label();
+            this.btnCompra = new System.Windows.Forms.Button();
+            this.btnProveedor = new System.Windows.Forms.Button();
+            this.btnCliente = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -45,45 +54,36 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblNumCantidad = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.lblNumClientes = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.lblNumCompras = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label22 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.lblNumAlertas = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label27 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.lblNumProveedores = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnCerrar = new System.Windows.Forms.Button();
-            this.btnEmpleado = new System.Windows.Forms.Button();
-            this.btnVenta = new System.Windows.Forms.Button();
-            this.btnPerfil = new System.Windows.Forms.Button();
-            this.btnUsuario = new System.Windows.Forms.Button();
-            this.btnCompra = new System.Windows.Forms.Button();
-            this.btnProveedor = new System.Windows.Forms.Button();
-            this.btnCliente = new System.Windows.Forms.Button();
             this.btnUnidadMedida = new System.Windows.Forms.Button();
             this.btnCategoria = new System.Windows.Forms.Button();
             this.btnMarca = new System.Windows.Forms.Button();
@@ -116,6 +116,36 @@
             this.pnlLateral.Size = new System.Drawing.Size(258, 688);
             this.pnlLateral.TabIndex = 10;
             // 
+            // btnCerrar
+            // 
+            this.btnCerrar.FlatAppearance.BorderSize = 0;
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrar.Image = global::CpFerreteria.Properties.Resources.cerrar_sesion;
+            this.btnCerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCerrar.Location = new System.Drawing.Point(19, 578);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(189, 41);
+            this.btnCerrar.TabIndex = 13;
+            this.btnCerrar.Text = "Cerrar Seccion";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // btnEmpleado
+            // 
+            this.btnEmpleado.FlatAppearance.BorderSize = 0;
+            this.btnEmpleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmpleado.Image = global::CpFerreteria.Properties.Resources.jefe_de_equipo;
+            this.btnEmpleado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEmpleado.Location = new System.Drawing.Point(19, 435);
+            this.btnEmpleado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEmpleado.Name = "btnEmpleado";
+            this.btnEmpleado.Size = new System.Drawing.Size(189, 41);
+            this.btnEmpleado.TabIndex = 6;
+            this.btnEmpleado.Text = "Empleados";
+            this.btnEmpleado.UseVisualStyleBackColor = true;
+            this.btnEmpleado.Click += new System.EventHandler(this.btnEmpleado_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -126,15 +156,108 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Bienvenido";
             // 
+            // btnVenta
+            // 
+            this.btnVenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnVenta.FlatAppearance.BorderSize = 0;
+            this.btnVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVenta.Image = global::CpFerreteria.Properties.Resources.bienes;
+            this.btnVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVenta.Location = new System.Drawing.Point(19, 178);
+            this.btnVenta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnVenta.Name = "btnVenta";
+            this.btnVenta.Size = new System.Drawing.Size(186, 41);
+            this.btnVenta.TabIndex = 9;
+            this.btnVenta.Text = "Ventas";
+            this.btnVenta.UseVisualStyleBackColor = true;
+            this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
+            // 
+            // btnPerfil
+            // 
+            this.btnPerfil.BackColor = System.Drawing.Color.Transparent;
+            this.btnPerfil.BackgroundImage = global::CpFerreteria.Properties.Resources.Perfil;
+            this.btnPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPerfil.FlatAppearance.BorderSize = 0;
+            this.btnPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPerfil.Location = new System.Drawing.Point(150, 37);
+            this.btnPerfil.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPerfil.Name = "btnPerfil";
+            this.btnPerfil.Size = new System.Drawing.Size(95, 94);
+            this.btnPerfil.TabIndex = 11;
+            this.btnPerfil.UseVisualStyleBackColor = false;
+            this.btnPerfil.Click += new System.EventHandler(this.btnPerfil_Click);
+            // 
+            // btnUsuario
+            // 
+            this.btnUsuario.FlatAppearance.BorderSize = 0;
+            this.btnUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuario.Image = global::CpFerreteria.Properties.Resources.asistencia_social;
+            this.btnUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUsuario.Location = new System.Drawing.Point(16, 384);
+            this.btnUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUsuario.Name = "btnUsuario";
+            this.btnUsuario.Size = new System.Drawing.Size(189, 41);
+            this.btnUsuario.TabIndex = 7;
+            this.btnUsuario.Text = "Usuarios";
+            this.btnUsuario.UseVisualStyleBackColor = true;
+            this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
+            // 
             // lblBienvenida
             // 
             this.lblBienvenida.AutoSize = true;
-            this.lblBienvenida.Font = new System.Drawing.Font("Calibri", 13F);
+            this.lblBienvenida.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBienvenida.Location = new System.Drawing.Point(12, 101);
             this.lblBienvenida.Name = "lblBienvenida";
-            this.lblBienvenida.Size = new System.Drawing.Size(54, 22);
+            this.lblBienvenida.Size = new System.Drawing.Size(49, 19);
             this.lblBienvenida.TabIndex = 1;
             this.lblBienvenida.Text = "label1";
+            // 
+            // btnCompra
+            // 
+            this.btnCompra.FlatAppearance.BorderSize = 0;
+            this.btnCompra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCompra.Image = global::CpFerreteria.Properties.Resources.orden;
+            this.btnCompra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCompra.Location = new System.Drawing.Point(13, 224);
+            this.btnCompra.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCompra.Name = "btnCompra";
+            this.btnCompra.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnCompra.Size = new System.Drawing.Size(189, 41);
+            this.btnCompra.TabIndex = 8;
+            this.btnCompra.Text = "Compras";
+            this.btnCompra.UseVisualStyleBackColor = true;
+            this.btnCompra.Click += new System.EventHandler(this.btnCompra_Click);
+            // 
+            // btnProveedor
+            // 
+            this.btnProveedor.FlatAppearance.BorderSize = 0;
+            this.btnProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProveedor.Image = global::CpFerreteria.Properties.Resources.proveedor_hotelero__1_;
+            this.btnProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProveedor.Location = new System.Drawing.Point(19, 333);
+            this.btnProveedor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnProveedor.Name = "btnProveedor";
+            this.btnProveedor.Size = new System.Drawing.Size(186, 41);
+            this.btnProveedor.TabIndex = 4;
+            this.btnProveedor.Text = "Proveedores";
+            this.btnProveedor.UseVisualStyleBackColor = true;
+            this.btnProveedor.Click += new System.EventHandler(this.btnProveedor_Click);
+            // 
+            // btnCliente
+            // 
+            this.btnCliente.FlatAppearance.BorderSize = 0;
+            this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCliente.Image = global::CpFerreteria.Properties.Resources.personas;
+            this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCliente.Location = new System.Drawing.Point(16, 277);
+            this.btnCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnCliente.Size = new System.Drawing.Size(189, 41);
+            this.btnCliente.TabIndex = 5;
+            this.btnCliente.Text = "Clientes";
+            this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
             // panel1
             // 
@@ -159,6 +282,22 @@
             this.label7.Size = new System.Drawing.Size(148, 18);
             this.label7.TabIndex = 23;
             this.label7.Text = "Suma total de Ventas";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImage = global::CpFerreteria.Properties.Resources.carrito_de_compras;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(159, 40);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(163, 160);
+            this.button2.TabIndex = 19;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // label8
             // 
@@ -262,6 +401,22 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "Stock";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = global::CpFerreteria.Properties.Resources.estadistica;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(140, 27);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(163, 170);
+            this.button1.TabIndex = 14;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
@@ -285,6 +440,22 @@
             this.label12.Size = new System.Drawing.Size(139, 18);
             this.label12.TabIndex = 24;
             this.label12.Text = "Clientes registrados";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Transparent;
+            this.button3.BackgroundImage = global::CpFerreteria.Properties.Resources.auriculares;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(157, 44);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(147, 153);
+            this.button3.TabIndex = 20;
+            this.button3.UseVisualStyleBackColor = false;
             // 
             // label13
             // 
@@ -346,6 +517,22 @@
             this.label17.Size = new System.Drawing.Size(112, 20);
             this.label17.TabIndex = 24;
             this.label17.Text = "Inversión Total";
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Transparent;
+            this.button4.BackgroundImage = global::CpFerreteria.Properties.Resources.bolsa_de_la_compra;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(159, 28);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(153, 159);
+            this.button4.TabIndex = 20;
+            this.button4.UseVisualStyleBackColor = false;
             // 
             // label18
             // 
@@ -414,6 +601,23 @@
             this.label22.Text = "¡Requiere reposición urgente!";
             this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Transparent;
+            this.button5.BackgroundImage = global::CpFerreteria.Properties.Resources.alerta;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(150, 36);
+            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(153, 159);
+            this.button5.TabIndex = 26;
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -479,6 +683,22 @@
             this.label27.TabIndex = 36;
             this.label27.Text = "Distribuidores registrados";
             // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.Transparent;
+            this.button6.BackgroundImage = global::CpFerreteria.Properties.Resources.proveedor;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Location = new System.Drawing.Point(162, 46);
+            this.button6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(142, 138);
+            this.button6.TabIndex = 32;
+            this.button6.UseVisualStyleBackColor = false;
+            // 
             // label28
             // 
             this.label28.AutoSize = true;
@@ -524,225 +744,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.Transparent;
-            this.button6.BackgroundImage = global::CpFerreteria.Properties.Resources.proveedor;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(162, 46);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(142, 138);
-            this.button6.TabIndex = 32;
-            this.button6.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.BackgroundImage = global::CpFerreteria.Properties.Resources.alerta;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(150, 36);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(153, 159);
-            this.button5.TabIndex = 26;
-            this.button5.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.BackgroundImage = global::CpFerreteria.Properties.Resources.bolsa_de_la_compra;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(159, 28);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(153, 159);
-            this.button4.TabIndex = 20;
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.BackgroundImage = global::CpFerreteria.Properties.Resources.auriculares;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(157, 44);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(147, 153);
-            this.button3.TabIndex = 20;
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::CpFerreteria.Properties.Resources.estadistica;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(140, 27);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(163, 170);
-            this.button1.TabIndex = 14;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImage = global::CpFerreteria.Properties.Resources.carrito_de_compras;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(159, 40);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(163, 160);
-            this.button2.TabIndex = 19;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // btnCerrar
-            // 
-            this.btnCerrar.FlatAppearance.BorderSize = 0;
-            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.Image = global::CpFerreteria.Properties.Resources.cerrar_sesion;
-            this.btnCerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCerrar.Location = new System.Drawing.Point(19, 578);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(189, 41);
-            this.btnCerrar.TabIndex = 13;
-            this.btnCerrar.Text = "Cerrar Seccion";
-            this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-            // 
-            // btnEmpleado
-            // 
-            this.btnEmpleado.FlatAppearance.BorderSize = 0;
-            this.btnEmpleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEmpleado.Image = global::CpFerreteria.Properties.Resources.jefe_de_equipo;
-            this.btnEmpleado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEmpleado.Location = new System.Drawing.Point(19, 435);
-            this.btnEmpleado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnEmpleado.Name = "btnEmpleado";
-            this.btnEmpleado.Size = new System.Drawing.Size(189, 41);
-            this.btnEmpleado.TabIndex = 6;
-            this.btnEmpleado.Text = "Empleados";
-            this.btnEmpleado.UseVisualStyleBackColor = true;
-            this.btnEmpleado.Click += new System.EventHandler(this.btnEmpleado_Click);
-            // 
-            // btnVenta
-            // 
-            this.btnVenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnVenta.FlatAppearance.BorderSize = 0;
-            this.btnVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVenta.Image = global::CpFerreteria.Properties.Resources.bienes;
-            this.btnVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVenta.Location = new System.Drawing.Point(19, 178);
-            this.btnVenta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnVenta.Name = "btnVenta";
-            this.btnVenta.Size = new System.Drawing.Size(186, 41);
-            this.btnVenta.TabIndex = 9;
-            this.btnVenta.Text = "Ventas";
-            this.btnVenta.UseVisualStyleBackColor = true;
-            this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
-            // 
-            // btnPerfil
-            // 
-            this.btnPerfil.BackColor = System.Drawing.Color.Transparent;
-            this.btnPerfil.BackgroundImage = global::CpFerreteria.Properties.Resources.Perfil;
-            this.btnPerfil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPerfil.FlatAppearance.BorderSize = 0;
-            this.btnPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPerfil.Location = new System.Drawing.Point(150, 37);
-            this.btnPerfil.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnPerfil.Name = "btnPerfil";
-            this.btnPerfil.Size = new System.Drawing.Size(95, 94);
-            this.btnPerfil.TabIndex = 11;
-            this.btnPerfil.UseVisualStyleBackColor = false;
-            this.btnPerfil.Click += new System.EventHandler(this.btnPerfil_Click);
-            // 
-            // btnUsuario
-            // 
-            this.btnUsuario.FlatAppearance.BorderSize = 0;
-            this.btnUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsuario.Image = global::CpFerreteria.Properties.Resources.asistencia_social;
-            this.btnUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsuario.Location = new System.Drawing.Point(16, 384);
-            this.btnUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnUsuario.Name = "btnUsuario";
-            this.btnUsuario.Size = new System.Drawing.Size(189, 41);
-            this.btnUsuario.TabIndex = 7;
-            this.btnUsuario.Text = "Usuarios";
-            this.btnUsuario.UseVisualStyleBackColor = true;
-            this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
-            // 
-            // btnCompra
-            // 
-            this.btnCompra.FlatAppearance.BorderSize = 0;
-            this.btnCompra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCompra.Image = global::CpFerreteria.Properties.Resources.orden;
-            this.btnCompra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCompra.Location = new System.Drawing.Point(13, 224);
-            this.btnCompra.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCompra.Name = "btnCompra";
-            this.btnCompra.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnCompra.Size = new System.Drawing.Size(189, 41);
-            this.btnCompra.TabIndex = 8;
-            this.btnCompra.Text = "Compras";
-            this.btnCompra.UseVisualStyleBackColor = true;
-            this.btnCompra.Click += new System.EventHandler(this.btnCompra_Click);
-            // 
-            // btnProveedor
-            // 
-            this.btnProveedor.FlatAppearance.BorderSize = 0;
-            this.btnProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProveedor.Image = global::CpFerreteria.Properties.Resources.proveedor_hotelero__1_;
-            this.btnProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProveedor.Location = new System.Drawing.Point(19, 333);
-            this.btnProveedor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnProveedor.Name = "btnProveedor";
-            this.btnProveedor.Size = new System.Drawing.Size(186, 41);
-            this.btnProveedor.TabIndex = 4;
-            this.btnProveedor.Text = "Proveedores";
-            this.btnProveedor.UseVisualStyleBackColor = true;
-            this.btnProveedor.Click += new System.EventHandler(this.btnProveedor_Click);
-            // 
-            // btnCliente
-            // 
-            this.btnCliente.FlatAppearance.BorderSize = 0;
-            this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCliente.Image = global::CpFerreteria.Properties.Resources.personas;
-            this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCliente.Location = new System.Drawing.Point(16, 277);
-            this.btnCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCliente.Name = "btnCliente";
-            this.btnCliente.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnCliente.Size = new System.Drawing.Size(189, 41);
-            this.btnCliente.TabIndex = 5;
-            this.btnCliente.Text = "Clientes";
-            this.btnCliente.UseVisualStyleBackColor = true;
-            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
             // btnUnidadMedida
             // 
@@ -810,6 +811,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1370, 688);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);

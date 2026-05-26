@@ -168,6 +168,23 @@ namespace CpFerreteria
             }
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int alertas = ProductoCln.obtenerProductosBajos();
+
+            if (alertas > 0)
+            {
+                FrmAlertasStock ventana = new FrmAlertasStock();
+                ventana.StartPosition = FormStartPosition.CenterParent;
+                ventana.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("¡Todo excelente! No hay productos con stock bajo en este momento.",
+                                "Inventario al día", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void lblNumAlertas_Click(object sender, EventArgs e)
         {
             panel5_Click(sender, e);
@@ -177,5 +194,6 @@ namespace CpFerreteria
         {
             panel5_Click(sender, e);
         }
+
     }
 }

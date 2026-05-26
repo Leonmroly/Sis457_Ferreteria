@@ -37,9 +37,10 @@
             // lblNombreMarca
             // 
             this.lblNombreMarca.AutoSize = true;
+            this.lblNombreMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombreMarca.Location = new System.Drawing.Point(70, 23);
             this.lblNombreMarca.Name = "lblNombreMarca";
-            this.lblNombreMarca.Size = new System.Drawing.Size(180, 20);
+            this.lblNombreMarca.Size = new System.Drawing.Size(203, 20);
             this.lblNombreMarca.TabIndex = 22;
             this.lblNombreMarca.Text = "Nombre de la Categoria:";
             // 
@@ -52,7 +53,11 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Image = global::CpFerreteria.Properties.Resources.save;
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGuardar.Image = global::CpFerreteria.Properties.Resources.guardar_el_archivo;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGuardar.Location = new System.Drawing.Point(74, 99);
             this.btnGuardar.Name = "btnGuardar";
@@ -60,7 +65,7 @@
             this.btnGuardar.TabIndex = 24;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnCancelar
@@ -80,12 +85,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(382, 177);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblNombreMarca);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmCategoriaEntry";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

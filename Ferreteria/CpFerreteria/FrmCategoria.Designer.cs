@@ -45,10 +45,12 @@
             // lblTitulo
             // 
             this.lblTitulo.Font = new System.Drawing.Font("Ebrima", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Image = global::CpFerreteria.Properties.Resources.caja_de_herramientas;
+            this.lblTitulo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTitulo.Location = new System.Drawing.Point(2, 9);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(731, 36);
+            this.lblTitulo.Size = new System.Drawing.Size(265, 36);
             this.lblTitulo.TabIndex = 1;
             this.lblTitulo.Text = "Categoria";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -101,6 +103,7 @@
             // 
             // btnCerrar
             // 
+            this.btnCerrar.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnCerrar.Image = global::CpFerreteria.Properties.Resources.close;
             this.btnCerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCerrar.Location = new System.Drawing.Point(452, 3);
@@ -109,12 +112,16 @@
             this.btnCerrar.TabIndex = 10;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.UseVisualStyleBackColor = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Image = global::CpFerreteria.Properties.Resources.delete;
+            this.btnEliminar.BackColor = System.Drawing.Color.Red;
+            this.btnEliminar.FlatAppearance.BorderSize = 0;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEliminar.Image = global::CpFerreteria.Properties.Resources.eliminar;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminar.Location = new System.Drawing.Point(347, 3);
             this.btnEliminar.Name = "btnEliminar";
@@ -122,12 +129,16 @@
             this.btnEliminar.TabIndex = 9;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnEditar
             // 
-            this.btnEditar.Image = global::CpFerreteria.Properties.Resources.edit;
+            this.btnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnEditar.FlatAppearance.BorderSize = 0;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEditar.Image = global::CpFerreteria.Properties.Resources.editar;
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEditar.Location = new System.Drawing.Point(242, 3);
             this.btnEditar.Name = "btnEditar";
@@ -135,12 +146,16 @@
             this.btnEditar.TabIndex = 8;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.UseVisualStyleBackColor = false;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Image = global::CpFerreteria.Properties.Resources._new;
+            this.btnNuevo.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnNuevo.FlatAppearance.BorderSize = 0;
+            this.btnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevo.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNuevo.Image = global::CpFerreteria.Properties.Resources.registro;
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNuevo.Location = new System.Drawing.Point(137, 3);
             this.btnNuevo.Name = "btnNuevo";
@@ -148,7 +163,7 @@
             this.btnNuevo.TabIndex = 7;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // btnBuscar
@@ -167,6 +182,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(730, 302);
             this.Controls.Add(this.pnlAcciones);
             this.Controls.Add(this.dgvLista);
@@ -175,6 +191,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitulo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmCategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
