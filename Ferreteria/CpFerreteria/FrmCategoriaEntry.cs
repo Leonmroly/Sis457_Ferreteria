@@ -39,9 +39,11 @@ namespace CpFerreteria
                 return;
             }
 
-            var categoria = new Categoria(); // Usa minúscula para la variable
+            var categoria = new Categoria();
             categoria.nombre = txtNombre.Text.Trim();
-            categoria.usuarioRegistro = "admin";
+
+            // 💡 SOLUCIÓN: Cambiamos el texto fijo por el usuario real de la sesión
+            categoria.usuarioRegistro = Util.usuario.usuario1;
 
             if (id == 0) // NUEVO
             {

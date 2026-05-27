@@ -60,7 +60,10 @@ namespace CpFerreteria
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
+            if (dgvLista.CurrentRow == null) return;
+
             int id = (int)dgvLista.CurrentRow.Cells["id"].Value;
+
             FrmCategoriaEntry frm = new FrmCategoriaEntry(id);
             frm.ShowDialog();
             listar();
